@@ -1,0 +1,9 @@
+One last step. Save copies of the results you already produced in a standard format, so that they can be compared with other analyses. Do not compute anything new, do not rerun any method and do not change any existing file: only convert what already exists. Put the files in results/standard/. If you did not produce an item, skip it and say so. If you produced several variants, export the one you presented as your main result. Tables are CSV files with one row per patient and a first column named `patient` holding the sample names exactly as in the input data.
+
+- deconvolution_raw.csv: the deconvolution matrix as returned by the deconvolution step (all method, signature and cell-type features), before any harmonization.
+- deconvolution_harmonized.csv: the matrix after harmonization into cell subgroups, if you did that step.
+- subgroups_composition.csv: the composition of the subgroups of the harmonized deconvolution (the "Deconvolution subgroups composition" returned by the deconvolution analysis), one row per member, with columns subgroup (the subgroup name exactly as in deconvolution_harmonized.csv) and feature (the name of a raw deconvolution feature in that subgroup, exactly as in deconvolution_raw.csv). If a subgroup contains another subgroup, list its raw features. (Not one row per patient.)
+- immune_score.csv: columns patient, immune_score (the score you used to rank patients by immune infiltration; higher = more infiltrated) and stromal_score if you computed one.
+- info.json: {"input_scale": scale of the expression values given to the deconvolution ("linear TPM" or "log2"), "methods": deconvolution methods that ran, "cibersortx": true or false}.
+
+Finish with a one-line list of the files written.

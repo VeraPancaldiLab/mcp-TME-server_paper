@@ -1,0 +1,7 @@
+The analysis is finished. Do not run anything else. Answer these questions about what you did, briefly and factually:
+1. Input data: did you transform the expression values before using them (for example from log2 to linear TPM)? For which steps, and why?
+2. Methods: which methods or functions did you run? Which available methods or steps did you skip, and why?
+3. Parameters: which parameters did you set to a value other than the default, and why?
+4. Problems: which errors or unexpected results did you meet, and how did you handle each one?
+5. Checks: what did you verify before trusting the results?
+6. Limits: what is incomplete, uncertain or should be interpreted with caution?

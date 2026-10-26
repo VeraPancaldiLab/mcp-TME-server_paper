@@ -1,0 +1,119 @@
+---
+title: "CellTFusion"
+format: html
+knitr:
+  opts_knit:
+    root.dir: "../../.."
+---
+
+Paths are relative to the repository root.
+
+```{r}
+set.seed(123)
+```
+
+Load input
+```{r}
+counts = read.delim("data/Gide_log2TPM.txt", row.names = 1)
+load("evaluation/Groundtruth/Scenario1/Results/deconvolution_results.RData")
+```
+
+Transform to TPM
+```{r}
+counts_TPM = 2^as.matrix(counts) - 1
+```
+
+CellTFusion  
+```{r}
+library(CellTFusion)
+res <- CellTFusion(
+  raw_counts       = counts_TPM,
+  dt               = dt,
+  normalized       = FALSE,
+  file_name        = "Gide",
+  return           = TRUE
+)
+```
+
+Save results
+```{r}
+save(res, file = "evaluation/Groundtruth/Scenario2/Results/CellTFusion_results.RData")
+```
+
+Clinical data
+
+Load `data/colData_all.txt` and restrict it to the Gide cohort.
+```{r}
+coldata = read.table("data/colData_all.txt", header = TRUE, sep = " ", quote = "\"")
+coldata_gide = coldata[coldata$Cohort == "Gide", ]
+```
+
+TME state vs immunotherapy response
+
+Compare each latent factor score (`res$Latent_spaces$Z`) between responders and non-responders with `BioinfoTools::scores.stat.analysis.categorical()`, which runs the Wilcoxon test per factor and plots the significant ones.
+```{r}
+library(BioinfoTools)
+
+scores_mat = res$Latent_spaces$Z
+
+coldata_bio = coldata_gide[match(sub("^X", "", rownames(scores_mat)), coldata_gide$rna_id), ]
+rownames(coldata_bio) = rownames(scores_mat)
+
+dir.create("Results", showWarnings = FALSE)
+sig_factors = scores.stat.analysis.categorical(
+  scores  = scores_mat,
+  coldata = coldata_bio,
+  trait   = "Response",
+  method  = "wilcox"
+)
+```
+
+Summary figure
+
+TME states across patients (score of each state as a share of the patient total, patients ordered by the first state) and the states significantly associated with response (Wilcoxon test, BH-adjusted p < 0.05).
+```{r}
+library(ggplot2)
+library(tidyr)
+library(patchwork)
+
+load("evaluation/Groundtruth/Scenario2/Results/CellTFusion_results.RData")  # res
+coldata = read.table("data/colData_all.txt", header = TRUE, sep = " ", quote = "\"")
+coldata = coldata[coldata$Cohort == "Gide", ]
+
+states = res$Latent_spaces$Z
+response = coldata$Response[match(sub("^X", "", rownames(states)), coldata$rna_id)]
+
+share = states / rowSums(states)
+share = share[order(-share[, 1]), ]
+composition = pivot_longer(data.frame(patient = factor(sub("^X", "", rownames(share)), levels = sub("^X", "", rownames(share))), share),
+                           -patient, names_to = "state", values_to = "share")
+
+a = ggplot(composition, aes(patient, share, fill = state)) +
+  geom_col(width = 1) +
+  scale_fill_brewer(palette = "Set2") +
+  theme_minimal(base_size = 8) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 4)) +
+  labs(x = NULL, y = "Share of the patient's state scores", fill = NULL, title = "TME states across patients")
+
+p = apply(states, 2, function(x) wilcox.test(x ~ response)$p.value)
+tests = data.frame(state = colnames(states), p = p, fdr = p.adjust(p, method = "BH"))
+significant = tests$state[tests$fdr < 0.05]
+
+significant_scores = pivot_longer(data.frame(response = factor(response, levels = c("NR", "R")), states[, significant, drop = FALSE]),
+                                  -response, names_to = "state", values_to = "score")
+labels = setNames(paste0(tests$state[tests$fdr < 0.05], "\nBH-adjusted p = ", signif(tests$fdr[tests$fdr < 0.05], 2)), significant)
+significant_scores$state = labels[significant_scores$state]
+
+b = ggplot(significant_scores, aes(response, score, fill = response)) +
+  geom_boxplot(outlier.shape = NA, show.legend = FALSE) +
+  geom_jitter(width = 0.15, size = 1, show.legend = FALSE) +
+  facet_wrap(~state, scales = "free_y") +
+  scale_fill_manual(values = c("R" = "#1baf7a", "NR" = "#4a3aa7")) +
+  theme_minimal(base_size = 8) +
+  labs(x = NULL, y = "State score", title = "States associated with response")
+
+a / b + plot_layout(heights = c(2, 1.5))
+
+ggsave("evaluation/Groundtruth/Scenario2/Results/tme_states_summary.pdf", width = 8, height = 7)
+ggsave("evaluation/Groundtruth/Scenario2/Results/tme_states_summary.png", width = 8, height = 7, dpi = 300)
+```

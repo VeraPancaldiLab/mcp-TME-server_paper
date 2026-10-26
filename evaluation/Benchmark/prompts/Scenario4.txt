@@ -1,0 +1,1 @@
+Reconstruct patient-specific cell-cell communication networks for the cohort in data/Gide_log2TPM.txt, tell me the most common patterns of cell-cell interaction and check how robust the results are. Use RaCInG. Save all the results in results/.

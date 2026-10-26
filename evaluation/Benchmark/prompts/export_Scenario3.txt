@@ -1,0 +1,10 @@
+One last step. Save copies of the results you already produced in a standard format, so that they can be compared with other analyses. Do not compute anything new, do not rerun any method and do not change any existing file: only convert what already exists. Put the files in results/standard/. If you did not produce an item, skip it and say so. If you produced several variants, export the one you presented as your main result. Tables are CSV files with one row per patient and a first column named `patient` holding the sample names exactly as in the input data.
+
+- subgroups_composition.csv: the composition of the deconvolution subgroups that are features of the final model (the "Deconvolution subgroups composition" of the deconvolution analysis done on the training samples), one row per member, with columns subgroup and feature, where subgroup is the name used as a model feature and feature is the name of a raw deconvolution feature (not one row per patient).
+- cv_performance.csv: one row per algorithm compared, with columns algorithm and cv_auroc (not one row per patient).
+- test_predictions.csv: columns patient and probability_R: the predicted probability of response for each patient of the external test cohort.
+- feature_importance.csv: one row per feature, with columns feature, cell_type and importance (for example mean absolute SHAP value), not one row per patient.
+- shap_values.csv: SHAP values, one row per patient and one column per feature, if you computed them.
+- info.json: {"selected_algorithm": ..., "training_cohort": ..., "test_cohort": ..., "features_built_inside_cv_folds": true or false, "cv_folds": ..., "cv_repeats": ..., "metric": ..., "cibersortx": true or false}.
+
+Finish with a one-line list of the files written.

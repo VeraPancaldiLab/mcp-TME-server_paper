@@ -1,0 +1,7 @@
+{
+  "n_states": 3,
+  "deconvolution_input_scale": "linear TPM",
+  "cibersortx": false,
+  "test": "Two-sided Wilcoxon rank-sum test (R vs NR), Benjamini-Hochberg across the 3 latent factors",
+  "deconvolution_source": "computed inside CellTFusion"
+}

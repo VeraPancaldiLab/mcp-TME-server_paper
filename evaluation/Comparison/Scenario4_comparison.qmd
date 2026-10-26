@@ -1,0 +1,186 @@
+---
+title: "Scenario 4: cell-cell communication (RaCInG)"
+subtitle: "Groundtruth vs Baseline vs LLM-MCP (Gide cohort, 73 samples)"
+format:
+  html:
+    toc: true
+    embed-resources: true
+knitr:
+  opts_knit:
+    root.dir: "../.."
+execute:
+  warning: false
+  message: false
+---
+
+Questions: are the ligands and receptors assigned to each cell type, the direct interaction
+features and the most common interactions the same as in the ground truth? Nothing else is
+compared.
+
+```{r}
+source("evaluation/Comparison/helpers.R")
+```
+
+## Load the results of each run
+
+Each run saved a copy of its results in `results/standard/`: the ligands and the receptors
+assigned to each cell type and the direct interaction features of the kernel method (without
+direction, one column per pair of cell types named `A - B`). Ground truth:
+`evaluation/Groundtruth/Scenario4/RaCInG.qmd`.
+
+```{r}
+load("evaluation/Groundtruth/Scenario4/Results/RaCInG_results.RData")  # input, direct
+
+# A ground-truth matrix with the same sample names as the runs.
+gt_matrix = function(x) {
+  x = as.matrix(x)
+  rownames(x) = clean_id(rownames(x))
+  x
+}
+
+# The 1s of a cell type x gene matrix as a table with one row per assignment.
+assignments = function(m, celltypes, genes, gene) {
+  one = which(m == 1, arr.ind = TRUE)
+  setNames(data.frame(celltypes[one[, "row"]], genes[one[, "col"]]), c("cell_type", gene))
+}
+
+# A ground-truth column "Dir_<A>_<B>" as "A - B". Cell-type names contain "_", so A is
+# recognised as the cell type that leaves another cell type as B.
+gt_pair = function(column, celltypes) {
+  name = sub("^Dir_", "", column)
+  for (a in celltypes) {
+    b = substring(name, nchar(a) + 2)
+    if (startsWith(name, paste0(a, "_")) && b %in% celltypes) return(paste(a, b, sep = " - "))
+  }
+}
+
+# One name per cell type: the runs exported the quanTIseq cell types with or without the
+# "Quantiseq_TIL10_" prefix, or with short labels of their own.
+short_labels = c(B = "B.cells", CD4 = "CD4.non.regulatory", Treg = "CD4.regulatory", CD8 = "CD8.cells", DC = "Dendritic.cells",
+                 M1 = "Macrophages.M1", M2 = "Macrophages.M2", Monocyte = "Monocytes", Neutrophil = "Neutrophils",
+                 NK = "NK.cells", Tumor = "Cancer")
+cell_name = function(x) {
+  x = sub("^Quantiseq_TIL10_", "", x)
+  ifelse(x %in% names(short_labels), short_labels[x], x)
+}
+
+# Same names, and same order of the two cell types, in every table: "B - A" becomes "A - B".
+ordered_pairs = function(m) {
+  colnames(m) = sapply(strsplit(colnames(m), " - ", fixed = TRUE), function(p) paste(sort(cell_name(p)), collapse = " - "))
+  m
+}
+
+# Same cell-type names in the composition and in the ligand and receptor assignments.
+named = function(x) {
+  if (is.matrix(x)) colnames(x) = cell_name(colnames(x)) else x$cell_type = cell_name(x$cell_type)
+  x
+}
+
+gt_direct = gt_matrix(direct)
+colnames(gt_direct) = sapply(colnames(gt_direct), gt_pair, celltypes = input$celltypes)
+samples = rownames(gt_direct)
+
+ligands     = list("Groundtruth" = named(assignments(input$Lmatrix, input$celltypes, input$ligands, "ligand")))
+receptors   = list("Groundtruth" = named(assignments(input$Rmatrix, input$celltypes, input$receptors, "receptor")))
+direct      = list("Groundtruth" = ordered_pairs(gt_direct))
+
+for (r in agent_runs) {
+  ligands[[r]]     = named(read.csv(standard_file(r, 4, "ligands.csv")))
+  receptors[[r]]   = named(read.csv(standard_file(r, 4, "receptors.csv")))
+  direct[[r]]      = ordered_pairs(read_standard(r, 4, "direct_interactions.csv")[samples, ])
+}
+```
+
+## How the comparisons are scored
+
+Everything is scored as reproduced / total of the ground truth, so what a run does not have
+lowers its score. Values are the same when they are identical, or correlate at 0.99 or more
+across patients. The scoring functions are in `helpers.R`.
+
+## Ligand and receptor assignments
+
+Which ligands and which receptors RaCInG assigned to each cell type. An assignment of the
+ground truth (a cell type with a ligand, or with a receptor) is reproduced when the run has
+the same one. `Not_in_GT` = assignments of the run that the ground truth does not have.
+
+```{r}
+assignment_score = function(run, gt) {
+  # gene names in one style: R writes HLA-DOB as HLA.DOB in some exports
+  run_keys = paste(run[[1]], make.names(run[[2]]))
+  gt_keys = paste(gt[[1]], make.names(gt[[2]]))
+  data.frame(GT = length(gt_keys), Run = length(run_keys), Reproduced = sum(gt_keys %in% run_keys),
+             Score = mean(gt_keys %in% run_keys), Not_in_GT = sum(!run_keys %in% gt_keys))
+}
+
+ligand_score = by_run(function(r) assignment_score(ligands[[r]], ligands$Groundtruth))
+kable(ligand_score, digits = 2)
+```
+
+```{r}
+receptor_score = by_run(function(r) assignment_score(receptors[[r]], receptors$Groundtruth))
+kable(receptor_score, digits = 2)
+```
+
+## Direct interaction features
+
+One feature per pair of cell types, matched by the pair.
+
+```{r}
+direct_score = by_run(function(r) score_by_name(direct[[r]], direct$Groundtruth))
+kable(direct_score, digits = 2)
+```
+
+## Most common interactions
+
+For each patient the interactions are expressed as a share of the total; the most common
+interactions are the ten with the highest median share over patients.
+
+```{r}
+most_common = function(D) {
+  share = D / rowSums(D)
+  top_names(apply(share, 2, median), 10)
+}
+
+common = lapply(direct, most_common)
+
+common_score = by_run(function(r) data.frame(
+  GT = 10, Reproduced = sum(common$Groundtruth %in% common[[r]]), Score = mean(common$Groundtruth %in% common[[r]])
+))
+kable(common_score, digits = 2)
+```
+
+The ten most common interactions of the ground truth, and the runs that also have them in
+their own ten.
+
+```{r}
+common_table = data.frame(Interaction = common$Groundtruth)
+for (r in agent_runs) common_table[[r]] = ifelse(common_table$Interaction %in% common[[r]], "yes", "")
+kable(common_table)
+```
+
+## Summary
+
+```{r}
+#| fig-height: 3.5
+#| fig-width: 11
+summary_scores = rbind(
+  data.frame(run = ligand_score$Run, comparison = "Ligand assignments", score = ligand_score$Score),
+  data.frame(run = receptor_score$Run, comparison = "Receptor assignments", score = receptor_score$Score),
+  data.frame(run = direct_score$Run, comparison = "Direct interactions", score = direct_score$Score),
+  data.frame(run = common_score$Run, comparison = "Most common interactions", score = common_score$Score)
+)
+summary_scores$run = factor(summary_scores$run, levels = agent_runs)
+summary_scores$comparison = factor(summary_scores$comparison, levels = unique(summary_scores$comparison))
+
+ggplot(summary_scores, aes(run, score, fill = arm_of(as.character(run)))) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = scales::percent(score, accuracy = 1)), vjust = -0.4, size = 3) +
+  facet_wrap(~comparison, nrow = 1) +
+  scale_fill_manual(values = arm_colors) +
+  scale_y_continuous(limits = c(0, 1.12), breaks = c(0, 0.5, 1), labels = scales::percent) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  labs(x = NULL, y = "Reproduced from the ground truth", fill = NULL)
+
+write.csv(summary_scores, "evaluation/Comparison/metrics/scores_Scenario4.csv", row.names = FALSE)
+save_figure("Scenario4/scores", 11, 3.5)
+```

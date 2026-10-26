@@ -1,0 +1,159 @@
+---
+title: "Scenario 3: predicting immunotherapy response"
+subtitle: "Groundtruth vs Baseline vs LLM-MCP (train on Gide, test on Riaz)"
+format:
+  html:
+    toc: true
+    embed-resources: true
+knitr:
+  opts_knit:
+    root.dir: "../.."
+execute:
+  warning: false
+  message: false
+---
+
+Questions: are the cross-validation AUROC of each algorithm, the AUROC on the test cohort and
+the top predictive features the same as in the ground truth? Nothing else is compared.
+
+```{r}
+source("evaluation/Comparison/helpers.R")
+library(pROC)
+```
+
+## Load the results of each run
+
+Each run saved a copy of its results in `results/standard/`: the cross-validation AUROC of the
+algorithms it compared, its predictions for the test cohort, the importance of each feature and
+the composition of the subgroups that are features of its model (needed to identify them).
+
+```{r}
+load("evaluation/Groundtruth/Scenario3/Results/ML_analysis_results.RData")  # res, pred, shap_classification
+
+riaz_samples = clean_id(rownames(read.csv("evaluation/Groundtruth/Scenario3/Results/Deconvolution_Riaz.csv", row.names = 1)))
+
+subgroups_by_celltype = res$Custom_output[["Deconvolution subgroups composition"]]
+gt_subgroups = stack(do.call(c, unname(subgroups_by_celltype)))
+
+subgroups  = list("Groundtruth" = data.frame(subgroup = as.character(gt_subgroups$ind), feature = gt_subgroups$values))
+cv         = list("Groundtruth" = data.frame(algorithm = res$AUROC_median$model, cv_auroc = res$AUROC_median$Median_AUROC))
+prediction = list("Groundtruth" = setNames(pred$Predictions$yes, riaz_samples))  # same order as the Riaz deconvolution
+importance = list("Groundtruth" = colMeans(abs(as.matrix(shap_classification))))
+
+for (r in agent_runs) {
+  subgroups[[r]]  = read_subgroups(r, 3)
+  cv[[r]]         = read.csv(standard_file(r, 3, "cv_performance.csv"))
+  if (file.exists(standard_file(r, 3, "test_predictions.csv"))) {  # a run without external test has none
+    prediction[[r]] = read_standard(r, 3, "test_predictions.csv")[, "probability_R"]
+  }
+  features        = read.csv(standard_file(r, 3, "feature_importance.csv"))
+  importance[[r]] = setNames(features$importance, make.names(features$feature))
+}
+```
+
+## Cross-validation AUROC of each algorithm
+
+AUROC of each algorithm in the cross-validation on the training cohort.
+
+```{r}
+cv_table = data.frame(Algorithm = cv$Groundtruth$algorithm)
+for (r in runs) cv_table[[r]] = cv[[r]]$cv_auroc[match(cv_table$Algorithm, cv[[r]]$algorithm)]
+kable(cv_table, digits = 3)
+```
+
+An algorithm is reproduced when its AUROC is the same as in the ground truth (difference below
+0.001). `Best_algorithm` is the one with the highest AUROC.
+
+```{r}
+best_algorithm = function(r) cv[[r]]$algorithm[which.max(cv[[r]]$cv_auroc)]
+
+cv_score = by_run(function(r) {
+  same = abs(cv_table[[r]] - cv_table$Groundtruth) < 0.001
+  data.frame(GT = nrow(cv_table), Reproduced = sum(same, na.rm = TRUE), Score = sum(same, na.rm = TRUE) / nrow(cv_table),
+             Best_algorithm = best_algorithm(r), Same_best_algorithm = best_algorithm(r) == best_algorithm("Groundtruth"))
+})
+kable(cv_score, digits = 2)
+```
+
+## AUROC on the test cohort
+
+AUROC on Riaz, computed here from the predictions of each run (with 95% confidence interval).
+A run without external test cohort has no value.
+
+```{r}
+riaz = load_coldata("Riaz")
+response = setNames(riaz$Response, riaz$rna_id)
+
+test_auroc = data.frame(Run = runs, Test_patients = 0, AUROC = NA, CI_low = NA, CI_high = NA, row.names = runs)
+
+for (r in names(prediction)) {
+  p = prediction[[r]]
+  ci = ci.auc(roc(response[names(p)], p, levels = c("NR", "R"), direction = "<"))
+  test_auroc[r, "Test_patients"] = length(p)
+  test_auroc[r, c("CI_low", "AUROC", "CI_high")] = ci
+}
+test_auroc$Same_as_GT = !is.na(test_auroc$AUROC) & abs(test_auroc$AUROC - test_auroc["Groundtruth", "AUROC"]) < 0.001
+kable(test_auroc, digits = 3, row.names = FALSE)
+```
+
+## Top predictive features
+
+The features of each model, by exact identity: a single deconvolution feature is its name, and
+a subgroup is the set of its members (so two subgroups are the same feature only when they
+contain the same raw features). `Present` = features of the ground-truth model that the model
+of the run also has.
+
+```{r}
+feature_identity = function(features, composition) {
+  group_members = members(composition, "subgroup", "feature")
+  ifelse(features %in% names(group_members), group_members[features], features)
+}
+
+for (r in runs) names(importance[[r]]) = feature_identity(names(importance[[r]]), subgroups[[r]])
+
+gt_importance = importance$Groundtruth
+
+feature_score = by_run(function(r) data.frame(
+  GT           = length(gt_importance),
+  Present      = sum(names(gt_importance) %in% names(importance[[r]])),
+  Top10_shared = length(intersect(top_names(importance[[r]], 10), top_names(gt_importance, 10))),
+  Top20_shared = length(intersect(top_names(importance[[r]], 20), top_names(gt_importance, 20)))
+))
+kable(feature_score)
+```
+
+The ten most important features of the ground truth, and the runs that also have them in their
+own top ten.
+
+```{r}
+top_table = data.frame(Feature = top_names(gt_importance, 10))
+for (r in agent_runs) top_table[[r]] = ifelse(top_table$Feature %in% top_names(importance[[r]], 10), "yes", "")
+kable(top_table)
+```
+
+## Summary
+
+```{r}
+#| fig-height: 3.5
+#| fig-width: 10
+summary_scores = rbind(
+  data.frame(run = cv_score$Run, comparison = "CV AUROC per algorithm", score = cv_score$Score),
+  data.frame(run = agent_runs, comparison = "AUROC on test cohort", score = as.numeric(test_auroc[agent_runs, "Same_as_GT"])),
+  data.frame(run = feature_score$Run, comparison = "Top 10 features", score = feature_score$Top10_shared / 10),
+  data.frame(run = feature_score$Run, comparison = "Top 20 features", score = feature_score$Top20_shared / 20)
+)
+summary_scores$run = factor(summary_scores$run, levels = agent_runs)
+summary_scores$comparison = factor(summary_scores$comparison, levels = unique(summary_scores$comparison))
+
+ggplot(summary_scores, aes(run, score, fill = arm_of(as.character(run)))) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = scales::percent(score, accuracy = 1)), vjust = -0.4, size = 3) +
+  facet_wrap(~comparison, nrow = 1) +
+  scale_fill_manual(values = arm_colors) +
+  scale_y_continuous(limits = c(0, 1.12), breaks = c(0, 0.5, 1), labels = scales::percent) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  labs(x = NULL, y = "Reproduced from the ground truth", fill = NULL)
+
+write.csv(summary_scores, "evaluation/Comparison/metrics/scores_Scenario3.csv", row.names = FALSE)
+save_figure("Scenario3/scores", 10, 3.5)
+```

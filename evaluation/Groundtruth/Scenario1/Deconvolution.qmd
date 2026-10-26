@@ -1,0 +1,104 @@
+---
+title: "Deconvolution - Scenario 1"
+format: html
+knitr:
+  opts_knit:
+    root.dir: "../../.."
+---
+
+```{r}
+set.seed(123)
+```
+
+Load input
+```{r}
+counts = read.delim("data/Gide_log2TPM.txt", row.names = 1)
+```
+
+Transform to TPM
+```{r}
+counts_TPM = 2^as.matrix(counts) - 1
+```
+
+Deconvolution 
+```{r}
+library(multideconv)
+library(DeconRNASeq)
+deconv_Gide = compute.deconvolution(counts_TPM, normalized = F,
+                                    credentials.mail = "marcelo.hurtado@inserm.fr",
+                                    credentials.token = "b72981d4d0554bcfffc37472ccd8588d", 
+                                    file_name = "Gide")
+```
+
+Immune and stroma groups
+
+Sum the immune cell types and the stromal cell types of each method-signature combination into two new cell types, Immune and Stroma, before the subgroupping.
+```{r}
+immune_types = c("B.cells","B.naive.cells","B.memory.cells",
+                  "Macrophages.cells","Macrophages.M0","Macrophages.M1","Macrophages.M2",
+                  "Monocytes","Neutrophils","NK.cells","NK.activated","NK.resting","NKT.cells",
+                  "CD4.cells","CD4.memory.activated","CD4.memory.resting","CD4.naive","CD8.cells",
+                  "CD4.regulatory","CD4.non.regulatory","T.cells.helper","T.cells.gamma.delta",
+                  "Dendritic.cells","Dendritic.activated.cells","Dendritic.resting.cells",
+                  "Eosinophils","Plasma","Mast.cells","Mast.activated.cells","Mast.resting.cells",
+                  "Dendritic.plasmacytoid.cells","Myeloid.cells","Basophils","T.cells.proliferative")
+stromal_types = c("Endothelial","Fibroblasts","CAF","Myocytes","Pericytes","Mural.cells")
+
+deconv_groups = aggregate_cell_groups(deconv_Gide, cell_groups = list(Immune = immune_types, Stroma = stromal_types))
+```
+
+Deconvolution analysis
+```{r}
+dt = compute.deconvolution.analysis(deconv_groups, cells_extra = c("Immune", "Stroma"), file_name = "Gide")
+```
+
+Save results
+```{r}
+save(deconv_Gide, dt, file = "evaluation/Groundtruth/Scenario1/Results/deconvolution_results.RData")
+
+# Raw deconvolution matrix, read by the Scenario 3 script
+write.csv(deconv_Gide, "evaluation/Groundtruth/Scenario1/Results/Deconvolution_Gide.csv")
+```
+
+Immune infiltration score
+```{r}
+subs = dt[["Deconvolution subgroups per cell types"]]
+
+composition = data.frame(
+  patient = rownames(subs$Immune),
+  immune_score = rowMeans(subs$Immune),
+  stromal_score = rowMeans(subs$Stroma)
+)
+composition = composition[order(-composition$immune_score), ]
+
+write.csv(composition, "evaluation/Groundtruth/Scenario1/Results/immune_stromal_composition.csv", row.names = FALSE)
+
+head(composition, 15)
+```
+
+Summary figure
+
+Immune and stroma scores of the 10 most immune infiltrated patients.
+```{r}
+library(ggplot2)
+library(tidyr)
+
+composition = read.csv("evaluation/Groundtruth/Scenario1/Results/immune_stromal_composition.csv")
+composition = head(composition, 10)  # the file is ordered from the most to the least immune infiltrated
+composition$patient = factor(sub("^X(?=[0-9])", "", composition$patient, perl = TRUE),
+                             levels = rev(sub("^X(?=[0-9])", "", composition$patient, perl = TRUE)))
+
+scores = pivot_longer(composition, c(immune_score, stromal_score), names_to = "score", values_to = "value")
+scores$score = factor(scores$score, levels = c("immune_score", "stromal_score"), labels = c("Immune score", "Stroma score"))
+
+ggplot(scores, aes(value, patient, fill = score)) +
+  geom_col(width = 0.8, show.legend = FALSE) +
+  facet_wrap(~score, scales = "free_x") +
+  scale_fill_manual(values = c("Immune score" = "#c0392b", "Stroma score" = "#2a78d6")) +
+  theme_minimal(base_size = 8) +
+  theme(axis.text.y = element_text(size = 7)) +
+  labs(x = "Mean of the features of the group", y = NULL, title = "Immune and stroma scores of the 10 most immune infiltrated patients")
+
+ggsave("evaluation/Groundtruth/Scenario1/Results/immune_stroma_ranking.pdf", width = 7, height = 3.5)
+ggsave("evaluation/Groundtruth/Scenario1/Results/immune_stroma_ranking.png", width = 7, height = 3.5, dpi = 300)
+```

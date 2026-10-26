@@ -1,0 +1,103 @@
+---
+title: "Decisions of each run"
+subtitle: "How Baseline and LLM-MCP approached each scenario"
+format:
+  html:
+    toc: true
+    embed-resources: true
+knitr:
+  opts_knit:
+    root.dir: "../.."
+execute:
+  warning: false
+  message: false
+---
+
+For each scenario and run: what the run declared about its analysis (`info.json`), the
+questions it asked, how it called the packages (taken from its event log, not from what it
+says), and its answers to the debrief questionnaire.
+
+```{r}
+source("evaluation/Comparison/helpers.R")
+
+calls    = read.csv("evaluation/Comparison/metrics/package_calls.csv")
+messages = read.csv("evaluation/Comparison/metrics/messages.csv")
+metrics  = read.csv("evaluation/Comparison/metrics/run_metrics.csv")
+
+calls$run    = paste(calls$arm, calls$model)
+messages$run = paste(messages$arm, messages$model)
+metrics$run  = paste(metrics$arm, metrics$model)
+```
+
+Folder with the saved history of a run (`events.jsonl`, `transcript.md`, `final_report.md`,
+`debrief.md`).
+
+```{r}
+log_file = function(run, scenario, file) {
+  sub("results/standard", "log", standard_file(run, scenario, file))
+}
+```
+
+Print a report written by a run. Its own headings are shown in bold, so that they do not mix
+with the sections of this page.
+
+```{r}
+show_report = function(file) {
+  cat(sub("^#+ +(.*)", "**\\1**", readLines(file)), sep = "\n")
+}
+```
+
+One section per scenario, written by the loop below.
+
+```{r}
+#| results: asis
+for (s in 1:4) {
+  cat("\n\n# Scenario", s, "\n\n")
+  cat("Prompt:", readLines(paste0("evaluation/Benchmark/prompts/Scenario", s, ".txt")), "\n\n")
+
+  cat("\n\n## What each run declared\n\n")
+  declared = data.frame()
+  for (r in agent_runs) {
+    file = standard_file(r, s, "info.json")
+    if (!file.exists(file)) next
+    info = jsonlite::fromJSON(file)
+    for (field in names(info)) {
+      declared = rbind(declared, data.frame(Run = r, Field = field, Value = paste(unlist(info[[field]]), collapse = ", ")))
+    }
+  }
+  print(kable(declared))
+
+  cat("\n\n## Questions and replies\n\n")
+  asked = metrics[metrics$scenario == s, c("run", "questions_answered", "asked_cibersortx_credentials")]
+  print(kable(asked, row.names = FALSE))
+  cat("\n\nMessages sent to a run after the prompt:\n\n")
+  print(kable(messages[messages$scenario == s, c("run", "message")], row.names = FALSE))
+
+  cat("\n\n## Package calls\n\n")
+  cat("MCP tool calls with their arguments (LLM-MCP) and calls to the package functions in the",
+      "code that the run wrote or ran (Baseline). Each different call is listed once.\n\n")
+  print(kable(calls[calls$scenario == s, c("run", "package", "name", "call")], row.names = FALSE,
+              col.names = c("Run", "Package or server", "Function or tool", "Call")))
+
+  cat("\n\n## Debrief\n\n")
+  cat("Answers of each run to the same six questions, asked after the analysis with the tools disabled.\n\n")
+  cat("::: {.panel-tabset}\n\n")
+  for (r in agent_runs) {
+    file = log_file(r, s, "debrief.md")
+    if (!file.exists(file)) next
+    cat("\n\n###", r, "\n\n")
+    show_report(file)
+  }
+  cat("\n\n:::\n\n")
+
+  cat("\n\n## Final report\n\n")
+  cat("::: {.panel-tabset}\n\n")
+  for (r in agent_runs) {
+    file = log_file(r, s, "final_report.md")
+    if (!file.exists(file)) next
+    cat("\n\n###", r, "\n\n")
+    show_report(file)
+  }
+  cat("\n\n:::\n\n")
+}
+```

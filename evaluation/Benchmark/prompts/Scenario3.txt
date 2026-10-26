@@ -1,0 +1,1 @@
+Using the bulk RNA-seq datasets in data/ (Gide_log2TPM.txt, Riaz_log2TPM.txt, clinical data in colData_all.txt), build a model that predicts immunotherapy response using the TME cell composition and tell me which features are driving the prediction. Use pipeML and multideconv. Save all the results in results/.

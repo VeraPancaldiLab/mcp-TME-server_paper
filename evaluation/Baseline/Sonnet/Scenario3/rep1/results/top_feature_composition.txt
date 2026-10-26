@@ -1,0 +1,50 @@
+Feature: DeconRNASeq_TIL10_Monocytes
+  (single feature, not part of a merged subgroup)
+
+Feature: Macrophages.M1_Subgroup.3
+  Cell type: Macrophages.M1
+  Composed of (method_signature estimates merged into this subgroup):
+   - DWLS_LM22_Macrophages.M1
+   - Epidish_LM22_Macrophages.M1
+
+Feature: CD8.cells_Subgroup.1
+  Cell type: CD8.cells
+  Composed of (method_signature estimates merged into this subgroup):
+   - DeconRNASeq_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells
+   - DWLS_TIL10_CD8.cells
+   - Epidish_TIL10_CD8.cells
+   - Quantiseq_TIL10_CD8.cells
+
+Feature: Macrophages.M1_Subgroup.2
+  Cell type: Macrophages.M1
+  Composed of (method_signature estimates merged into this subgroup):
+   - DeconRNASeq_TIL10_Macrophages.M1
+   - Quantiseq_TIL10_Macrophages.M1
+
+Feature: DeconRNASeq_LM22_Mast.resting.cells
+  (single feature, not part of a merged subgroup)
+
+Feature: CD8.cells_Subgroup.4
+  Cell type: CD8.cells
+  Composed of (method_signature estimates merged into this subgroup):
+   - DWLS_LM22_CD8.cells
+   - Epidish_LM22_CD8.cells
+
+Feature: DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer
+  (single feature, not part of a merged subgroup)
+
+Feature: B.memory.cells_Subgroup.1
+  Cell type: B.memory.cells
+  Composed of (method_signature estimates merged into this subgroup):
+   - DWLS_CBSX.Zilionis.scRNAseq_B.memory.cells
+   - Epidish_CBSX.Zilionis.scRNAseq_B.memory.cells
+
+Feature: DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting
+  (single feature, not part of a merged subgroup)
+
+Feature: Macrophages.M2_Subgroup.2
+  Cell type: Macrophages.M2
+  Composed of (method_signature estimates merged into this subgroup):
+   - DWLS_LM22_Macrophages.M2
+   - Epidish_LM22_Macrophages.M2
+

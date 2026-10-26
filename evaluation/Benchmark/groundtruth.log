@@ -1,0 +1,295 @@
+=== GT Scenario1/Deconvolution started 10-16 11:05
+[31m
+
+processing file: Deconvolution.qmd
+[39m1/23                   
+2/23 [unnamed-chunk-1] 
+3/23                   
+4/23 [unnamed-chunk-2] 
+5/23                   
+6/23 [unnamed-chunk-3] 
+7/23                   
+8/23 [unnamed-chunk-4] 
+9/23                   
+10/23 [unnamed-chunk-5] 
+11/23                   
+12/23 [unnamed-chunk-6] 
+13/23                   
+14/23 [unnamed-chunk-7] 
+15/23                   
+16/23 [unnamed-chunk-8] 
+17/23                   
+18/23 [unnamed-chunk-9] 
+19/23                   
+20/23 [unnamed-chunk-10]
+21/23                   
+22/23 [unnamed-chunk-11]
+23/23                   
+[31moutput file: Deconvolution.knit.md
+
+[39m[1mpandoc [22m
+  to: html
+  output-file: Deconvolution.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  variables: {}
+  
+[1mmetadata[22m
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: Deconvolution
+  knitr:
+    opts_knit:
+      root.dir: ../../..
+  
+Output created: ../../../../../../../tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/4815654d-8508-4fa8-8826-f502fab24128/scratchpad/gt_html/Deconvolution.html
+
+=== GT Scenario1/Deconvolution finished 10-16 11:26
+=== GT Scenario2/CellTFusion started 10-16 11:26
+[31m
+
+processing file: CellTFusion.qmd
+[39m1/14                  
+2/14 [unnamed-chunk-1]
+3/14                  
+4/14 [unnamed-chunk-2]
+5/14                  
+6/14 [unnamed-chunk-3]
+7/14                  
+8/14 [unnamed-chunk-4]
+9/14                  
+10/14 [unnamed-chunk-5]
+11/14                  
+12/14 [unnamed-chunk-6]
+13/14                  
+14/14 [unnamed-chunk-7]
+[31moutput file: CellTFusion.knit.md
+
+[39m[1mpandoc [22m
+  to: html
+  output-file: CellTFusion.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  variables: {}
+  
+[1mmetadata[22m
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: CellTFusion
+  knitr:
+    opts_knit:
+      root.dir: ../../..
+  
+Output created: ../../../../../../../tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/4815654d-8508-4fa8-8826-f502fab24128/scratchpad/gt_html/CellTFusion.html
+
+=== GT Scenario2/CellTFusion finished 10-16 11:27
+=== GT Scenario3/ML_analysis started 10-16 11:27
+[31m
+
+processing file: ML_analysis.qmd
+[39m1/25                   
+2/25 [unnamed-chunk-1] 
+3/25                   
+4/25 [unnamed-chunk-2] 
+5/25                   
+6/25 [unnamed-chunk-3] 
+7/25                   
+8/25 [unnamed-chunk-4] 
+9/25                   
+10/25 [unnamed-chunk-5] 
+11/25                   
+12/25 [unnamed-chunk-6] 
+13/25                   
+14/25 [unnamed-chunk-7] 
+15/25                   
+16/25 [unnamed-chunk-8] 
+17/25                   
+18/25 [unnamed-chunk-9] 
+19/25                   
+20/25 [unnamed-chunk-10]
+21/25                   
+22/25 [unnamed-chunk-11]
+23/25                   
+24/25 [unnamed-chunk-12]
+25/25                   
+[31moutput file: ML_analysis.knit.md
+
+[39m[1mpandoc [22m
+  to: html
+  output-file: ML_analysis.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  variables: {}
+  
+[1mmetadata[22m
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: ML analysis
+  knitr:
+    opts_knit:
+      root.dir: ../../..
+  
+Output created: ../../../../../../../tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/4815654d-8508-4fa8-8826-f502fab24128/scratchpad/gt_html/ML_analysis.html
+
+=== GT Scenario3/ML_analysis finished 10-16 11:52
+=== GT Scenario4/RaCInG started 10-16 11:52
+[31m
+
+processing file: RaCInG.qmd
+[39m1/15                  
+2/15 [unnamed-chunk-1]
+3/15                  
+4/15 [unnamed-chunk-2]
+5/15                  
+6/15 [unnamed-chunk-3]
+7/15                  
+8/15 [unnamed-chunk-4]
+=== GT Scenario4/RaCInG started 10-16 11:54
+[31m
+
+processing file: RaCInG.qmd
+[39m1/15                  
+2/15 [unnamed-chunk-1]
+3/15                  
+4/15 [unnamed-chunk-2]
+5/15                  
+6/15 [unnamed-chunk-3]
+7/15                  
+8/15 [unnamed-chunk-4]
+9/15                  
+10/15 [unnamed-chunk-5]
+11/15                  
+12/15 [unnamed-chunk-6]
+13/15                  
+14/15 [unnamed-chunk-7]
+15/15                  
+[31moutput file: RaCInG.knit.md
+
+[39m[1mpandoc [22m
+  to: html
+  output-file: RaCInG.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  variables: {}
+  
+[1mmetadata[22m
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: RaCInG
+  knitr:
+    opts_knit:
+      root.dir: ../../..
+  
+Output created: ../../../../../../../tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/4815654d-8508-4fa8-8826-f502fab24128/scratchpad/gt_html/RaCInG.html
+
+=== GT Scenario4/RaCInG finished 10-16 11:56
+=== GT Scenario4/RaCInG started 10-25 02:49
+[31m
+
+processing file: RaCInG.qmd
+[39m1/15                  
+2/15 [unnamed-chunk-1]
+3/15                  
+4/15 [unnamed-chunk-2]
+5/15                  
+6/15 [unnamed-chunk-3]
+7/15                  
+8/15 [unnamed-chunk-4]
+9/15                  
+10/15 [unnamed-chunk-5]
+11/15                  
+12/15 [unnamed-chunk-6]
+13/15                  
+14/15 [unnamed-chunk-7]
+15/15                  
+[31moutput file: RaCInG.knit.md
+
+[39m[1mpandoc [22m
+  to: html
+  output-file: RaCInG.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  variables: {}
+  
+[1mmetadata[22m
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: RaCInG
+  knitr:
+    opts_knit:
+      root.dir: ../../..
+  
+Output created: ../../../../../../../tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/4815654d-8508-4fa8-8826-f502fab24128/scratchpad/gt_html/RaCInG.html
+
+=== GT Scenario4/RaCInG finished 10-25 02:53
+=== GT Scenario4/RaCInG started 10-25 10:58
+[31m
+
+processing file: RaCInG.qmd
+[39m1/15                  
+2/15 [unnamed-chunk-1]
+3/15                  
+4/15 [unnamed-chunk-2]
+5/15                  
+6/15 [unnamed-chunk-3]
+7/15                  
+8/15 [unnamed-chunk-4]
+9/15                  
+10/15 [unnamed-chunk-5]
+11/15                  
+12/15 [unnamed-chunk-6]
+13/15                  
+14/15 [unnamed-chunk-7]
+15/15                  
+[31moutput file: RaCInG.knit.md
+
+[39m[1mpandoc [22m
+  to: html
+  output-file: RaCInG.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  variables: {}
+  
+[1mmetadata[22m
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: RaCInG
+  knitr:
+    opts_knit:
+      root.dir: ../../..
+  
+[33mWARN: Refusing to remove directory /tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/4815654d-8508-4fa8-8826-f502fab24128/scratchpad/gt_html/RaCInG_files/libs since it is not a subdirectory of the main project directory.[39m
+[33mWARN: Quarto did not expect the path configuration being used in this project, and strange behavior may result.[39m
+Output created: ../../../../../../../tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/4815654d-8508-4fa8-8826-f502fab24128/scratchpad/gt_html/RaCInG.html
+
+=== GT Scenario4/RaCInG finished 10-25 10:59

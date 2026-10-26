@@ -1,0 +1,122 @@
+---
+title: "RaCInG"
+format: html
+knitr:
+  opts_knit:
+    root.dir: "../../.."
+---
+
+Paths are relative to the repository root.
+
+```{r}
+set.seed(123)
+```
+
+Load input
+```{r}
+counts = read.delim("data/Gide_log2TPM.txt", row.names = 1)
+
+# Deconvolution of Gide from Scenario 1: raw features (deconv_Gide) and subgroups (dt)
+load("evaluation/Groundtruth/Scenario1/Results/deconvolution_results.RData")
+```
+
+Transform to TPM
+```{r}
+counts_TPM = 2^as.matrix(counts) - 1
+```
+
+Deconvolution
+
+The deconvolution is not computed again: the features and subgroups of Scenario 1 are resued.
+```{r}
+library(RaCInG)
+
+is_group = function(x) grepl("^(Immune|Stroma)_|_(Immune|Stroma)$", x)
+
+deconv = dt[["Deconvolution matrix"]]
+dt_cells = dt
+dt_cells[["Deconvolution matrix"]] = deconv[, !is_group(colnames(deconv))]
+dt_cells[["Deconvolution subgroups composition"]] = lapply(dt[["Deconvolution subgroups composition"]], function(x) x[!is_group(names(x))])
+
+deconv_cells = dt_cells[["Deconvolution matrix"]]
+dim(deconv_cells)
+```
+
+RaCInG
+
+Expression profile of each cell type: estimated per method and signature from the raw features, then merged according to the subgroups.
+```{r}
+dir.create("evaluation/Groundtruth/Scenario4/Results", showWarnings = FALSE)
+
+cell_expr_profile = RaCInG:::.estimate_expression_profiles_subgroups(counts_TPM, deconv_Gide, dt_cells)
+
+input <- prepare_input_files(
+  counts = counts_TPM,
+  deconv = deconv_cells,
+  cell_expr_profile = cell_expr_profile,
+  already_normalized = TRUE,
+  output_folder = "evaluation/Groundtruth/Scenario4/Results/",
+  file_name = "Gide"
+)
+
+length(input$celltypes)
+```
+
+Kernel method: direct interactions (D)
+```{r}
+kernel_res <- compute_racing_kernel(
+  input_data = input,
+  file_name = "Gide",
+  output_folder = "evaluation/Groundtruth/Scenario4/Results/",
+  communication_type = "D"
+)
+
+direct = as.matrix(kernel_res$features)
+dim(direct)
+```
+
+Save results
+```{r}
+save(input, direct, file = "evaluation/Groundtruth/Scenario4/Results/RaCInG_results.RData")
+```
+
+Most common direct interactions
+
+Share of each direct interaction in the communication of each patient, then the median over patients.
+```{r}
+direct_share = direct / rowSums(direct)
+
+head(sort(apply(direct_share, 2, median), decreasing = TRUE), 10)
+```
+
+Summary figure
+
+The ten most common direct interactions (median share of the communication of a patient).
+```{r}
+library(ggplot2)
+
+load("evaluation/Groundtruth/Scenario4/Results/RaCInG_results.RData")  # input, direct
+
+# A column "Dir_<A>_<B>" as "A - B" (cell-type names contain "_")
+pair_name = function(column, celltypes) {
+  name = sub("^Dir_", "", column)
+  for (a in celltypes) {
+    b = substring(name, nchar(a) + 2)
+    if (startsWith(name, paste0(a, "_")) && b %in% celltypes) return(paste(a, b, sep = " - "))
+  }
+  name
+}
+
+share = direct / rowSums(direct)
+top = sort(apply(share, 2, median), decreasing = TRUE)[1:10]
+top = data.frame(interaction = sapply(names(top), pair_name, celltypes = input$celltypes), share = 100 * top)
+top$interaction = factor(top$interaction, levels = rev(top$interaction))
+
+ggplot(top, aes(share, interaction)) +
+  geom_col(fill = "#2a78d6", width = 0.7) +
+  theme_minimal(base_size = 8) +
+  labs(x = "Median share of the patient's communication (%)", y = NULL, title = "Top 10 direct cell-cell interactions")
+
+ggsave("evaluation/Groundtruth/Scenario4/Results/top_interactions.pdf", width = 7, height = 3.5)
+ggsave("evaluation/Groundtruth/Scenario4/Results/top_interactions.png", width = 7, height = 3.5, dpi = 300)
+```

@@ -1,0 +1,7 @@
+{
+  "n_states": 4,
+  "deconvolution_input_scale": "linear TPM",
+  "cibersortx": true,
+  "test": "Wilcoxon rank-sum test",
+  "deconvolution_source": "computed inside CellTFusion"
+}

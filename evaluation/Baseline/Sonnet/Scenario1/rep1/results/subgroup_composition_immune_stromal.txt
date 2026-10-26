@@ -1,0 +1,32 @@
+=== Immune subgroup composition ===
+$Immune_Subgroup.1
+[1] "DeconRNASeq_CBSX.HNSCC.scRNAseq_Immune"
+[2] "DWLS_CBSX.HNSCC.scRNAseq_Immune"       
+[3] "Epidish_CBSX.HNSCC.scRNAseq_Immune"    
+
+$Immune_Subgroup.2
+[1] "DeconRNASeq_CBSX.Melanoma.scRNAseq_Immune"
+[2] "DWLS_CBSX.Melanoma.scRNAseq_Immune"       
+[3] "Epidish_CBSX.Melanoma.scRNAseq_Immune"    
+
+$Immune_Subgroup.3
+[1] "DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Immune"
+[2] "DWLS_CBSX.Vanderbilt.scRNAseq_Immune"       
+[3] "Epidish_CBSX.Vanderbilt.scRNAseq_Immune"    
+
+
+=== Stromal subgroup composition ===
+$Stromal_Subgroup.1
+[1] "DeconRNASeq_CBSX.HNSCC.scRNAseq_Stromal"
+[2] "DWLS_CBSX.HNSCC.scRNAseq_Stromal"       
+[3] "Epidish_CBSX.HNSCC.scRNAseq_Stromal"    
+
+$Stromal_Subgroup.2
+[1] "DeconRNASeq_CBSX.Melanoma.scRNAseq_Stromal"
+[2] "DWLS_CBSX.Melanoma.scRNAseq_Stromal"       
+[3] "Epidish_CBSX.Melanoma.scRNAseq_Stromal"    
+
+$Stromal_Subgroup.3
+[1] "DWLS_CBSX.Vanderbilt.scRNAseq_Stromal"   
+[2] "Epidish_CBSX.Vanderbilt.scRNAseq_Stromal"
+

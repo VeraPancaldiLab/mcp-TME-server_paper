@@ -1,0 +1,13 @@
+List of 2
+ $ AUROC:List of 3
+  ..$ estimate: num 0.613
+  ..$ lower   : Named num 0.422
+  .. ..- attr(*, "names")= chr "2.5%"
+  ..$ upper   : Named num 0.81
+  .. ..- attr(*, "names")= chr "97.5%"
+ $ AUPRC:List of 3
+  ..$ estimate: num 0.261
+  ..$ lower   : Named num 0.162
+  .. ..- attr(*, "names")= chr "2.5%"
+  ..$ upper   : Named num 0.583
+  .. ..- attr(*, "names")= chr "97.5%"

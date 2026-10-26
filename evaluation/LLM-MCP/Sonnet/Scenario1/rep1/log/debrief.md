@@ -1,0 +1,17 @@
+1. **Input transformation**: Yes. `Gide_log2TPM.txt` contained log2(TPM+1) values. I converted the entire matrix back to linear TPM via `2^x - 1` before deconvolution, since multideconv's `run_deconvolution` requires linear TPM (or raw counts) and never log-transformed input.
+
+2. **Methods run**: `start_workflow_session` → `run_deconvolution` (Quantiseq, Epidish, DeconRNASeq, DWLS, CBSX, across all default signatures incl. TIL10, LM22, and several CIBERSORTx scRNA-seq references) → `aggregate_cell_groups` (to build composite Immune/Stromal groups) → `analyze_deconvolution` (harmonization). I skipped `benchmark_deconvolution` (no ground-truth cell fractions available for this cohort to validate against) and `relate_subgroups_to_pathways`/`replicate_subgroups` (not asked for; no second cohort or pathway question involved).
+
+3. **Non-default parameters**: `normalized=false` in `run_deconvolution` (input was linear TPM, not raw counts). `cells_extra=["Immune","Stromal"]` in the second `analyze_deconvolution` call (to retain the aggregated groups, which are otherwise discarded as non-standard cell types). `min_types=2` in `aggregate_cell_groups` (default used — not changed, kept to avoid overstating).
+
+4. **Problems encountered**:
+   - `colData_all.txt` had an unlabeled leading row-index column (R `write.table` artifact), making the header have 6 names but rows 7 values — initially misaligned Sample_id with rna_id. Fixed by re-parsing with the correct column offset and verifying a 1:1 match against the expression column names (0 missing either way).
+   - My first composite Immune/Stromal score averaged in individual cell-subtype fractions (B cells, CD4, CD8, etc.) alongside the proper aggregate Immune/Stromal columns, which is not a valid "total immune fraction." I caught this because the resulting scores were implausibly small (~0.06–0.10, barely varying) and fixed it by restricting the score to only the explicit aggregate `Immune_Subgroup.*`/`Stromal_Subgroup.*`/`Quantiseq_TIL10_Immune` columns, after which scores spanned a sensible 0.17–0.92 range.
+
+5. **Checks performed**: confirmed the expression matrix's value range was consistent with log2(TPM+1) (max ~9–10, not integers) before converting. Verified all 73 Gide expression columns matched exactly to 73 Gide rows in colData (no missing/extra on either side). Sanity-checked the Immune/Stromal composite scores for a plausible range and for an inverse Immune–Stromal relationship, which held.
+
+6. **Limitations / caveats**:
+   - No matched FACS/IHC ground truth was available, so I could not run `benchmark_deconvolution` — these are relative, not validated absolute, estimates.
+   - Only 4 raw immune features (HNSCC, Melanoma, Vanderbilt signatures + Quantiseq_TIL10) and 4 stromal features contributed to the harmonized aggregate score; most other signatures (TIL10, LM22, Zilionis, NSCLC.PBMCs) only contain immune cell types, so their "Immune" fraction is trivially 1 and was correctly discarded as zero-variance — but it does mean the composite score rests on fewer signatures than the full deconvolution panel.
+   - The per-cell-type composition summary table averages fractions across different signatures' cell-type panels; these panels aren't identical, so cross-cell-type comparisons within that table should be read as approximate, cohort-level tendencies, not precise proportions.
+   - 73 samples is a modest cohort size for per-patient ranking robustness, especially for patients with mid-range scores where rank order could shift with method choice.

@@ -1,0 +1,1 @@
+I have bulk RNA-seq data in data/Gide_log2TPM.txt with its clinical data in data/colData_all.txt. Characterize its immune and stromal composition and tell me which patients are more immune infiltrated. Use multideconv. Save all the results in results/.

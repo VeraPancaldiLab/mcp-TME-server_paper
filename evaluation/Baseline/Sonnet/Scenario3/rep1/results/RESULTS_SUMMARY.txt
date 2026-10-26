@@ -1,0 +1,66 @@
+TME composition -> immunotherapy response prediction
+======================================================
+
+Training cohort: Gide et al. (n = 73; R = 46, NR = 27)
+Test cohort:     Riaz et al. (n = 51; R = 10, NR = 41)
+
+Deconvolution methods:  Quantiseq, Epidish, DeconRNASeq, DWLS 
+Number of raw deconvolution features (Gide):  284 
+Number of deconvolution subgroup features used by the final model:  150 
+
+Selected ML algorithm:  rf 
+Best hyperparameters:
+  mtry
+1   29
+
+Cross-validation performance on Gide (median [MAD] across resamples):
+# A tibble: 11 × 3
+   model      Median_AUROC MAD_AUROC
+   <chr>             <dbl>     <dbl>
+ 1 RF                0.778    0.0988
+ 2 XGboost           0.778    0.0961
+ 3 GLMNET            0.760    0.138 
+ 4 LASSO             0.760    0.138 
+ 5 BAG               0.755    0.124 
+ 6 C50               0.747    0.162 
+ 7 KNN               0.728    0.108 
+ 8 SVM_radial        0.707    0.106 
+ 9 CART              0.673    0.104 
+10 RIDGE             0.667    0.117 
+11 SVM_linear        0.611    0.163 
+# A tibble: 11 × 3
+   model      Median_AUPRC MAD_AUPRC
+   <chr>             <dbl>     <dbl>
+ 1 RF                0.873    0.0609
+ 2 BAG               0.866    0.0767
+ 3 GLMNET            0.865    0.0894
+ 4 LASSO             0.865    0.0894
+ 5 XGboost           0.852    0.0664
+ 6 KNN               0.851    0.0720
+ 7 C50               0.846    0.132 
+ 8 SVM_radial        0.822    0.0739
+ 9 RIDGE             0.799    0.107 
+10 SVM_linear        0.754    0.140 
+11 CART              0.747    0.0850
+
+Independent validation on Riaz:
+  AUROC = 0.632 [0.446-0.799]
+  AUPRC = 0.256 [0.167-0.542]
+
+Top features driving the prediction (mean |SHAP| on the training data):
+                                             Feature Mean_abs_SHAP
+1                        DeconRNASeq_TIL10_Monocytes   0.050977792
+2                          Macrophages.M1_Subgroup.3   0.025826675
+3                               CD8.cells_Subgroup.1   0.025435100
+4                          Macrophages.M1_Subgroup.2   0.019009168
+5                DeconRNASeq_LM22_Mast.resting.cells   0.015487771
+6                               CD8.cells_Subgroup.4   0.011430307
+7        DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer   0.010409730
+8                          B.memory.cells_Subgroup.1   0.009968358
+9      DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting   0.009537172
+10                         Macrophages.M2_Subgroup.2   0.009054637
+11 DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0   0.008808721
+12                         DeconRNASeq_TIL10_B.cells   0.007351734
+13       Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells   0.007316884
+14                     DeconRNASeq_TIL10_Neutrophils   0.006397852
+15                              Monocytes_Subgroup.4   0.005756406

@@ -1,0 +1,7 @@
+One last step. Save copies of the results you already produced in a standard format, so that they can be compared with other analyses. Do not compute anything new, do not rerun any method and do not change any existing result: only convert what already exists. Put the files in results/standard/. If you did not produce an item, skip it and say so. If you produced several variants, export the one you presented as your main result. Tables are CSV files with one row per patient and a first column named `patient` holding the sample names exactly as in the input data, unless said otherwise.
+
+- ligands.csv: the ligands assigned to each cell type (the cell type x ligand matrix of the prepared input, "Lmatrix"), one row per assignment, with columns cell_type and ligand (not one row per patient).
+- receptors.csv: the receptors assigned to each cell type ("Rmatrix"), one row per assignment, with columns cell_type and receptor (not one row per patient).
+- direct_interactions.csv: the direct-interaction features of the kernel method, not normalised and without direction: one column per unordered pair of cell types, named "<cell type A> - <cell type B>" with the cell-type names exactly as in composition.csv. This is what RaCInG returns when the direction is removed; if you only have the features with direction, a column "A - B" is A->B plus B->A, and a column "A - A" is twice A->A.
+
+Finish with a one-line list of the files written.

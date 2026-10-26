@@ -1,0 +1,7 @@
+{
+  "n_states": 4,
+  "deconvolution_input_scale": "linear TPM",
+  "cibersortx": true,
+  "test": "Two-sided Wilcoxon rank-sum test (responders vs non-responders, all 73 patients), Benjamini-Hochberg adjusted across the 4 factors",
+  "deconvolution_source": "computed inside CellTFusion"
+}

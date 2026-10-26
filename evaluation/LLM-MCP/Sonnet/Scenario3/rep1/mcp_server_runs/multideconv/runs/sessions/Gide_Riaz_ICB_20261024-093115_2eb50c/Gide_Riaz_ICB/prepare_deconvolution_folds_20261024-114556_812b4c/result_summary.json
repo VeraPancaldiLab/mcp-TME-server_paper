@@ -1,0 +1,1 @@
+{"ok":false,"error":"data must contain a 'target' column (classification) or 'time' and 'event' columns (survival)","summary":[],"csv_outputs":[],"output_files":["manifest.json"]}

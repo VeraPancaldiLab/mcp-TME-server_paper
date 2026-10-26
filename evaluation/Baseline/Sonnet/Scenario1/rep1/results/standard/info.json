@@ -1,0 +1,5 @@
+{
+  "input_scale": "linear TPM",
+  "methods": ["DeconRNASeq", "DWLS", "Epidish", "Quantiseq"],
+  "cibersortx": false
+}

@@ -1,0 +1,199 @@
+---
+title: "Scenario 1: immune and stromal composition"
+subtitle: "Groundtruth vs Baseline vs LLM-MCP (Gide cohort, 73 samples)"
+format:
+  html:
+    toc: true
+    embed-resources: true
+knitr:
+  opts_knit:
+    root.dir: "../.."
+execute:
+  warning: false
+  message: false
+---
+
+Questions: did the run use the same deconvolution methods and parameters, and does it have the same raw
+features, the same subgroups (composition and values) and the same patient ranking as the
+ground truth? 
+
+```{r}
+source("evaluation/Comparison/helpers.R")
+```
+
+## Load the results of each run
+
+Each run saved a copy of its results in `results/standard/`: the raw and the harmonized
+deconvolution, the composition of its subgroups (output of `compute.deconvolution.analysis`),
+its immune score and `info.json` (what it did).
+
+```{r}
+load("evaluation/Groundtruth/Scenario1/Results/deconvolution_results.RData")  # deconv_Gide, dt
+
+samples = clean_id(rownames(deconv_Gide))
+rownames(deconv_Gide) = samples
+
+harmonized_gt = as.matrix(dt[["Deconvolution matrix"]])
+rownames(harmonized_gt) = clean_id(rownames(harmonized_gt))
+
+# Ground-truth subgroups as a table with one row per member, like the files of the runs.
+gt_composition = data.frame()
+for (subgroups in dt[["Deconvolution subgroups composition"]]) {
+  for (s in names(subgroups)) {
+    gt_composition = rbind(gt_composition, data.frame(subgroup = s, feature = subgroups[[s]]))
+  }
+}
+
+gt_ranking = read.csv("evaluation/Groundtruth/Scenario1/Results/immune_stromal_composition.csv")
+
+raw         = list("Groundtruth" = as.matrix(deconv_Gide))
+harmonized  = list("Groundtruth" = harmonized_gt[samples, ])
+composition = list("Groundtruth" = gt_composition)
+score       = list("Groundtruth" = setNames(gt_ranking$immune_score, clean_id(gt_ranking$patient))[samples])
+info        = list("Groundtruth" = list(input_scale = "linear TPM", cibersortx = TRUE,
+                                        methods = c("Quantiseq", "Epidish", "DeconRNASeq", "DWLS", "CBSX")))
+
+for (r in agent_runs) {
+  raw[[r]]         = read_standard(r, 1, "deconvolution_raw.csv")[samples, ]
+  harmonized[[r]]  = read_standard(r, 1, "deconvolution_harmonized.csv")[samples, ]
+  composition[[r]] = read_subgroups(r, 1)
+  immune_score     = read_standard(r, 1, "immune_score.csv")
+  score[[r]]       = immune_score[samples, "immune_score"]
+  info[[r]]        = jsonlite::fromJSON(standard_file(r, 1, "info.json"))
+}
+```
+
+## Deconvolution methods
+
+`Score` = ground-truth methods that the run ran / ground-truth methods. CIBERSORTx (CBSX)
+needs credentials that the prompt did not give: a run could ask for them or skip the method.
+
+```{r}
+gt_methods = tolower(info$Groundtruth$methods)
+
+methods_score = data.frame()
+for (r in agent_runs) {
+  run_methods = tolower(info[[r]]$methods)
+  methods_score = rbind(methods_score, data.frame(
+    Run     = r,
+    GT      = length(gt_methods),
+    Ran     = sum(gt_methods %in% run_methods),
+    Missing = paste(setdiff(gt_methods, run_methods), collapse = ", "),
+    Score   = mean(gt_methods %in% run_methods)
+  ))
+}
+kable(methods_score, digits = 2)
+```
+
+## Parameters
+
+The parameters of the ground truth: the expression given to the deconvolution is linear TPM
+(`normalized = FALSE`, so the tool does not normalise it again) and the correlation threshold of
+the subgroups is the default, 0.7. They are read from `info.json` and from the calls of each run
+(`metrics/package_calls.csv`). `Score` = parameters as in the ground truth / 3.
+
+```{r}
+calls = read.csv("evaluation/Comparison/metrics/package_calls.csv")
+calls = calls[calls$scenario == 1 & calls$repetition == 1, ]
+
+parameters_score = data.frame()
+for (r in agent_runs) {
+  run_calls = calls[paste(calls$arm, calls$model) == r, "call"]
+  run_names = calls[paste(calls$arm, calls$model) == r, "name"]
+  deconvolution = run_calls[run_names %in% c("compute.deconvolution", "run_deconvolution")]
+  analysis = run_calls[run_names %in% c("compute.deconvolution.analysis", "analyze_deconvolution")]
+  corr = as.numeric(sub(".*=\\s*", "", unlist(regmatches(analysis, gregexpr("corr\\s*=\\s*[0-9.]+", analysis)))))
+
+  linear = info[[r]]$input_scale[1] == "linear TPM"
+  not_normalised = any(grepl("normalized\\s*=\\s*FALSE|\"normalized\": false", deconvolution)) &&
+                   !any(grepl("normalized\\s*=\\s*TRUE|\"normalized\": true", deconvolution))
+  default_corr = all(corr == 0.7)  # not set = the default, 0.7
+
+  parameters_score = rbind(parameters_score, data.frame(
+    Run = r, Input_linear_TPM = linear, Normalized_FALSE = not_normalised, Corr_0.7 = default_corr,
+    Score = mean(c(linear, not_normalised, default_corr))
+  ))
+}
+kable(parameters_score, digits = 2)
+```
+
+## Raw deconvolution features
+
+A ground-truth feature is reproduced when the run has a feature with the same name and the
+same values: identical, or correlation of at least 0.99 across patients (CIBERSORTx and DWLS
+do not return exactly the same numbers in two executions). A feature that the run does not
+have is not reproduced. `Score` = reproduced features / ground-truth features.
+The scoring functions are in `helpers.R`.
+
+```{r}
+raw_score = by_run(function(r) score_by_name(raw[[r]], raw$Groundtruth))
+kable(raw_score, digits = 2)
+```
+
+## Subgroups
+
+A subgroup is the set of raw features that the analysis grouped together. A ground-truth
+subgroup has the same composition when the run has a subgroup with exactly the same members
+(the name of the subgroup does not matter), and the same values when, in addition, its
+values across patients are identical or correlate at least 0.99 with the ground-truth subgroup.
+`Score` = reproduced subgroups / ground-truth subgroups.
+
+```{r}
+subgroup_score = by_run(function(r) {
+  score_by_composition(composition[[r]], composition$Groundtruth, "subgroup", "feature",
+                       run_scores = harmonized[[r]], gt_scores = harmonized$Groundtruth)
+})
+kable(subgroup_score, digits = 2)
+```
+
+## Patient ranking
+
+Patients ordered from the most to the least immune infiltrated, by the immune score that each
+run reported. `Score` = Spearman correlation of the run's immune score with the ground truth's
+across patients (1 = same ranking).
+
+```{r}
+ranking_score = data.frame()
+for (r in agent_runs) {
+  ranking_score = rbind(ranking_score, data.frame(
+    Run   = r,
+    Score = cor(score[[r]], score$Groundtruth, method = "spearman")
+  ))
+}
+kable(ranking_score, digits = 2)
+```
+
+## Summary
+
+```{r}
+#| fig-height: 3.5
+#| fig-width: 13
+summary_scores = rbind(
+  data.frame(run = methods_score$Run, comparison = "Methods ran", score = methods_score$Score,
+             label = paste0(methods_score$Ran, "/", methods_score$GT)),
+  data.frame(run = parameters_score$Run, comparison = "Parameters", score = parameters_score$Score,
+             label = paste0(round(parameters_score$Score * 3), "/3")),
+  data.frame(run = raw_score$Run, comparison = "Raw features", score = raw_score$Score,
+             label = paste0(raw_score$Reproduced, "/", raw_score$GT)),
+  data.frame(run = subgroup_score$Run, comparison = "Subgroups composition", score = subgroup_score$Composition_score,
+             label = paste0(subgroup_score$Composition_reproduced, "/", subgroup_score$GT)),
+  data.frame(run = subgroup_score$Run, comparison = "Subgroups values", score = subgroup_score$Scores_score,
+             label = paste0(subgroup_score$Scores_reproduced, "/", subgroup_score$GT)),
+  data.frame(run = ranking_score$Run, comparison = "Patient ranking", score = ranking_score$Score,
+             label = round(ranking_score$Score, 2))
+)
+summary_scores$run = factor(summary_scores$run, levels = agent_runs)
+summary_scores$comparison = factor(summary_scores$comparison, levels = unique(summary_scores$comparison))
+
+ggplot(summary_scores, aes(run, score, fill = arm_of(as.character(run)))) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = label), vjust = -0.4, size = 3) +
+  facet_wrap(~comparison, nrow = 1) +
+  scale_fill_manual(values = arm_colors) +
+  scale_y_continuous(limits = c(0, 1.1), breaks = c(0, 0.5, 1), labels = scales::percent) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  labs(x = NULL, y = "Reproduced from the ground truth", fill = NULL)
+
+write.csv(summary_scores, "evaluation/Comparison/metrics/scores_Scenario1.csv", row.names = FALSE)
+save_figure("Scenario1/scores", 13, 3.5)
+```

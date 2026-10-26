@@ -1,0 +1,16 @@
+                     
+                      NR  R
+  Immune-low          14 12
+  Immune-intermediate 11 12
+  Immune-high          2 22
+
+Fisher's exact test p = 0.000842 
+
+                           
+                            NR  R
+  Immune-high / Stroma-high  6  7
+  Immune-high / Stroma-low   3 21
+  Immune-low / Stroma-high  12 13
+  Immune-low / Stroma-low    6  5
+
+Fisher p = 0.0177 

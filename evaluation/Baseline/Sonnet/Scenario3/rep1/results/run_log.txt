@@ -1,0 +1,707 @@
+Gide (training cohort):  73  samples - Response:  NR=27, R=46 
+Riaz (test cohort):  51  samples - Response:  NR=41, R=10 
+Running deconvolution using the following methods...............................................................
+
+* Quantiseq
+* Epidish
+* DeconRNASeq
+* DWLS
+
+Running Quantiseq...............................................................
+
+>>> Running quantiseq
+
+Running quanTIseq deconvolution module
+
+Gene expression normalization and re-annotation (arrays: FALSE)
+
+Removing 17 noisy genes
+
+Removing 15 genes with high expression in tumors
+
+Signature genes found in data set: 129/138 (93.48%)
+
+Mixture deconvolution (method: lsei)
+
+Deconvolution successful!
+
+The following method-signature combinations are going to be calculated...............................................................
+
+Methods
+* Epidish
+* DeconRNASeq
+* DWLS
+
+Signatures
+* CBSX-HNSCC-scRNAseq
+* CBSX-Melanoma-scRNAseq
+* CBSX-NSCLC-PBMCs-scRNAseq
+* CBSX-Vanderbilt-scRNAseq
+* CBSX-Zilionis-scRNAseq
+* LM22
+* TIL10
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2    PC3     PC4     PC5     PC6     PC7     PC8
+R2            0.7693 0.0490 0.0260 0.02336 0.01567 0.01227 0.01046 0.00847
+Cumulative R2 0.7693 0.8183 0.8443 0.86766 0.88333 0.89560 0.90606 0.91453
+                  PC9    PC10
+R2            0.00728 0.00677
+Cumulative R2 0.92181 0.92858
+
+ Attention: the number of pure cell types = 10  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2    PC3     PC4     PC5     PC6     PC7     PC8
+R2            0.7693 0.0490 0.0260 0.02336 0.01567 0.01227 0.01046 0.00847
+Cumulative R2 0.7693 0.8183 0.8443 0.86766 0.88333 0.89560 0.90606 0.91453
+
+ Attention: the number of pure cell types = 8  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2    PC3     PC4     PC5     PC6
+R2            0.7693 0.0490 0.0260 0.02336 0.01567 0.01227
+Cumulative R2 0.7693 0.8183 0.8443 0.86766 0.88333 0.89560
+
+ Attention: the number of pure cell types = 6  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2    PC3     PC4     PC5     PC6     PC7     PC8
+R2            0.7693 0.0490 0.0260 0.02336 0.01567 0.01227 0.01046 0.00847
+Cumulative R2 0.7693 0.8183 0.8443 0.86766 0.88333 0.89560 0.90606 0.91453
+                  PC9    PC10    PC11    PC12    PC13    PC14
+R2            0.00728 0.00677 0.00568 0.00451 0.00358 0.00348
+Cumulative R2 0.92181 0.92858 0.93426 0.93877 0.94235 0.94583
+
+ Attention: the number of pure cell types = 14  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2    PC3     PC4     PC5     PC6     PC7     PC8
+R2            0.7693 0.0490 0.0260 0.02336 0.01567 0.01227 0.01046 0.00847
+Cumulative R2 0.7693 0.8183 0.8443 0.86766 0.88333 0.89560 0.90606 0.91453
+                  PC9    PC10    PC11    PC12    PC13    PC14    PC15    PC16
+R2            0.00728 0.00677 0.00568 0.00451 0.00358 0.00348 0.00327 0.00316
+Cumulative R2 0.92181 0.92858 0.93426 0.93877 0.94235 0.94583 0.94910 0.95226
+                PC17    PC18    PC19    PC20    PC21
+R2            0.0028 0.00265 0.00259 0.00235 0.00224
+Cumulative R2 0.9551 0.95771 0.96030 0.96265 0.96489
+
+ Attention: the number of pure cell types = 21  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2    PC3     PC4     PC5     PC6     PC7     PC8
+R2            0.7693 0.0490 0.0260 0.02336 0.01567 0.01227 0.01046 0.00847
+Cumulative R2 0.7693 0.8183 0.8443 0.86766 0.88333 0.89560 0.90606 0.91453
+                  PC9    PC10    PC11    PC12    PC13    PC14    PC15    PC16
+R2            0.00728 0.00677 0.00568 0.00451 0.00358 0.00348 0.00327 0.00316
+Cumulative R2 0.92181 0.92858 0.93426 0.93877 0.94235 0.94583 0.94910 0.95226
+                PC17    PC18    PC19    PC20    PC21    PC22
+R2            0.0028 0.00265 0.00259 0.00235 0.00224 0.00204
+Cumulative R2 0.9551 0.95771 0.96030 0.96265 0.96489 0.96693
+
+ Attention: the number of pure cell types = 22  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2    PC3     PC4     PC5     PC6     PC7     PC8
+R2            0.7693 0.0490 0.0260 0.02336 0.01567 0.01227 0.01046 0.00847
+Cumulative R2 0.7693 0.8183 0.8443 0.86766 0.88333 0.89560 0.90606 0.91453
+                  PC9    PC10
+R2            0.00728 0.00677
+Cumulative R2 0.92181 0.92858
+
+ Attention: the number of pure cell types = 10  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Deconvolution cache files removed.
+
+
+Running DWLS in parallel using 4 workers...............................................................
+
+Preprocessing deconvolution features...............................................................
+
+Checking consistency in deconvolution cell fractions across patients...............................................................
+
+No extra cell types provided. Only the following cell types will be considered:
+ B.cells
+B.naive.cells
+B.memory.cells
+Macrophages.cells
+Macrophages.M0
+Macrophages.M1
+Macrophages.M2
+Monocytes
+Neutrophils
+NK.cells
+NK.activated
+NK.resting
+NKT.cells
+CD4.cells
+CD4.memory.activated
+CD4.memory.resting
+CD4.naive
+CD8.cells
+CD4.regulatory
+CD4.non.regulatory
+T.cells.helper
+T.cells.gamma.delta
+Dendritic.cells
+Dendritic.activated.cells
+Dendritic.resting.cells
+Cancer
+Endothelial
+Eosinophils
+Plasma
+Myocytes
+Fibroblasts
+Mast.cells
+Mast.activated.cells
+Mast.resting.cells
+CAF
+Dendritic.plasmacytoid.cells
+Myeloid.cells
+Basophils
+Epithelial
+Pericytes
+Mural.cells
+T.cells.proliferative
+uncharacterized_cell 
+
+If you want to consider other cell types (e.g. from a custom signature) which are not included in the package by default (see README), please provide them in the cells_extra argument.
+
+Total sum across samples of combination Quantiseq_TIL10 is 1
+Total sum across samples of combination DeconRNASeq_CBSX.HNSCC.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.HNSCC.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_CBSX.Melanoma.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.Melanoma.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_CBSX.NSCLC.PBMCs.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.NSCLC.PBMCs.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_CBSX.Vanderbilt.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.Vanderbilt.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_TIL10 is 1
+Total sum across samples of combination Epidish_TIL10 is 1
+Total sum across samples of combination DWLS_CBSX.HNSCC.scRNAseq is 1
+Total sum across samples of combination DWLS_CBSX.Melanoma.scRNAseq is 1
+Total sum across samples of combination DWLS_CBSX.NSCLC.PBMCs.scRNAseq is 1
+Total sum across samples of combination DWLS_CBSX.Vanderbilt.scRNAseq is 1
+Total sum across samples of combination DWLS_TIL10 is 1
+Total sum across samples of combination DeconRNASeq_CBSX.Zilionis.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.Zilionis.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_LM22 is 1
+Total sum across samples of combination Epidish_LM22 is 1
+Total sum across samples of combination DWLS_CBSX.Zilionis.scRNAseq is 1
+Total sum across samples of combination DWLS_LM22 is 1Running deconvolution using the following methods...............................................................
+
+* Quantiseq
+* Epidish
+* DeconRNASeq
+* DWLS
+
+Running Quantiseq...............................................................
+
+>>> Running quantiseq
+
+Running quanTIseq deconvolution module
+
+Gene expression normalization and re-annotation (arrays: FALSE)
+
+Removing 17 noisy genes
+
+Removing 15 genes with high expression in tumors
+
+Signature genes found in data set: 129/138 (93.48%)
+
+Mixture deconvolution (method: lsei)
+
+Deconvolution successful!
+
+The following method-signature combinations are going to be calculated...............................................................
+
+Methods
+* Epidish
+* DeconRNASeq
+* DWLS
+
+Signatures
+* CBSX-HNSCC-scRNAseq
+* CBSX-Melanoma-scRNAseq
+* CBSX-NSCLC-PBMCs-scRNAseq
+* CBSX-Vanderbilt-scRNAseq
+* CBSX-Zilionis-scRNAseq
+* LM22
+* TIL10
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2     PC3     PC4    PC5     PC6     PC7     PC8
+R2            0.5711 0.2608 0.05139 0.03559 0.0275 0.00966 0.00659 0.00467
+Cumulative R2 0.5711 0.8319 0.88327 0.91886 0.9464 0.95602 0.96261 0.96728
+                  PC9    PC10
+R2            0.00409 0.00342
+Cumulative R2 0.97137 0.97479
+
+ Attention: the number of pure cell types = 10  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2     PC3     PC4    PC5     PC6     PC7     PC8
+R2            0.5711 0.2608 0.05139 0.03559 0.0275 0.00966 0.00659 0.00467
+Cumulative R2 0.5711 0.8319 0.88327 0.91886 0.9464 0.95602 0.96261 0.96728
+
+ Attention: the number of pure cell types = 8  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2     PC3     PC4    PC5     PC6
+R2            0.5711 0.2608 0.05139 0.03559 0.0275 0.00966
+Cumulative R2 0.5711 0.8319 0.88327 0.91886 0.9464 0.95602
+
+ Attention: the number of pure cell types = 6  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2     PC3     PC4    PC5     PC6     PC7     PC8
+R2            0.5711 0.2608 0.05139 0.03559 0.0275 0.00966 0.00659 0.00467
+Cumulative R2 0.5711 0.8319 0.88327 0.91886 0.9464 0.95602 0.96261 0.96728
+                  PC9    PC10    PC11    PC12    PC13   PC14
+R2            0.00409 0.00342 0.00249 0.00233 0.00213 0.0019
+Cumulative R2 0.97137 0.97479 0.97728 0.97961 0.98174 0.9836
+
+ Attention: the number of pure cell types = 14  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2     PC3     PC4    PC5     PC6     PC7     PC8
+R2            0.5711 0.2608 0.05139 0.03559 0.0275 0.00966 0.00659 0.00467
+Cumulative R2 0.5711 0.8319 0.88327 0.91886 0.9464 0.95602 0.96261 0.96728
+                  PC9    PC10    PC11    PC12    PC13   PC14    PC15    PC16
+R2            0.00409 0.00342 0.00249 0.00233 0.00213 0.0019 0.00142 0.00128
+Cumulative R2 0.97137 0.97479 0.97728 0.97961 0.98174 0.9836 0.98506 0.98634
+                 PC17    PC18    PC19    PC20    PC21
+R2            0.00122 0.00114 0.00096 0.00093 0.00088
+Cumulative R2 0.98756 0.98870 0.98966 0.99059 0.99147
+
+ Attention: the number of pure cell types = 21  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 20 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2     PC3     PC4    PC5     PC6     PC7     PC8
+R2            0.5711 0.2608 0.05139 0.03559 0.0275 0.00966 0.00659 0.00467
+Cumulative R2 0.5711 0.8319 0.88327 0.91886 0.9464 0.95602 0.96261 0.96728
+                  PC9    PC10    PC11    PC12    PC13   PC14    PC15    PC16
+R2            0.00409 0.00342 0.00249 0.00233 0.00213 0.0019 0.00142 0.00128
+Cumulative R2 0.97137 0.97479 0.97728 0.97961 0.98174 0.9836 0.98506 0.98634
+                 PC17    PC18    PC19    PC20    PC21    PC22
+R2            0.00122 0.00114 0.00096 0.00093 0.00088 0.00072
+Cumulative R2 0.98756 0.98870 0.98966 0.99059 0.99147 0.99219
+
+ Attention: the number of pure cell types = 22  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 20 
+
+Running Epidish...............................................................
+
+
+Running DeconRNASeq...............................................................
+
+svd calculated PCA
+Importance of component(s):
+                 PC1    PC2     PC3     PC4    PC5     PC6     PC7     PC8
+R2            0.5711 0.2608 0.05139 0.03559 0.0275 0.00966 0.00659 0.00467
+Cumulative R2 0.5711 0.8319 0.88327 0.91886 0.9464 0.95602 0.96261 0.96728
+                  PC9    PC10
+R2            0.00409 0.00342
+Cumulative R2 0.97137 0.97479
+
+ Attention: the number of pure cell types = 10  defined in the signature matrix;
+
+ PCA results indicate that the number of cell types in the mixtures = 1 
+
+Running Epidish...............................................................
+
+
+Deconvolution cache files removed.
+
+
+Running DWLS in parallel using 4 workers...............................................................
+
+Preprocessing deconvolution features...............................................................
+
+Checking consistency in deconvolution cell fractions across patients...............................................................
+
+No extra cell types provided. Only the following cell types will be considered:
+ B.cells
+B.naive.cells
+B.memory.cells
+Macrophages.cells
+Macrophages.M0
+Macrophages.M1
+Macrophages.M2
+Monocytes
+Neutrophils
+NK.cells
+NK.activated
+NK.resting
+NKT.cells
+CD4.cells
+CD4.memory.activated
+CD4.memory.resting
+CD4.naive
+CD8.cells
+CD4.regulatory
+CD4.non.regulatory
+T.cells.helper
+T.cells.gamma.delta
+Dendritic.cells
+Dendritic.activated.cells
+Dendritic.resting.cells
+Cancer
+Endothelial
+Eosinophils
+Plasma
+Myocytes
+Fibroblasts
+Mast.cells
+Mast.activated.cells
+Mast.resting.cells
+CAF
+Dendritic.plasmacytoid.cells
+Myeloid.cells
+Basophils
+Epithelial
+Pericytes
+Mural.cells
+T.cells.proliferative
+uncharacterized_cell 
+
+If you want to consider other cell types (e.g. from a custom signature) which are not included in the package by default (see README), please provide them in the cells_extra argument.
+
+Total sum across samples of combination Quantiseq_TIL10 is 1
+Total sum across samples of combination DeconRNASeq_CBSX.HNSCC.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.HNSCC.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_CBSX.Melanoma.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.Melanoma.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_CBSX.NSCLC.PBMCs.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.NSCLC.PBMCs.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_CBSX.Vanderbilt.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.Vanderbilt.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_TIL10 is 1
+Total sum across samples of combination Epidish_TIL10 is 1
+Total sum across samples of combination DWLS_CBSX.HNSCC.scRNAseq is 1
+Total sum across samples of combination DWLS_CBSX.Melanoma.scRNAseq is 1
+Total sum across samples of combination DWLS_CBSX.NSCLC.PBMCs.scRNAseq is 1
+Total sum across samples of combination DWLS_CBSX.Vanderbilt.scRNAseq is 1
+Total sum across samples of combination DWLS_TIL10 is 1
+Total sum across samples of combination DeconRNASeq_CBSX.Zilionis.scRNAseq is 1
+Total sum across samples of combination Epidish_CBSX.Zilionis.scRNAseq is 1
+Total sum across samples of combination DeconRNASeq_LM22 is 1
+Total sum across samples of combination Epidish_LM22 is 1
+Total sum across samples of combination DWLS_CBSX.Zilionis.scRNAseq is 1
+Total sum across samples of combination DWLS_LM22 is 1
+Running ML models with fold 1 
+
+Running ML models with fold 2 
+
+Running ML models with fold 3 
+
+Running ML models with fold 4 
+
+Running ML models with fold 5 
+
+Running ML models with fold 6 
+
+Running ML models with fold 7 
+
+Running ML models with fold 8 
+
+Running ML models with fold 9 
+
+Running ML models with fold 10 
+
+Running ML models with fold 11 
+
+Running ML models with fold 12 
+
+Running ML models with fold 13 
+
+Running ML models with fold 14 
+
+Running ML models with fold 15 
+
+Running ML models with fold 16 
+
+Running ML models with fold 17 
+
+Running ML models with fold 18 
+
+Running ML models with fold 19 
+
+Running ML models with fold 20 
+
+Running ML models with fold 21 
+
+Running ML models with fold 22 
+
+Running ML models with fold 23 
+
+Running ML models with fold 24 
+
+Running ML models with fold 25 
+
+Running ML models with fold 26 
+
+Running ML models with fold 27 
+
+Running ML models with fold 28 
+
+Running ML models with fold 29 
+
+Running ML models with fold 30 
+
+Running ML models with fold 31 
+
+Running ML models with fold 32 
+
+Running ML models with fold 33 
+
+Running ML models with fold 34 
+
+Running ML models with fold 35 
+
+Running ML models with fold 36 
+
+Running ML models with fold 37 
+
+Running ML models with fold 38 
+
+Running ML models with fold 39 
+
+Running ML models with fold 40 
+
+Running ML models with fold 41 
+
+Running ML models with fold 42 
+
+Running ML models with fold 43 
+
+Running ML models with fold 44 
+
+Running ML models with fold 45 
+
+Running ML models with fold 46 
+
+Running ML models with fold 47 
+
+Running ML models with fold 48 
+
+Running ML models with fold 49 
+
+Running ML models with fold 50 
+
+Running BAG....................
+
+Running RF....................
+
+Running C50....................
+
+Running GLMNET....................
+
+Running KNN....................
+
+Running CART....................
+
+Running Lasso....................
+
+Running Ridge....................
+
+Running SVM radial....................
+
+Running SVM linear....................
+
+Running XGboost....................
+Best ML model found:  RF 
+Returning model trained
+
+==== Cross-validation performance (Gide, training cohort) ====
+# A tibble: 11 × 3
+   model      Median_AUROC MAD_AUROC
+   <chr>             <dbl>     <dbl>
+ 1 RF                0.778    0.0988
+ 2 XGboost           0.778    0.0961
+ 3 GLMNET            0.760    0.138 
+ 4 LASSO             0.760    0.138 
+ 5 BAG               0.755    0.124 
+ 6 C50               0.747    0.162 
+ 7 KNN               0.728    0.108 
+ 8 SVM_radial        0.707    0.106 
+ 9 CART              0.673    0.104 
+10 RIDGE             0.667    0.117 
+11 SVM_linear        0.611    0.163 
+# A tibble: 11 × 3
+   model      Median_AUPRC MAD_AUPRC
+   <chr>             <dbl>     <dbl>
+ 1 RF                0.873    0.0609
+ 2 BAG               0.866    0.0767
+ 3 GLMNET            0.865    0.0894
+ 4 LASSO             0.865    0.0894
+ 5 XGboost           0.852    0.0664
+ 6 KNN               0.851    0.0720
+ 7 C50               0.846    0.132 
+ 8 SVM_radial        0.822    0.0739
+ 9 RIDGE             0.799    0.107 
+10 SVM_linear        0.754    0.140 
+11 CART              0.747    0.0850
+
+Selected model:  rf 
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+
+==== Performance on the independent Riaz cohort ====
+$AUROC
+$AUROC$estimate
+[1] 0.6317073
+
+$AUROC$lower
+   2.5% 
+0.44625 
+
+$AUROC$upper
+   97.5% 
+0.798811 
+
+
+$AUPRC
+$AUPRC$estimate
+[1] 0.2559717
+
+$AUPRC$lower
+     2.5% 
+0.1668675 
+
+$AUPRC$upper
+    97.5% 
+0.5422197 
+
+
+Computing SHAP values of the final model on 73 training samples and 150 features...
+SHAP analysis finished! 
+
+
+==== Top features driving the prediction (mean |SHAP|) ====
+                                             Feature Mean_abs_SHAP
+1                        DeconRNASeq_TIL10_Monocytes   0.050977792
+2                          Macrophages.M1_Subgroup.3   0.025826675
+3                               CD8.cells_Subgroup.1   0.025435100
+4                          Macrophages.M1_Subgroup.2   0.019009168
+5                DeconRNASeq_LM22_Mast.resting.cells   0.015487771
+6                               CD8.cells_Subgroup.4   0.011430307
+7        DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer   0.010409730
+8                          B.memory.cells_Subgroup.1   0.009968358
+9      DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting   0.009537172
+10                         Macrophages.M2_Subgroup.2   0.009054637
+11 DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0   0.008808721
+12                         DeconRNASeq_TIL10_B.cells   0.007351734
+13       Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells   0.007316884
+14                     DeconRNASeq_TIL10_Neutrophils   0.006397852
+15                              Monocytes_Subgroup.4   0.005756406
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+
+
+Done. Results saved in:  /home/marcelo.hurtado/Documents/tme_analysis/d91d50f6b3/work/results 

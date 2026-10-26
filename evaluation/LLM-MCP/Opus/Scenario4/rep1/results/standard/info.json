@@ -1,0 +1,8 @@
+{
+  "deconvolution_methods": [
+    "quanTIseq"
+  ],
+  "cibersortx": false,
+  "deconvolution_source": "computed by me before RaCInG",
+  "input_scale": "linear TPM"
+}

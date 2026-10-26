@@ -1,0 +1,56 @@
+Immune :
+   Quantiseq_TIL10_Immune
+   Immune_Subgroup.1
+   Immune_Subgroup.2
+   Immune_Subgroup.3 
+
+Lymphocytes :
+   Quantiseq_TIL10_Lymphocytes
+   Lymphocytes_Subgroup.1
+   DeconRNASeq_CBSX.HNSCC.scRNAseq_Lymphocytes
+   DeconRNASeq_CBSX.Melanoma.scRNAseq_Lymphocytes
+   DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Lymphocytes 
+
+Myeloid :
+   Quantiseq_TIL10_Myeloid.cells
+   Myeloid.cells_Subgroup.1
+   Myeloid.cells_Subgroup.2
+   Macrophages.cells_Subgroup.1
+   Macrophages.cells_Subgroup.2 
+
+Stromal :
+   DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Stromal
+   Stromal_Subgroup.1
+   Stromal_Subgroup.2
+   Stromal_Subgroup.3 
+
+Cancer :
+   Cancer_Subgroup.2 
+
+CD8 :
+   DeconRNASeq_CBSX.HNSCC.scRNAseq_CD8.cells
+   Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells
+   DeconRNASeq_TIL10_CD8.cells
+   DWLS_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells
+   CBSX_CBSX.HNSCC.scRNAseq_CD8.cells
+   CBSX_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells
+   CBSX_TIL10_CD8.cells
+   CD8.cells_Subgroup.1
+   CD8.cells_Subgroup.2
+   CD8.cells_Subgroup.3
+   CD8.cells_Subgroup.4 
+
+CAF :
+   Fibroblasts_Subgroup.1
+   DeconRNASeq_CBSX.HNSCC.scRNAseq_CAF
+   CAF_Subgroup.1
+   CAF_Subgroup.2 
+
+Endothelial :
+   DeconRNASeq_CBSX.HNSCC.scRNAseq_Endothelial
+   DeconRNASeq_CBSX.Melanoma.scRNAseq_Endothelial
+   DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Endothelial
+   Endothelial_Subgroup.1
+   Endothelial_Subgroup.2
+   Endothelial_Subgroup.3 
+

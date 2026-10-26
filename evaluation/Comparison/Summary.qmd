@@ -1,0 +1,84 @@
+wh---
+title: "Summary of the four scenarios"
+subtitle: "Repetition 1: Baseline vs LLM-MCP, Opus and Sonnet, against the ground truth"
+format:
+  html:
+    toc: true
+    embed-resources: true
+knitr:
+  opts_knit:
+    root.dir: "../.."
+execute:
+  warning: false
+  message: false
+---
+
+Every score is the share of the ground truth that a run reproduced (identical, or correlation of
+at least 0.99; groups with exactly the same members), so what a run does not have lowers its
+score. The scores are written by the four `ScenarioN_comparison.qmd` reports
+(`metrics/scores_ScenarioN.csv`); render those first.
+
+```{r}
+source("evaluation/Comparison/helpers.R")
+
+scenario_names = c("1" = "1. Deconvolution", "2" = "2. CellTFusion", "3" = "3. pipeML", "4" = "4. RaCInG")
+
+scores = data.frame()
+for (s in 1:4) {
+  tab = read.csv(paste0("evaluation/Comparison/metrics/scores_Scenario", s, ".csv"))[, c("run", "comparison", "score")]
+  scores = rbind(scores, cbind(scenario = scenario_names[[as.character(s)]], tab))
+}
+scores$run = factor(scores$run, levels = agent_runs)
+```
+
+## Scores of every comparison
+
+```{r}
+#| fig-height: 8
+#| fig-width: 8
+scores$comparison = factor(scores$comparison, levels = rev(unique(scores$comparison)))
+
+ggplot(scores, aes(run, comparison, fill = score)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = scales::percent(score, accuracy = 1)), size = 3) +
+  facet_grid(scenario ~ ., scales = "free_y", space = "free_y") +
+  scale_fill_gradient(low = "#f0efec", high = "#2a78d6", limits = c(0, 1), labels = scales::percent) +
+  theme(legend.position = "right", axis.text.x = element_text(angle = 30, hjust = 1), panel.grid = element_blank(),
+        strip.text.y = element_text(angle = 0)) +
+  labs(x = NULL, y = NULL, fill = "Reproduced")
+
+save_figure("Summary/scores", 8, 8)
+```
+
+Mean score of each run in each scenario.
+
+```{r}
+mean_scores = aggregate(score ~ scenario + run, scores, mean)
+kable(reshape(mean_scores, idvar = "scenario", timevar = "run", direction = "wide"), digits = 2, row.names = FALSE,
+      col.names = c("Scenario", agent_runs))
+```
+
+## What each run did
+
+From the event logs (`metrics/run_metrics.csv`): whether the run asked for the CIBERSORTx
+credentials, time and cost of the analysis (debrief and export not counted), technical restarts
+and whether it reached the 4-hour limit of a turn.
+
+```{r}
+metrics = read.csv("evaluation/Comparison/metrics/run_metrics.csv")
+metrics$run = paste(metrics$arm, metrics$model)
+metrics = metrics[order(metrics$scenario, match(metrics$run, agent_runs)), ]
+
+kable(metrics[, c("scenario", "run", "asked_cibersortx_credentials", "time_min", "cost_usd", "tool_calls", "mcp_calls",
+                  "restarts_after_stall", "timeouts")],
+      row.names = FALSE, col.names = c("Scenario", "Run", "Asked credentials", "Time (min)", "Cost (USD)", "Tool calls",
+                                       "MCP calls", "Restarts", "Timeouts"))
+```
+
+Totals over the four scenarios.
+
+```{r}
+totals = aggregate(cbind(time_min, cost_usd, tool_calls, tool_errors) ~ run, metrics, sum, na.action = na.pass)
+totals = totals[match(agent_runs, totals$run), ]
+kable(totals, digits = 1, row.names = FALSE, col.names = c("Run", "Time (min)", "Cost (USD)", "Tool calls", "Tool errors"))
+```

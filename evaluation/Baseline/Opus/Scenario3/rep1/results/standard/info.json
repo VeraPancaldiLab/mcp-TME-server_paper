@@ -1,0 +1,10 @@
+{
+  "selected_algorithm": "rf (Random Forest, caret; pipeML label RF)",
+  "training_cohort": "Gide",
+  "test_cohort": "Riaz",
+  "features_built_inside_cv_folds": true,
+  "cv_folds": 5,
+  "cv_repeats": 10,
+  "metric": "AUROC",
+  "cibersortx": false
+}

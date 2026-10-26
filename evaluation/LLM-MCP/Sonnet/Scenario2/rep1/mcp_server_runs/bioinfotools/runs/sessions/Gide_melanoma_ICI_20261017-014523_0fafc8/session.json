@@ -1,0 +1,73 @@
+{
+  "session_id": "Gide_melanoma_ICI_20261017-014523_0fafc8",
+  "cohort_id": "Gide_melanoma_ICI",
+  "description": "Relate CellTFusion TME cell-group scores and NMF latent factors to immunotherapy response (R vs NR) in the Gide cohort",
+  "created_at": "2026-10-17T01:45:23+0200",
+  "stages_completed": [
+    "trait_association"
+  ],
+  "steps": [
+    {
+      "timestamp": "2026-10-17T01:45:41+0200",
+      "tool": "scores_wilcox_test",
+      "stage": "trait_association",
+      "cohort_id": "Gide_melanoma_ICI",
+      "args": {
+        "scores": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/2bf9b0464f/mcp-tme-servers/celltfusion/runs/sessions/Gide_melanoma_ICI_20261017-012349_e7c3c1/Gide_melanoma_ICI/run_celltfusion_20261017-012415_120b44/Results/Cell.groups.scores_Gide_CellTFusion.csv",
+          "row_names": 1,
+          "as_matrix": false
+        },
+        "coldata": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/2bf9b0464f/work/scratch/coldata_gide.csv",
+          "row_names": 1,
+          "as_matrix": false
+        },
+        "trait": {
+          "__type__": "literal",
+          "value": "Response"
+        },
+        "pval": {
+          "__type__": "literal",
+          "value": 0.05
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/2bf9b0464f/mcp-tme-servers/bioinfotools/runs/sessions/Gide_melanoma_ICI_20261017-014523_0fafc8/Gide_melanoma_ICI/scores_wilcox_test_20261017-014528_545a2c",
+      "error": null
+    },
+    {
+      "timestamp": "2026-10-17T01:45:47+0200",
+      "tool": "scores_wilcox_test",
+      "stage": "trait_association",
+      "cohort_id": "Gide_melanoma_ICI",
+      "args": {
+        "scores": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/2bf9b0464f/work/scratch/Gide_NMF_latent_factors.csv",
+          "row_names": 1,
+          "as_matrix": false
+        },
+        "coldata": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/2bf9b0464f/work/scratch/coldata_gide.csv",
+          "row_names": 1,
+          "as_matrix": false
+        },
+        "trait": {
+          "__type__": "literal",
+          "value": "Response"
+        },
+        "pval": {
+          "__type__": "literal",
+          "value": 0.05
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/2bf9b0464f/mcp-tme-servers/bioinfotools/runs/sessions/Gide_melanoma_ICI_20261017-014523_0fafc8/Gide_melanoma_ICI/scores_wilcox_test_20261017-014541_5f5334",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+---
+title: "ML analysis"
+format: html
+knitr:
+  opts_knit:
+    root.dir: "../../.."
+---
+
+Paths are relative to the repository root.
+
+Load input
+```{r}
+counts = read.delim("data/Gide_log2TPM.txt", row.names = 1)
+coldata = read.table("data/colData_all.txt", header = TRUE, sep = " ", quote = "\"")
+deconv = read.csv("evaluation/Groundtruth/Scenario1/Results/Deconvolution_Gide.csv", row.names = 1)
+
+# Same sample names as the deconvolution tables (make.names() adds an "X" only to names starting with a digit)
+rownames(coldata) = make.names(coldata$rna_id)
+```
+
+Subset to Gide
+```{r}
+coldata_Gide = coldata[coldata$Cohort == "Gide", ]
+```
+
+Transform to TPM
+```{r}
+counts_TPM = 2^as.matrix(counts) - 1
+```
+
+```{r}
+all.equal(rownames(coldata_Gide), colnames(counts_TPM))
+```
+
+Machine learning analysis
+
+Training
+```{r}
+library(pipeML)
+library(multideconv)
+library(DeconRNASeq)
+
+# Clinical data in the order of the deconvolution rows (target_var is matched by position)
+coldata_Gide = coldata_Gide[rownames(deconv), ]
+
+# Cross-validation with the pipeML defaults: 10 folds x 5 repetitions, seed 123
+res <- compute_features.training.ML(features_train = deconv,
+                                    target_var = coldata_Gide$Response,
+                                    task_type = "classification",
+                                    trait.positive = "R",
+                                    metric = "AUROC",
+                                    file_name = "Training",
+                                    ncores = 2,
+                                    fold_construction_fun = prepare_multideconv_folds,
+                                    fold_construction_args_fixed = list(ncores = 2),
+                                    return = TRUE)
+```
+
+Prediction
+
+Load data
+```{r}
+counts_Riaz = read.delim("data/Riaz_log2TPM.txt", row.names = 1)
+counts_Riaz = 2^as.matrix(counts_Riaz) - 1
+coldata_Riaz = coldata[coldata$Cohort == "Riaz", ]
+```
+
+Deconvolution
+```{r}
+deconv_Riaz = compute.deconvolution(counts_Riaz, normalized = F,
+                                    credentials.mail = "marcelo.hurtado@inserm.fr",
+                                    credentials.token = "b72981d4d0554bcfffc37472ccd8588d",
+                                    file_name = "Riaz")
+write.csv(deconv_Riaz, "evaluation/Groundtruth/Scenario3/Results/Deconvolution_Riaz.csv")
+deconv_Riaz = read.csv("evaluation/Groundtruth/Scenario3/Results/Deconvolution_Riaz.csv", row.names = 1)
+
+# Clinical data in the order of the deconvolution rows (target_var is matched by position)
+coldata_Riaz = coldata_Riaz[rownames(deconv_Riaz), ]
+```
+
+Replicate subgroups
+```{r}
+dt_Riaz = multideconv::replicate_deconvolution_subgroups(deconv_res = res$Custom_output,
+                                                         deconvolution_test = deconv_Riaz)
+```
+
+Testing
+```{r}
+pred <- compute_prediction(model = res$Model,
+                           test_data = dt_Riaz,
+                           target_var = coldata_Riaz$Response,
+                           task_type = "classification",
+                           trait.positive = "R",
+                           file.name = "Prediction",
+                           return = T)
+pred$AUC
+```
+
+SHAP values
+```{r}
+# SHAP values of the final model (res$Model), trained on the deconvolution subgroups computed on all Gide samples
+shap_classification = compute_shap_values(model_trained = res$Model,
+                                          task_type = "classification")
+
+# Top deconvolution subgroups (mean |SHAP| across samples)
+head(sort(colMeans(abs(shap_classification)), decreasing = TRUE), 10)
+```
+
+Save results
+```{r}
+save(res, pred, shap_classification, file = "evaluation/Groundtruth/Scenario3/Results/ML_analysis_results.RData")
+```
+
+Summary figure
+
+Cross-validation AUROC of the algorithms compared (median and MAD across folds and repetitions) and ROC curve of the selected model on the external cohort.
+```{r}
+library(ggplot2)
+library(patchwork)
+library(pipeML)
+
+load("evaluation/Groundtruth/Scenario3/Results/ML_analysis_results.RData")  # res, pred
+
+cv = res$AUROC_median
+cv$model = factor(cv$model, levels = rev(cv$model))
+
+a = ggplot(cv, aes(Median_AUROC, model)) +
+  geom_col(fill = "#2a78d6", width = 0.7) +
+  geom_errorbarh(aes(xmin = Median_AUROC - MAD_AUROC, xmax = Median_AUROC + MAD_AUROC), height = 0.3) +
+  theme_minimal(base_size = 8) +
+  labs(x = "Cross-validation AUROC (median, MAD)", y = NULL, title = "Training: Gide")
+
+roc = pred$Metrics
+auc = unlist(pred$AUC)[1:3]
+
+b = ggplot(roc, aes(fpr, Sensitivity)) +
+  geom_abline(linetype = "dashed", color = "grey60") +
+  geom_step(color = "#c0392b", linewidth = 0.8) +
+  annotate("text", x = 0.95, y = 0.08, hjust = 1, size = 3,
+           label = paste0("AUROC = ", round(auc[1], 2), " (95% CI ", round(auc[2], 2), "-", round(auc[3], 2), ")")) +
+  coord_equal() +
+  theme_minimal(base_size = 8) +
+  labs(x = "1 - Specificity", y = "Sensitivity", title = paste("Test: Riaz,", unique(roc$model)))
+
+a + b + plot_layout(widths = c(1.2, 1))
+
+ggsave("evaluation/Groundtruth/Scenario3/Results/auroc_summary.pdf", width = 9, height = 4)
+ggsave("evaluation/Groundtruth/Scenario3/Results/auroc_summary.png", width = 9, height = 4, dpi = 300)
+```

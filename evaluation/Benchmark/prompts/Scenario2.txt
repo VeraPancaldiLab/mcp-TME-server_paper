@@ -1,0 +1,1 @@
+Identify TME states in my bulk RNA-seq data in data/Gide_log2TPM.txt (clinical data in data/colData_all.txt) and check whether any of them relate to immunotherapy response. Use CellTFusion. Save all the results in results/.

@@ -1,0 +1,3 @@
+All 11 requested items were produced (nothing was skipped); note that `tme_states.csv` only has a real annotation for Factor1 — the state I actually characterized — and empty annotations for Factor2-4, which I did not individually interpret.
+
+Files written to `results/standard/`: `factor_scores.csv`, `tme_states.csv`, `response_tests.csv`, `tf_activity.csv`, `tf_modules.csv`, `tf_module_scores.csv`, `pathway_scores.csv`, `subgroups_composition.csv`, `cell_groups.csv`, `cell_group_scores.csv`, `info.json`.

@@ -1,0 +1,308 @@
+Train (Gide): NR 27, R 46
+Test (Riaz): NR 41, R 10
+
+Running ML models with fold 1 
+
+Running ML models with fold 2 
+
+Running ML models with fold 3 
+
+Running ML models with fold 4 
+
+Running ML models with fold 5 
+
+Running ML models with fold 6 
+
+Running ML models with fold 7 
+
+Running ML models with fold 8 
+
+Running ML models with fold 9 
+
+Running ML models with fold 10 
+
+Running ML models with fold 11 
+
+Running ML models with fold 12 
+
+Running ML models with fold 13 
+
+Running ML models with fold 14 
+
+Running ML models with fold 15 
+
+Running ML models with fold 16 
+
+Running ML models with fold 17 
+
+Running ML models with fold 18 
+
+Running ML models with fold 19 
+
+Running ML models with fold 20 
+
+Running ML models with fold 21 
+
+Running ML models with fold 22 
+
+Running ML models with fold 23 
+
+Running ML models with fold 24 
+
+Running ML models with fold 25 
+
+Running ML models with fold 26 
+
+Running ML models with fold 27 
+
+Running ML models with fold 28 
+
+Running ML models with fold 29 
+
+Running ML models with fold 30 
+
+Running ML models with fold 31 
+
+Running ML models with fold 32 
+
+Running ML models with fold 33 
+
+Running ML models with fold 34 
+
+Running ML models with fold 35 
+
+Running ML models with fold 36 
+
+Running ML models with fold 37 
+
+Running ML models with fold 38 
+
+Running ML models with fold 39 
+
+Running ML models with fold 40 
+
+Running ML models with fold 41 
+
+Running ML models with fold 42 
+
+Running ML models with fold 43 
+
+Running ML models with fold 44 
+
+Running ML models with fold 45 
+
+Running ML models with fold 46 
+
+Running ML models with fold 47 
+
+Running ML models with fold 48 
+
+Running ML models with fold 49 
+
+Running ML models with fold 50 
+
+Running BAG....................
+
+Running RF....................
+
+Running C50....................
+
+Running GLMNET....................
+
+Running KNN....................
+
+Running CART....................
+
+Running Lasso....................
+
+Running Ridge....................
+
+Running SVM radial....................
+
+Running SVM linear....................
+
+Running XGboost....................
+Best ML model found:  RF 
+Returning model trained
+Selected model: rf
+  mtry
+1   79
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+null device 
+          1 
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+  selected_model hyperparameters n_features test_AUROC test_AUROC_CI test_AUPRC
+1             rf         mtry=79        151  0.5939024   0.404-0.776  0.2271088
+  test_AUPRC_CI test_prevalence_R
+1   0.156-0.452         0.1960784
+Computing SHAP values of the final model on 73 training samples and 151 features...
+SHAP analysis finished! 
+
+                                                                                            feature
+DeconRNASeq_TIL10_Monocytes                                             DeconRNASeq_TIL10_Monocytes
+CD8.cells_Subgroup.1                                                           CD8.cells_Subgroup.1
+Macrophages.M1_Subgroup.3                                                 Macrophages.M1_Subgroup.3
+Macrophages.M1_Subgroup.2                                                 Macrophages.M1_Subgroup.2
+CD8.cells_Subgroup.4                                                           CD8.cells_Subgroup.4
+Macrophages.M2_Subgroup.2                                                 Macrophages.M2_Subgroup.2
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer             DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer
+B.memory.cells_Subgroup.1                                                 B.memory.cells_Subgroup.1
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting         DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting
+DeconRNASeq_LM22_Mast.resting.cells                             DeconRNASeq_LM22_Mast.resting.cells
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0 DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells             Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells
+DeconRNASeq_TIL10_B.cells                                                 DeconRNASeq_TIL10_B.cells
+Mast.activated.cells_Subgroup.1                                     Mast.activated.cells_Subgroup.1
+CD4.memory.activated_Subgroup.2                                     CD4.memory.activated_Subgroup.2
+                                                  mean_abs_SHAP
+DeconRNASeq_TIL10_Monocytes                         0.083028081
+CD8.cells_Subgroup.1                                0.039746395
+Macrophages.M1_Subgroup.3                           0.028558897
+Macrophages.M1_Subgroup.2                           0.020775438
+CD8.cells_Subgroup.4                                0.017346229
+Macrophages.M2_Subgroup.2                           0.014181133
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer         0.012170647
+B.memory.cells_Subgroup.1                           0.011450007
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting       0.011435943
+DeconRNASeq_LM22_Mast.resting.cells                 0.010144449
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0   0.008908716
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells         0.008449903
+DeconRNASeq_TIL10_B.cells                           0.006746199
+Mast.activated.cells_Subgroup.1                     0.006494759
+CD4.memory.activated_Subgroup.2                     0.005420156
+                                                  spearman_value_vs_SHAP
+DeconRNASeq_TIL10_Monocytes                                   -0.5874692
+CD8.cells_Subgroup.1                                           0.7929460
+Macrophages.M1_Subgroup.3                                      0.8288024
+Macrophages.M1_Subgroup.2                                      0.7652413
+CD8.cells_Subgroup.4                                           0.8764306
+Macrophages.M2_Subgroup.2                                     -0.7873936
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer                   -0.6703125
+B.memory.cells_Subgroup.1                                     -0.5358373
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting                  0.2386535
+DeconRNASeq_LM22_Mast.resting.cells                           -0.7356948
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0             -0.8225410
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells                    0.8242544
+DeconRNASeq_TIL10_B.cells                                      0.4112674
+Mast.activated.cells_Subgroup.1                               -0.3431660
+CD4.memory.activated_Subgroup.2                                0.8567196
+                                                  Gide_AUC_R_vs_NR
+DeconRNASeq_TIL10_Monocytes                              0.2419485
+CD8.cells_Subgroup.1                                     0.7753623
+Macrophages.M1_Subgroup.3                                0.7761675
+Macrophages.M1_Subgroup.2                                0.7262480
+CD8.cells_Subgroup.4                                     0.7657005
+Macrophages.M2_Subgroup.2                                0.2729469
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer              0.3091787
+B.memory.cells_Subgroup.1                                0.3280998
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting            0.5523349
+DeconRNASeq_LM22_Mast.resting.cells                      0.2657005
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0        0.3562802
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells              0.7033011
+DeconRNASeq_TIL10_B.cells                                0.5748792
+Mast.activated.cells_Subgroup.1                          0.4911433
+CD4.memory.activated_Subgroup.2                          0.7069243
+                                                  Gide_wilcox_p
+DeconRNASeq_TIL10_Monocytes                        2.477456e-04
+CD8.cells_Subgroup.1                               4.207556e-05
+Macrophages.M1_Subgroup.3                          9.070940e-05
+Macrophages.M1_Subgroup.2                          1.101737e-03
+CD8.cells_Subgroup.4                               1.595886e-04
+Macrophages.M2_Subgroup.2                          1.055002e-03
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer        6.884240e-03
+B.memory.cells_Subgroup.1                          1.458854e-02
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting      4.611021e-01
+DeconRNASeq_LM22_Mast.resting.cells                9.012715e-04
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0  4.190425e-02
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells        1.632036e-03
+DeconRNASeq_TIL10_B.cells                          2.926188e-01
+Mast.activated.cells_Subgroup.1                    9.020041e-01
+CD4.memory.activated_Subgroup.2                    3.366035e-03
+                                                  Riaz_AUC_R_vs_NR
+DeconRNASeq_TIL10_Monocytes                              0.4000000
+CD8.cells_Subgroup.1                                     0.6146341
+Macrophages.M1_Subgroup.3                                0.5951220
+Macrophages.M1_Subgroup.2                                0.5000000
+CD8.cells_Subgroup.4                                     0.5597561
+Macrophages.M2_Subgroup.2                                0.4512195
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer              0.2902439
+B.memory.cells_Subgroup.1                                0.5756098
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting            0.5292683
+DeconRNASeq_LM22_Mast.resting.cells                      0.2707317
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0        0.4195122
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells              0.6048780
+DeconRNASeq_TIL10_B.cells                                0.6731707
+Mast.activated.cells_Subgroup.1                          0.4695122
+CD4.memory.activated_Subgroup.2                          0.6304878
+                                                  Riaz_wilcox_p    Gide_FDR
+DeconRNASeq_TIL10_Monocytes                          0.33571145 0.009352397
+CD8.cells_Subgroup.1                                 0.26380729 0.006353410
+Macrophages.M1_Subgroup.3                            0.36665967 0.006848559
+Macrophages.M1_Subgroup.2                            1.00000000 0.015123849
+CD8.cells_Subgroup.4                                 0.56878666 0.008032627
+Macrophages.M2_Subgroup.2                            0.64854799 0.015123849
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer          0.04242133 0.057751124
+B.memory.cells_Subgroup.1                            0.46810258 0.091786212
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting        0.77605197 0.627265061
+DeconRNASeq_LM22_Mast.resting.cells                  0.02634715 0.015123849
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0    0.44063820 0.175033671
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells          0.31320521 0.020536452
+DeconRNASeq_TIL10_B.cells                            0.09479386 0.470057837
+Mast.activated.cells_Subgroup.1                      0.77582924 0.926548411
+CD4.memory.activated_Subgroup.2                      0.20389037 0.032746878
+                                                   Riaz_FDR
+DeconRNASeq_TIL10_Monocytes                       0.8966589
+CD8.cells_Subgroup.1                              0.8475511
+Macrophages.M1_Subgroup.3                         0.8966589
+Macrophages.M1_Subgroup.2                         1.0000000
+CD8.cells_Subgroup.4                              0.9542976
+Macrophages.M2_Subgroup.2                         0.9630121
+DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer       0.6340927
+B.memory.cells_Subgroup.1                         0.8969720
+DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting     0.9630121
+DeconRNASeq_LM22_Mast.resting.cells               0.6340927
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0 0.8969720
+Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells       0.8966589
+DeconRNASeq_TIL10_B.cells                         0.6861739
+Mast.activated.cells_Subgroup.1                   0.9630121
+CD4.memory.activated_Subgroup.2                   0.8432943
+Done.
+
+real	25m39.797s
+user	33m59.395s
+sys	25m23.684s
+exit=0

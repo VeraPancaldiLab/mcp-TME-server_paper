@@ -1,0 +1,15 @@
+One last step. Save copies of the results you already produced in a standard format, so that they can be compared with other analyses. Do not compute anything new, do not rerun any method and do not change any existing file: only convert what already exists. Put the files in results/standard/. If you did not produce an item, skip it and say so. If you produced several variants, export the one you presented as your main result. Tables are CSV files with one row per patient and a first column named `patient` holding the sample names exactly as in the input data.
+
+- factor_scores.csv: one column per TME state (latent factor): the scores per patient that you tested against response.
+- tme_states.csv: one row per TME state, with columns state and annotation (for example its TME subtype), not one row per patient.
+- response_tests.csv: one row per TME state, with columns state, p_value, adjusted_p_value and higher_in (R or NR), not one row per patient.
+- tf_activity.csv: the transcription-factor activity matrix, one column per TF.
+- tf_modules.csv: the composition of the TF modules, one row per TF, with columns module and tf (not one row per patient).
+- tf_module_scores.csv: the score of each TF module per patient, one column per module, named as in tf_modules.csv.
+- pathway_scores.csv: the pathway activity scores, one column per pathway.
+- subgroups_composition.csv: the composition of the deconvolution subgroups that CellTFusion used (the "Deconvolution subgroups composition" of the deconvolution analysis), one row per member, with columns subgroup and feature, where feature is the name of a raw deconvolution feature (not one row per patient).
+- cell_groups.csv: the composition of the cell groups, one row per member, with columns cell_group and feature, where feature is the member name exactly as CellTFusion gives it (a deconvolution feature or subgroup) (not one row per patient).
+- cell_group_scores.csv: the score of each cell group per patient, one column per cell group, named as in cell_groups.csv.
+- info.json: {"n_states": number of TME states, "deconvolution_input_scale": scale of the expression values given to the deconvolution ("linear TPM" or "log2"), "cibersortx": true or false, "test": statistical test used for response, "deconvolution_source": where the deconvolution used by CellTFusion came from ("reused an existing deconvolution result", "computed by me before CellTFusion" or "computed inside CellTFusion")}.
+
+Finish with a one-line list of the files written.

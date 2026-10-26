@@ -1,0 +1,205 @@
+---
+title: "Scenario 2: CellTFusion features"
+subtitle: "Groundtruth vs Baseline vs LLM-MCP (Gide cohort, 73 samples)"
+format:
+  html:
+    toc: true
+    embed-resources: true
+knitr:
+  opts_knit:
+    root.dir: "../.."
+execute:
+  warning: false
+  message: false
+---
+
+Questions: are the TF activity scores, the TF modules (composition and scores), the cell groups
+(composition and scores), the TME states and the TME states associated with response the same as
+in the ground truth? Nothing else is compared.
+
+```{r}
+source("evaluation/Comparison/helpers.R")
+```
+
+## Load the results of each run
+
+Each run saved a copy of its CellTFusion results in `results/standard/`: TF activity, TF modules
+(composition and scores), cell groups (composition and scores) and the TME state scores.
+
+```{r}
+load("evaluation/Groundtruth/Scenario2/Results/CellTFusion_results.RData")  # res
+
+# A ground-truth matrix with the same sample names as the runs.
+gt_matrix = function(x) {
+  x = as.matrix(x)
+  rownames(x) = clean_id(rownames(x))
+  x
+}
+
+# A ground-truth list of members (e.g. the TFs of each module) as a table with one row per member.
+gt_members = function(x, group, member) {
+  tab = stack(x)
+  setNames(data.frame(as.character(tab$ind), tab$values), c(group, member))
+}
+
+tf_activity       = list("Groundtruth" = dotted(gt_matrix(res$TFs_matrix)))
+tf_modules        = list("Groundtruth" = gt_members(res$TF_network[["TFs per module"]], "module", "tf"))
+tf_module_scores  = list("Groundtruth" = gt_matrix(res$TF_network[["TFs module matrix"]]))
+cell_groups       = list("Groundtruth" = gt_members(res$Cell_groups$Composition, "cell_group", "feature"))
+cell_group_scores = list("Groundtruth" = gt_matrix(res$Cell_groups$Cell_groups))
+state_scores      = list("Groundtruth" = gt_matrix(res$Latent_spaces$Z))
+subgroups         = list("Groundtruth" = gt_members(do.call(c, unname(res$Processed_deconvolution[["Deconvolution subgroups composition"]])),
+                                                    "subgroup", "feature"))
+samples = rownames(tf_activity$Groundtruth)
+
+for (r in agent_runs) {
+  tf_activity[[r]]       = dotted(read_standard(r, 2, "tf_activity.csv")[samples, ])
+  tf_modules[[r]]        = read.csv(standard_file(r, 2, "tf_modules.csv"))
+  tf_module_scores[[r]]  = read_standard(r, 2, "tf_module_scores.csv")[samples, ]
+  cell_groups[[r]]       = read.csv(standard_file(r, 2, "cell_groups.csv"))
+  cell_group_scores[[r]] = read_standard(r, 2, "cell_group_scores.csv")[samples, ]
+  state_scores[[r]]      = read_standard(r, 2, "factor_scores.csv")[samples, ]
+  subgroups[[r]]         = read_subgroups(r, 2)
+}
+```
+
+## How the comparisons are scored
+
+Everything is scored as reproduced / total of the ground truth, so what a run does not have
+lowers its score.
+
+- Scores are the same when they are identical, or correlate at 0.99 or more across patients.
+- TFs are matched by name.
+- TF modules and cell groups are matched by composition: a group of the ground truth is
+  reproduced when the run has a group with exactly the same members, whatever its name. Its
+  scores are reproduced when that group also has the same scores.
+- TME states are matched by their scores, not by their name (the order of the NMF factors is
+  arbitrary): a state of the ground truth is reproduced when the run has a state with the same
+  scores.
+
+The scoring functions are in `helpers.R`.
+
+## TF activity scores
+
+```{r}
+tf_score = by_run(function(r) score_by_name(tf_activity[[r]], tf_activity$Groundtruth))
+kable(tf_score, digits = 2)
+```
+
+## TF modules
+
+Composition of the TF modules (which TFs are in each module) and score of each module.
+
+```{r}
+module_score = by_run(function(r) score_by_composition(tf_modules[[r]], tf_modules$Groundtruth, "module", "tf",
+                                                       tf_module_scores[[r]], tf_module_scores$Groundtruth))
+kable(module_score, digits = 2)
+```
+
+## Cell groups
+
+Composition of the cell groups and score of each cell group. A cell group is made of
+deconvolution features and subgroups; each subgroup is first replaced by its raw features, so
+that two cell groups are the same only when they contain the same raw features.
+
+```{r}
+raw_features = function(groups, subgroups) {
+  tab = merge(groups, subgroups, by.x = "feature", by.y = "subgroup", all.x = TRUE, suffixes = c("", "_raw"))
+  tab$feature = ifelse(is.na(tab$feature_raw), tab$feature, tab$feature_raw)
+  tab[, c("cell_group", "feature")]
+}
+
+for (r in runs) cell_groups[[r]] = raw_features(cell_groups[[r]], subgroups[[r]])
+
+cell_group_score = by_run(function(r) score_by_composition(cell_groups[[r]], cell_groups$Groundtruth, "cell_group", "feature",
+                                                           cell_group_scores[[r]], cell_group_scores$Groundtruth))
+kable(cell_group_score, digits = 2)
+```
+
+## TME states
+
+The TME states are the latent factors of the cell group scores. `Score` = states of the ground
+truth that the run reproduced / states of the ground truth.
+
+```{r}
+state_match = function(r) {
+  sapply(colnames(state_scores$Groundtruth), function(s) {
+    same = sapply(colnames(state_scores[[r]]), function(f) same_scores(state_scores[[r]][, f], state_scores$Groundtruth[, s]))
+    if (any(same)) names(which(same))[1] else NA
+  })
+}
+matched = lapply(agent_runs, state_match)
+names(matched) = agent_runs
+
+state_score = data.frame()
+for (r in agent_runs) {
+  state_score = rbind(state_score, data.frame(Run = r, GT = ncol(state_scores$Groundtruth), Run_states = ncol(state_scores[[r]]),
+                                              Reproduced = sum(!is.na(matched[[r]])), Score = mean(!is.na(matched[[r]]))))
+}
+kable(state_score, digits = 2)
+```
+
+## TME states associated with response
+
+Wilcoxon test of every state between responders and non-responders, with BH correction, done the
+same way on the ground truth and on each run. A state is significant when its adjusted p-value is
+below 0.05. A significant state of the ground truth is found when the state of the run with the
+same scores is also significant, in the same direction. `Score` = found / significant states of
+the ground truth.
+
+```{r}
+coldata = load_coldata("Gide")
+response = coldata$Response[match(samples, coldata$rna_id)]
+
+response_test = function(m) {
+  p = apply(m, 2, function(x) wilcox.test(x ~ response)$p.value)
+  higher_in = apply(m, 2, function(x) ifelse(mean(rank(x)[response == "R"]) > mean(rank(x)[response == "NR"]), "R", "NR"))
+  data.frame(state = colnames(m), higher_in = higher_in, fdr = p.adjust(p, method = "BH"))
+}
+
+tests = lapply(state_scores, response_test)
+gt_significant = tests$Groundtruth[tests$Groundtruth$fdr < 0.05, ]
+
+response_score = data.frame()
+for (r in agent_runs) {
+  found = sapply(gt_significant$state, function(s) {
+    run_state = matched[[r]][[s]]
+    !is.na(run_state) && tests[[r]]$fdr[tests[[r]]$state == run_state] < 0.05 &&
+      tests[[r]]$higher_in[tests[[r]]$state == run_state] == gt_significant$higher_in[gt_significant$state == s]
+  })
+  response_score = rbind(response_score, data.frame(Run = r, GT_significant = nrow(gt_significant),
+                                                    Found = sum(found), Score = mean(found)))
+}
+kable(gt_significant, digits = 4, row.names = FALSE)
+kable(response_score, digits = 2)
+```
+
+## Summary
+
+```{r}
+#| fig-height: 5
+#| fig-width: 10
+summary_scores = rbind(
+  data.frame(run = tf_score$Run, comparison = "TF activity scores", score = tf_score$Score),
+  data.frame(run = module_score$Run, comparison = "TF modules: composition", score = module_score$Composition_score),
+  data.frame(run = module_score$Run, comparison = "TF modules: scores", score = module_score$Scores_score),
+  data.frame(run = cell_group_score$Run, comparison = "Cell groups: composition", score = cell_group_score$Composition_score),
+  data.frame(run = cell_group_score$Run, comparison = "Cell groups: scores", score = cell_group_score$Scores_score),
+  data.frame(run = state_score$Run, comparison = "TME states", score = state_score$Score),
+  data.frame(run = response_score$Run, comparison = "TME states associated with response", score = response_score$Score)
+)
+summary_scores$run = factor(summary_scores$run, levels = agent_runs)
+summary_scores$comparison = factor(summary_scores$comparison, levels = unique(summary_scores$comparison))
+
+ggplot(summary_scores, aes(run, score, fill = arm_of(as.character(run)))) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = scales::percent(score, accuracy = 1)), vjust = -0.4, size = 3) +
+  facet_wrap(~comparison, nrow = 2) +
+  scale_fill_manual(values = arm_colors) +
+  scale_y_continuous(limits = c(0, 1.12), breaks = c(0, 0.5, 1), labels = scales::percent) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  labs(x = NULL, y = "Reproduced from the ground truth", fill = NULL)
+
+write.csv(summary_scores, "evaluation/Comparison/metrics/scores_Scenario2.csv", row.names = FALSE)
+save_figure("Scenario2/scores", 10, 5)
+```
