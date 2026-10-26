@@ -1,3 +1,0 @@
-All four tables have 73 patient rows, patient names match the original input exactly, and `subgroups_composition.csv`'s feature names are consistent with `deconvolution_raw.csv`'s columns (I used the aggregate_cell_groups output — including the Immune/Stromal engineered features — as "raw," since that is the matrix that was actually fed into harmonization and referenced by the subgroup composition).
-
-Files written in `results/standard/`: `deconvolution_raw.csv`, `deconvolution_harmonized.csv`, `subgroups_composition.csv`, `immune_score.csv`, `info.json`.

@@ -1,5 +1,0 @@
-arm,model,scenario,repetition,tool,paths
-Baseline,Opus,4,1,Bash,~/miniconda3/envs
-Baseline,Opus,4,1,Bash,~/Documents/Racing_paper; ~/Documents/Racing_paper/scripts
-Baseline,Opus,4,1,Bash,~/Documents
-Baseline,Sonnet,4,1,Bash,/home/marcelo.hurtado/Documents/Racing_paper

@@ -1,5 +1,0 @@
-All 11 requested items were available from the already-produced results and converted (none skipped). Files written to `results/standard/`: `factor_scores.csv`, `tme_states.csv`, `response_tests.csv`, `tf_activity.csv`, `tf_modules.csv`, `tf_module_scores.csv`, `pathway_scores.csv`, `subgroups_composition.csv`, `cell_groups.csv`, `cell_group_scores.csv`, `info.json`.
-
-Notes on two fields that required light derivation (not new analysis, just reformatting of already-saved numbers):
-- `tme_states.csv`'s `annotation` uses the cell-niche composition already saved in `TME_states_vs_Response_summary.csv` (no formal TME-subtype label exists, as noted earlier — that function isn't available in the installed package version).
-- `response_tests.csv`'s `higher_in` was obtained by comparing the median of the already-saved per-patient factor scores between the R/NR groups (a direction label, not a re-run of the Wilcoxon test itself).

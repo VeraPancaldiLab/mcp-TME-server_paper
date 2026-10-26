@@ -1,5 +1,0 @@
-"state","annotation"
-"Factor1","Immune-inflamed / IFN-gamma-cytotoxic (black TF module: IRF1, STAT1, TBX21, NFKB1; CD8 T cells; JAK-STAT, TNFa, NFkB)"
-"Factor2","Mesenchymal / TGF-beta-hypoxic stroma (purple/brown/green modules; SMAD3, TWIST1, HIF1A, AP1; TGFb, PI3K, Hypoxia)"
-"Factor3","Melanocytic / proliferative tumor (yellow + greenyellow modules; SOX10, MITF, MYC, E2F1; low TGFb)"
-"Factor4","Immune-cold / beta-catenin-associated (turquoise + magenta modules; CTNNB1, p53 pathway; low CD8, EOMES, TBX21, JAK-STAT)"

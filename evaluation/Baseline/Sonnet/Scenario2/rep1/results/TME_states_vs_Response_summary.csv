@@ -1,5 +1,0 @@
-"factor","top_cell_groups","test","statistic_name","statistic","p_value","p_adjusted","significant"
-"Factor1","Dendrogram_magenta_group_11; Dendrogram_greenyellow_group_13; Dendrogram_green_group_12","Wilcoxon rank-sum test","W",369,0.00206135532519239,0.00824542130076955,TRUE
-"Factor4","Dendrogram_blue_group_5; Dendrogram_black_group_10; Dendrogram_blue_group_4","Wilcoxon rank-sum test","W",731.5,0.175053708719014,0.324193774660114,FALSE
-"Factor3","Dendrogram_pink_group_6; Dendrogram_turquoise_group_2; Dendrogram_pink_group_1","Wilcoxon rank-sum test","W",519,0.243145330995085,0.324193774660114,FALSE
-"Factor2","Dendrogram_red_group_12; Dendrogram_brown_group_6; Dendrogram_red_group_11","Wilcoxon rank-sum test","W",561,0.480965126346229,0.480965126346229,FALSE

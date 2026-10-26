@@ -1,6 +1,0 @@
-"comparison","spearman_rho"
-"immune_score vs PTPRC",0.775978032827348
-"immune_score vs CYT (GZMA/PRF1)",0.718962112797729
-"stromal_score vs stromal markers",0.462421325435024
-"immune_score vs stromal_score",-0.623503640626928
-"immune_score vs Quantiseq immune fraction",0.738121683327163

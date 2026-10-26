@@ -75,7 +75,7 @@ MAX_WAIT_HOURS = 6     # never wait longer than this for a reset (the weekly one
 STALL_MINUTES = 15  # no answer from the model for this long = stalled session
 MAX_USD_PER_TURN = 60
 SMALL_MODEL = "claude-haiku-5-5"  # reads the last message of a run to see whether it asks something
-SCENARIOS = [1, 2, 3, 4]
+SCENARIOS = [1, 2, 3]  # Scenario 4 is not run in this campaign
 
 
 def load_index():
@@ -122,7 +122,8 @@ def prepare(arm):
 def docker_command(folder, arm, name):
     """The container of a session: memory cap, same user, and only the mounts listed above."""
     environment = {**SESSION_ENV, "HOME": str(HOME), "TMPDIR": str(folder / "tmp"),
-                   "PATH": f"{HOME}/anaconda3/envs/colomoto/bin:{HOME}/.local/bin:{HOME}/anaconda3/bin:"
+                   # R 4.3.3 first: CellTFusion needs it, and it is the R of the MCP servers
+                   "PATH": f"/opt/R/4.3.3/bin:{HOME}/anaconda3/envs/colomoto/bin:{HOME}/.local/bin:{HOME}/anaconda3/bin:"
                            "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"}
     mounts = [f"{host}:{inside}:ro" for host, inside in SYSTEM_MOUNTS.items()]
     mounts += ["/var/run/docker.sock:/var/run/docker.sock"]  # CIBERSORTx runs as a Docker container
