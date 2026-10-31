@@ -1,0 +1,1 @@
+{"ok":false,"error":"Patient names in deconvolution estimates do not match those in the counts matrix.","summary":[],"csv_outputs":[],"output_files":["manifest.json","Results/Deconvolution_RaCInG_input.csv"]}

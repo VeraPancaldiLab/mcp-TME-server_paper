@@ -12,6 +12,7 @@ set.seed(123)
 
 Load input
 ```{r}
+dir.create("evaluation/Groundtruth/Scenario1/Results", recursive = TRUE, showWarnings = FALSE)
 counts = read.delim("data/Gide_log2TPM.txt", row.names = 1)
 ```
 

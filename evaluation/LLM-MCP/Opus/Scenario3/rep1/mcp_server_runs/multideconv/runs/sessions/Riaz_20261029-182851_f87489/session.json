@@ -1,0 +1,92 @@
+{
+  "session_id": "Riaz_20261029-182851_f87489",
+  "cohort_id": "Riaz",
+  "description": "Deconvolution of Riaz melanoma pre-ICB bulk RNA-seq (test cohort)",
+  "created_at": "2026-10-29T18:28:51+0100",
+  "stages_completed": [
+    "deconvolution",
+    "subgroup_replication"
+  ],
+  "steps": [
+    {
+      "timestamp": "2026-10-29T19:08:03+0100",
+      "tool": "run_deconvolution",
+      "stage": "deconvolution",
+      "cohort_id": "Riaz",
+      "args": {
+        "raw.counts": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/inputs/Riaz_TPM.csv",
+          "row_names": 1,
+          "as_matrix": true
+        },
+        "methods": {
+          "__type__": "literal",
+          "value": [
+            "Quantiseq",
+            "Epidish",
+            "DeconRNASeq",
+            "DWLS",
+            "CBSX"
+          ]
+        },
+        "normalized": {
+          "__type__": "literal",
+          "value": false
+        },
+        "doParallel": {
+          "__type__": "literal",
+          "value": false
+        },
+        "return": {
+          "__type__": "literal",
+          "value": true
+        },
+        "credentials.mail": {
+          "__type__": "literal",
+          "value": "***REDACTED***"
+        },
+        "credentials.token": {
+          "__type__": "literal",
+          "value": "***REDACTED***"
+        },
+        "create_signature": {
+          "__type__": "literal",
+          "value": false
+        },
+        "file_name": {
+          "__type__": "literal",
+          "value": "Riaz"
+        },
+        "sc_deconv": {
+          "__type__": "literal",
+          "value": false
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/deconvolution_Riaz",
+      "error": null
+    },
+    {
+      "timestamp": "2026-10-29T19:18:33+0100",
+      "tool": "replicate_subgroups",
+      "stage": "subgroup_replication",
+      "cohort_id": "Riaz",
+      "args": {
+        "deconv_res": {
+          "__type__": "rds",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/model_training_Gide/custom_output_deconv_res.rds"
+        },
+        "deconvolution_test": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/deconvolution_Riaz/result.csv",
+          "row_names": 1,
+          "as_matrix": false
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/Riaz_projected_on_Gide_subgroups",
+      "error": null
+    }
+  ]
+}

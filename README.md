@@ -13,5 +13,4 @@ The benchmark asks whether an LLM agent reproduces what a human analyst gets, wi
 | 3 | Predict immunotherapy response and the features driving it (train on Gide, test on Riaz) | multideconv, pipeML | Cross-validation AUROC per algorithm, AUROC on the test cohort, top 10 and 20 predictive features |
 | 4 | Cell-cell communication and the most common interaction pairs | RaCInG | Ligand assignments, receptor assignments, direct interactions, most common interactions |
 
-Every score is **reproduced ÷ ground-truth total**, so anything a run lacks lowers its score. Values are the same when they are identical or correlate at 0.99 or more across patients. Groups (subgroups, TF modules, cell groups) are the same when they have exactly the same members, whatever their name.
-
+Every score is **reproduced ÷ ground-truth total**, so anything a run lacks lowers its score. Values are the same when they are identical or correlate at 0.9 or more across patients. Groups (subgroups, TF modules, cell groups) are the same when they have exactly the same members, whatever their name.

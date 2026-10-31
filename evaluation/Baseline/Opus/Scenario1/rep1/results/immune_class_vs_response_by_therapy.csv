@@ -1,0 +1,13 @@
+"Var1","Var2","Var3","Freq"
+"Immune-low","NR","CTLA4+PD1",5
+"Immune-intermediate","NR","CTLA4+PD1",2
+"Immune-high","NR","CTLA4+PD1",1
+"Immune-low","R","CTLA4+PD1",5
+"Immune-intermediate","R","CTLA4+PD1",9
+"Immune-high","R","CTLA4+PD1",10
+"Immune-low","NR","PD1",10
+"Immune-intermediate","NR","PD1",6
+"Immune-high","NR","PD1",3
+"Immune-low","R","PD1",5
+"Immune-intermediate","R","PD1",7
+"Immune-high","R","PD1",10

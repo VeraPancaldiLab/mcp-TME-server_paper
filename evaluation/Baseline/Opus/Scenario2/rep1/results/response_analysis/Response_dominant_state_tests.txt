@@ -1,0 +1,56 @@
+Dominant TME state (largest share of the patient mixture) vs response
+
+            Response
+Dominant     NR  R
+  TME_state1  3 28
+  TME_state2 24 18
+
+Response rate by dominant state:
+            Response
+Dominant        NR     R
+  TME_state1 0.097 0.903
+  TME_state2 0.571 0.429
+
+Fisher exact test:
+
+	Fisher's Exact Test for Count Data
+
+data:  tab
+p-value = 2.633e-05
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.01402885 0.33284747
+sample estimates:
+odds ratio 
+0.08333301 
+
+
+By therapy:
+, ,  = PD1
+
+            
+dominant     NR  R
+  TME_state1  2 13
+  TME_state2 17  9
+
+, ,  = CTLA4+PD1
+
+            
+dominant     NR  R
+  TME_state1  1 15
+  TME_state2  7  9
+
+
+Exact conditional (Mantel-Haenszel) test stratified by therapy:
+
+	Exact conditional test of independence in 2 x 2 x k tables
+
+data:  table(dominant, coldata$Response, coldata$Therapy)
+S = 3, p-value = 9.426e-05
+alternative hypothesis: true common odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.01489627 0.35920081
+sample estimates:
+common odds ratio 
+        0.0890083 
+

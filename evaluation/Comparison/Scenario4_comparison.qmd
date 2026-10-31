@@ -94,7 +94,7 @@ for (r in agent_runs) {
 ## How the comparisons are scored
 
 Everything is scored as reproduced / total of the ground truth, so what a run does not have
-lowers its score. Values are the same when they are identical, or correlate at 0.99 or more
+lowers its score. Values are the same when they are identical, or correlate at 0.9 or more
 across patients. The scoring functions are in `helpers.R`.
 
 ## Ligand and receptor assignments

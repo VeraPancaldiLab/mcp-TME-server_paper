@@ -1,3 +1,3 @@
-74 lines = 73 patients + header, correct for both.
+This was already done in the previous step — no new computation needed. The three files already exist in `results/standard/`, converted from the already-run RaCInG outputs (Lmatrix, Rmatrix, and the kernel's undirected direct-communication features, with patient IDs restored to match the original input exactly).
 
-Files written: `results/standard/composition.csv`, `results/standard/ligands.csv`, `results/standard/receptors.csv`, `results/standard/direct_interactions.csv`, `results/standard/info.json`.
+Files written: `results/standard/ligands.csv`, `results/standard/receptors.csv`, `results/standard/direct_interactions.csv`

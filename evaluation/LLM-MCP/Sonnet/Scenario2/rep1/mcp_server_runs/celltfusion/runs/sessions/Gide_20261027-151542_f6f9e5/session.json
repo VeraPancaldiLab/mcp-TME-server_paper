@@ -1,0 +1,126 @@
+{
+  "session_id": "Gide_20261027-151542_f6f9e5",
+  "cohort_id": "Gide",
+  "description": "TME state characterization (CellTFusion) on Gide melanoma immunotherapy cohort, checking association with response (R/NR)",
+  "created_at": "2026-10-27T15:15:42+0100",
+  "stages_completed": [
+    "tme_characterization"
+  ],
+  "steps": [
+    {
+      "timestamp": "2026-10-27T16:00:01+0100",
+      "tool": "run_celltfusion",
+      "stage": "tme_characterization",
+      "cohort_id": "Gide",
+      "args": {
+        "raw_counts": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/dcede5cb31/work/prep/Gide_linTPM.csv",
+          "row_names": 1,
+          "as_matrix": true
+        },
+        "deconv_methods": {
+          "__type__": "literal",
+          "value": [
+            "Quantiseq",
+            "Epidish",
+            "DeconRNASeq",
+            "DWLS",
+            "CBSX"
+          ]
+        },
+        "cbsx_mail": {
+          "__type__": "literal",
+          "value": "marcelo.hurtado@inserm.fr"
+        },
+        "cbsx_token": {
+          "__type__": "literal",
+          "value": "***REDACTED***"
+        },
+        "do_parallel": {
+          "__type__": "literal",
+          "value": false
+        },
+        "file_name": {
+          "__type__": "literal",
+          "value": "Gide"
+        },
+        "normalized": {
+          "__type__": "literal",
+          "value": false
+        },
+        "TF.collection": {
+          "__type__": "literal",
+          "value": "CollecTRI"
+        },
+        "method": {
+          "__type__": "literal",
+          "value": "ulm"
+        },
+        "min_targets_size": {
+          "__type__": "literal",
+          "value": 5
+        },
+        "min_module_size": {
+          "__type__": "literal",
+          "value": 5
+        },
+        "corr_mod": {
+          "__type__": "literal",
+          "value": 0.9
+        },
+        "consensus_quantile": {
+          "__type__": "literal",
+          "value": 0
+        },
+        "clustering_method": {
+          "__type__": "literal",
+          "value": "ward.D2"
+        },
+        "corr": {
+          "__type__": "literal",
+          "value": 0.7
+        },
+        "corr_type": {
+          "__type__": "literal",
+          "value": "spearman"
+        },
+        "pval": {
+          "__type__": "literal",
+          "value": 0.05
+        },
+        "padj": {
+          "__type__": "literal",
+          "value": false
+        },
+        "min_cluster_size": {
+          "__type__": "literal",
+          "value": 3
+        },
+        "seed": {
+          "__type__": "literal",
+          "value": 123
+        },
+        "compute_factors": {
+          "__type__": "literal",
+          "value": true
+        },
+        "top_n": {
+          "__type__": "literal",
+          "value": 5
+        },
+        "return": {
+          "__type__": "literal",
+          "value": true
+        },
+        "verbose": {
+          "__type__": "literal",
+          "value": true
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/dcede5cb31/work/results/CellTFusion",
+      "error": null
+    }
+  ]
+}

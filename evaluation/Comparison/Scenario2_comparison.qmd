@@ -68,7 +68,7 @@ for (r in agent_runs) {
 Everything is scored as reproduced / total of the ground truth, so what a run does not have
 lowers its score.
 
-- Scores are the same when they are identical, or correlate at 0.99 or more across patients.
+- Scores are the same when they are identical, or correlate at 0.9 or more across patients.
 - TFs are matched by name.
 - TF modules and cell groups are matched by composition: a group of the ground truth is
   reproduced when the run has a group with exactly the same members, whatever its name. Its

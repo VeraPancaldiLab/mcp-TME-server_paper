@@ -1,0 +1,29 @@
+"run","comparison","score"
+"Baseline Opus","TF activity scores",1
+"LLM-MCP Opus","TF activity scores",1
+"Baseline Sonnet","TF activity scores",1
+"LLM-MCP Sonnet","TF activity scores",1
+"Baseline Opus","TF modules: composition",1
+"LLM-MCP Opus","TF modules: composition",1
+"Baseline Sonnet","TF modules: composition",1
+"LLM-MCP Sonnet","TF modules: composition",1
+"Baseline Opus","TF modules: scores",1
+"LLM-MCP Opus","TF modules: scores",1
+"Baseline Sonnet","TF modules: scores",1
+"LLM-MCP Sonnet","TF modules: scores",1
+"Baseline Opus","Cell groups: composition",0.0434782608695652
+"LLM-MCP Opus","Cell groups: composition",0.449275362318841
+"Baseline Sonnet","Cell groups: composition",0.0434782608695652
+"LLM-MCP Sonnet","Cell groups: composition",1
+"Baseline Opus","Cell groups: scores",0.0434782608695652
+"LLM-MCP Opus","Cell groups: scores",0.449275362318841
+"Baseline Sonnet","Cell groups: scores",0.0434782608695652
+"LLM-MCP Sonnet","Cell groups: scores",1
+"Baseline Opus","TME states",0.5
+"LLM-MCP Opus","TME states",0.5
+"Baseline Sonnet","TME states",0.5
+"LLM-MCP Sonnet","TME states",1
+"Baseline Opus","TME states associated with response",1
+"LLM-MCP Opus","TME states associated with response",1
+"Baseline Sonnet","TME states associated with response",1
+"LLM-MCP Sonnet","TME states associated with response",1

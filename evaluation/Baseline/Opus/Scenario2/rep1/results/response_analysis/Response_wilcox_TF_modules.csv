@@ -1,0 +1,13 @@
+"feature","test","statistic_name","statistic","p_value","p_adjusted","significant"
+"tan","Wilcoxon rank-sum test","W",657,0.68500607392397,0.918009452604791,FALSE
+"green","Wilcoxon rank-sum test","W",324,0.00070413753991824,0.00844965047901888,TRUE
+"greenyellow","Wilcoxon rank-sum test","W",416,0.0194535794141424,0.116721476484854,FALSE
+"purple","Wilcoxon rank-sum test","W",463,0.0719116830181851,0.28764673207274,FALSE
+"red","Wilcoxon rank-sum test","W",527,0.285349327228219,0.644326677663553,FALSE
+"black","Wilcoxon rank-sum test","W",543,0.375857228637072,0.644326677663553,FALSE
+"magenta","Wilcoxon rank-sum test","W",479,0.105910121623983,0.31773036487195,FALSE
+"brown","Wilcoxon rank-sum test","W",586,0.693422369092337,0.918009452604791,FALSE
+"yellow","Wilcoxon rank-sum test","W",639,0.841508664887725,0.918009452604791,FALSE
+"turquoise","Wilcoxon rank-sum test","W",534,0.322959755688462,0.644326677663553,FALSE
+"blue","Wilcoxon rank-sum test","W",642,0.814795829837659,0.918009452604791,FALSE
+"pink","Wilcoxon rank-sum test","W",614,0.94079365645159,0.94079365645159,FALSE

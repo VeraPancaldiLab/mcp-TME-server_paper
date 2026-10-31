@@ -1,0 +1,115 @@
+Expression matrix: 18979 genes x 73 samples
+Running deconvolution using the following methods...............................................................
+
+* Quantiseq
+
+Running Quantiseq...............................................................
+
+>>> Running quantiseq
+
+Running quanTIseq deconvolution module
+
+Gene expression normalization and re-annotation (arrays: FALSE)
+
+Removing 17 noisy genes
+
+Removing 15 genes with high expression in tumors
+
+Signature genes found in data set: 129/138 (93.48%)
+
+Mixture deconvolution (method: lsei)
+
+Deconvolution successful!
+
+No methods to be calculated using variable signatures.Preprocessing deconvolution features...............................................................
+
+Checking consistency in deconvolution cell fractions across patients...............................................................
+
+No extra cell types provided. Only the following cell types will be considered:
+ B.cells
+B.naive.cells
+B.memory.cells
+Macrophages.cells
+Macrophages.M0
+Macrophages.M1
+Macrophages.M2
+Monocytes
+Neutrophils
+NK.cells
+NK.activated
+NK.resting
+NKT.cells
+CD4.cells
+CD4.memory.activated
+CD4.memory.resting
+CD4.naive
+CD8.cells
+CD4.regulatory
+CD4.non.regulatory
+T.cells.helper
+T.cells.gamma.delta
+Dendritic.cells
+Dendritic.activated.cells
+Dendritic.resting.cells
+Cancer
+Endothelial
+Eosinophils
+Plasma
+Myocytes
+Fibroblasts
+Mast.cells
+Mast.activated.cells
+Mast.resting.cells
+CAF
+Dendritic.plasmacytoid.cells
+Myeloid.cells
+Basophils
+Epithelial
+Pericytes
+Mural.cells
+T.cells.proliferative
+uncharacterized_cell 
+
+If you want to consider other cell types (e.g. from a custom signature) which are not included in the package by default (see README), please provide them in the cells_extra argument.
+
+Total sum across samples of combination Quantiseq_TIL10 is 1Calculating deconvolution estimates...
+Using provided deconvolution estimates...
+
+Estimating cell type expression profiles...
+Processing cell-cell interaction network...
+Computing LR matrix...
+Computing L-matrix...
+Computing R-matrix...
+Exporting input files for RaCiNG...
+Input files generated and saved to: results/racing_input 
+Processing input matrices...
+Warning message:
+already_normalized = TRUE: 'counts' is assumed to already be linear-scale TPM. expr_threshold (default 10) is compared against this scale -- if 'counts' is actually log-transformed (e.g. log2(TPM+1)), that comparison is wrong; convert back to linear TPM first or set expr_threshold accordingly. 
+
+Cell types: 11 
+ [1] "B.cells"            "Cancer"             "CD4.non.regulatory"
+ [4] "CD4.regulatory"     "CD8.cells"          "Dendritic.cells"   
+ [7] "Macrophages.M1"     "Macrophages.M2"     "Monocytes"         
+[10] "Neutrophils"        "NK.cells"          
+Ligands: 458  Receptors: 431  LR pairs: 458 431 73 
+                   B.cells Cancer CD4.non.regulatory CD4.regulatory CD8.cells
+Gide_10_PD1_PRE      0.036  0.810                  0          0.007     0.000
+Gide_10_ipiPD1_PRE   0.067  0.810                  0          0.000     0.000
+Gide_11_PD1_PRE      0.025  0.673                  0          0.004     0.001
+Gide_12_PD1_PRE      0.051  0.621                  0          0.002     0.000
+Gide_12_ipiPD1_PRE   0.057  0.531                  0          0.035     0.050
+Gide_13_PD1_PRE      0.046  0.832                  0          0.010     0.001
+                   Dendritic.cells Macrophages.M1 Macrophages.M2 Monocytes
+Gide_10_PD1_PRE              0.026          0.009          0.023     0.000
+Gide_10_ipiPD1_PRE           0.023          0.000          0.025     0.010
+Gide_11_PD1_PRE              0.000          0.002          0.025     0.000
+Gide_12_PD1_PRE              0.000          0.000          0.000     0.272
+Gide_12_ipiPD1_PRE           0.000          0.027          0.094     0.000
+Gide_13_PD1_PRE              0.019          0.006          0.006     0.060
+                   Neutrophils NK.cells
+Gide_10_PD1_PRE          0.073    0.015
+Gide_10_ipiPD1_PRE       0.046    0.020
+Gide_11_PD1_PRE          0.249    0.021
+Gide_12_PD1_PRE          0.000    0.055
+Gide_12_ipiPD1_PRE       0.180    0.025
+Gide_13_PD1_PRE          0.000    0.020

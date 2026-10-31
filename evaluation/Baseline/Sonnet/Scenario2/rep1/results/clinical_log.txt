@@ -1,0 +1,58 @@
+
+================ Latent factors vs Response (wilcox) ================
+1 significant feature(s) after Wilcoxon rank-sum test (adjusted p-value (BH) <= 0.05): Factor1
+  feature                   test statistic_name statistic     p_value
+1 Factor1 Wilcoxon rank-sum test              W     348.5 0.001814791
+2 Factor2 Wilcoxon rank-sum test              W     756.0 0.124267841
+   p_adjusted significant
+1 0.003629582        TRUE
+2 0.124267841       FALSE
+
+================ Latent factors vs Response (fisher, median split) ================
+1 significant feature(s) after Fisher's exact test (adjusted p-value (BH) <= 0.05): Factor1
+  feature                test statistic_name statistic     p_value  p_adjusted
+1 Factor1 Fisher's exact test     odds ratio 0.2100239 0.003374701 0.006749401
+2 Factor2 Fisher's exact test     odds ratio 2.3859966 0.092567707 0.092567707
+  significant
+1        TRUE
+2       FALSE
+
+================ Latent factors vs Therapy (wilcox) ================
+No significant feature after Wilcoxon rank-sum test (adjusted p-value (BH) <= 0.05)
+  feature                   test statistic_name statistic   p_value p_adjusted
+1 Factor1 Wilcoxon rank-sum test              W       685 0.7505099  0.7505099
+2 Factor2 Wilcoxon rank-sum test              W       595 0.5011295  0.7505099
+  significant
+1       FALSE
+2       FALSE
+
+================ TF modules vs clinical traits ================
+No numeric trait to correlate: the correlation heatmap is not drawn
+ANOVA of TF modules vs Response/Therapy:
+      trait      module      F        p p_adjusted
+1  Response       black  0.049 0.826000  0.9040000
+2  Response        blue  0.545 0.463000  0.9040000
+3  Response       brown  0.050 0.824000  0.9040000
+4  Response       green 12.853 0.000614  0.0073680
+5  Response greenyellow  5.147 0.026000  0.1560000
+6  Response     magenta  2.089 0.153000  0.4590000
+7  Response        pink  0.046 0.830000  0.9040000
+8  Response      purple  3.052 0.085000  0.3400000
+9  Response         red  1.154 0.286000  0.6864000
+10 Response         tan  0.015 0.904000  0.9040000
+11 Response   turquoise  0.283 0.596000  0.9040000
+12 Response      yellow  0.072 0.790000  0.9040000
+13  Therapy       black  0.068 0.795000  0.8858182
+14  Therapy        blue  1.257 0.266000  0.6340000
+15  Therapy       brown  1.017 0.317000  0.6340000
+16  Therapy       green  1.109 0.296000  0.6340000
+17  Therapy greenyellow  0.770 0.383000  0.6565714
+18  Therapy     magenta  1.874 0.175000  0.6340000
+19  Therapy        pink  0.057 0.812000  0.8858182
+20  Therapy      purple  0.121 0.729000  0.8858182
+21  Therapy         red  0.019 0.889000  0.8890000
+22  Therapy         tan  1.919 0.170000  0.6340000
+23  Therapy   turquoise  8.792 0.004000  0.0480000
+24  Therapy      yellow  0.069 0.794000  0.8858182
+
+=== Clinical association analysis finished ===

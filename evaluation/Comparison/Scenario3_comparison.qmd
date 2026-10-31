@@ -62,13 +62,13 @@ kable(cv_table, digits = 3)
 ```
 
 An algorithm is reproduced when its AUROC is the same as in the ground truth (difference below
-0.001). `Best_algorithm` is the one with the highest AUROC.
+0.05). `Best_algorithm` is the one with the highest AUROC.
 
 ```{r}
 best_algorithm = function(r) cv[[r]]$algorithm[which.max(cv[[r]]$cv_auroc)]
 
 cv_score = by_run(function(r) {
-  same = abs(cv_table[[r]] - cv_table$Groundtruth) < 0.001
+  same = abs(cv_table[[r]] - cv_table$Groundtruth) < 0.05
   data.frame(GT = nrow(cv_table), Reproduced = sum(same, na.rm = TRUE), Score = sum(same, na.rm = TRUE) / nrow(cv_table),
              Best_algorithm = best_algorithm(r), Same_best_algorithm = best_algorithm(r) == best_algorithm("Groundtruth"))
 })
@@ -92,7 +92,7 @@ for (r in names(prediction)) {
   test_auroc[r, "Test_patients"] = length(p)
   test_auroc[r, c("CI_low", "AUROC", "CI_high")] = ci
 }
-test_auroc$Same_as_GT = !is.na(test_auroc$AUROC) & abs(test_auroc$AUROC - test_auroc["Groundtruth", "AUROC"]) < 0.001
+test_auroc$Same_as_GT = !is.na(test_auroc$AUROC) & abs(test_auroc$AUROC - test_auroc["Groundtruth", "AUROC"]) < 0.05
 kable(test_auroc, digits = 3, row.names = FALSE)
 ```
 

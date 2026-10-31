@@ -1,8 +1,10 @@
-I exported the main result (the default-prior run in `results/01_inputs/` and `results/02_kernel/`) to `results/standard/`, converting existing files only. All five requested items were produced, so nothing was skipped. The curated-prior variant was not exported.
+The three files from the previous step are still in `results/standard/` with the same row and column counts, so I didn't write anything new. No requested item was skipped.
 
-- **`composition.csv`**: the normalized cell-type matrix RaCInG used, 73 patients × 11 cell types (B, CD4, CD8, DC, M1, M2, Monocyte, Neutrophil, NK, Treg, Tumor). I removed the "Pt" prefix I had added during processing, so patient names match the input file.
-- **`ligands.csv`** (1,971 rows) and **`receptors.csv`** (2,078 rows): one row per cell type–gene assignment. RaCInG's file reading had turned hyphens into dots in 19 ligand names (e.g. `HLA.A`). I restored the hyphenated symbol only where the dotted name isn't a gene in the expression file but the hyphenated one is. No receptor names needed this.
-- **`direct_interactions.csv`**: copied from the raw, undirected direct features RaCInG returned (`features_D_raw.csv`), not rebuilt from directed edges. All 66 unordered pairs are present, with columns renamed to `A - B`.
-- **`info.json`**: deconvolution by quanTIseq, no CIBERSORTx, computed by me before RaCInG, input scale linear TPM.
+- **`ligands.csv`** (1,578 rows: `cell_type`, `ligand`): one row per cell type–ligand assignment in the prepared-input `Lmatrix`.
+- **`receptors.csv`** (1,620 rows: `cell_type`, `receptor`): the same conversion of the `Rmatrix`.
+- **`direct_interactions.csv`** (73 patients × 66 unordered pairs, plus the `patient` column):
+  - These are the existing raw, undirected kernel features, exactly as RaCInG returned them with the direction removed.
+  - Columns are named `A - B` using the cell-type names in `ligands.csv`, and patient names match the input data exactly.
+  - When I made it, I checked that each value equals A→B + B→A from the directed features, so "A - A" is twice A→A.
 
-Files written: `composition.csv`, `ligands.csv`, `receptors.csv`, `direct_interactions.csv`, `info.json`
+Files written: `results/standard/ligands.csv`, `results/standard/receptors.csv`, `results/standard/direct_interactions.csv`

@@ -1,0 +1,116 @@
+{
+  "session_id": "Gide_melanoma_20261027-022653_13819f",
+  "cohort_id": "Gide_melanoma",
+  "description": "Immune/stromal composition of Gide pre-treatment melanoma bulk RNA-seq (73 samples) and immune infiltration ranking",
+  "created_at": "2026-10-27T02:26:53+0100",
+  "stages_completed": [
+    "deconvolution",
+    "harmonization"
+  ],
+  "steps": [
+    {
+      "timestamp": "2026-10-27T10:04:54+0100",
+      "tool": "run_deconvolution",
+      "stage": "deconvolution",
+      "cohort_id": "Gide_melanoma",
+      "args": {
+        "raw.counts": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/0760e3f28f/work/results/input/Gide_TPM_linear.csv",
+          "row_names": 1,
+          "as_matrix": true
+        },
+        "methods": {
+          "__type__": "literal",
+          "value": [
+            "Quantiseq",
+            "Epidish",
+            "DeconRNASeq",
+            "DWLS",
+            "CBSX"
+          ]
+        },
+        "normalized": {
+          "__type__": "literal",
+          "value": false
+        },
+        "doParallel": {
+          "__type__": "literal",
+          "value": false
+        },
+        "return": {
+          "__type__": "literal",
+          "value": true
+        },
+        "credentials.mail": {
+          "__type__": "literal",
+          "value": "***REDACTED***"
+        },
+        "credentials.token": {
+          "__type__": "literal",
+          "value": "***REDACTED***"
+        },
+        "create_signature": {
+          "__type__": "literal",
+          "value": false
+        },
+        "file_name": {
+          "__type__": "literal",
+          "value": "Gide"
+        },
+        "sc_deconv": {
+          "__type__": "literal",
+          "value": false
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/0760e3f28f/work/results/01_deconvolution",
+      "error": null
+    },
+    {
+      "timestamp": "2026-10-27T10:05:41+0100",
+      "tool": "analyze_deconvolution",
+      "stage": "harmonization",
+      "cohort_id": "Gide_melanoma",
+      "args": {
+        "deconvolution": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/0760e3f28f/work/results/01_deconvolution/result.csv",
+          "row_names": 1,
+          "as_matrix": false
+        },
+        "corr": {
+          "__type__": "literal",
+          "value": 0.7
+        },
+        "corr_type": {
+          "__type__": "literal",
+          "value": "spearman"
+        },
+        "zero_thr": {
+          "__type__": "literal",
+          "value": 0.9
+        },
+        "cv_thr": {
+          "__type__": "literal",
+          "value": 0.1
+        },
+        "file_name": {
+          "__type__": "literal",
+          "value": "Gide"
+        },
+        "return": {
+          "__type__": "literal",
+          "value": true
+        },
+        "verbose": {
+          "__type__": "literal",
+          "value": true
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/0760e3f28f/work/results/02_harmonized_subgroups",
+      "error": null
+    }
+  ]
+}

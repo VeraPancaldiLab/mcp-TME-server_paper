@@ -1,0 +1,171 @@
+{
+  "Baseline_Opus_S1_rep1": {
+    "arm": "Baseline",
+    "model": "Opus",
+    "scenario": 1,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/3cd955f44e",
+    "session_id": "6cbe59f9-e45c-434e-baaf-81be2bd08f0b",
+    "collected": true
+  },
+  "Baseline_Sonnet_S1_rep1": {
+    "arm": "Baseline",
+    "model": "Sonnet",
+    "scenario": 1,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/85d224db4e",
+    "session_id": "908c5c95-a46b-4101-9c34-c9d61a47c2ba",
+    "collected": true
+  },
+  "Baseline_Opus_S2_rep1": {
+    "arm": "Baseline",
+    "model": "Opus",
+    "scenario": 2,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/f017e803ba",
+    "session_id": "0f596f10-211a-4f75-9133-1e5cca71f5cc",
+    "collected": true
+  },
+  "Baseline_Sonnet_S2_rep1": {
+    "arm": "Baseline",
+    "model": "Sonnet",
+    "scenario": 2,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/10d0ef4104",
+    "session_id": "7790bbee-9c47-4270-bc0c-44cea5bada9d",
+    "collected": true
+  },
+  "LLM-MCP_Opus_S1_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Opus",
+    "scenario": 1,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/0760e3f28f",
+    "session_id": "54d3f4b9-597d-4af1-84c3-26336e8cf6f4",
+    "replies": [
+      "reply_credentials_no_signatures.txt"
+    ],
+    "collected": true
+  },
+  "LLM-MCP_Sonnet_S1_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Sonnet",
+    "scenario": 1,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/6494fa1e21",
+    "session_id": "2a09d01b-5c79-4138-9dba-f40c3ddfb80a",
+    "replies": [
+      "reply_credentials.txt"
+    ],
+    "collected": true
+  },
+  "LLM-MCP_Opus_S2_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Opus",
+    "scenario": 2,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/65d1b56acd",
+    "session_id": "e3152b0d-8058-4d58-873d-1ab0f664cc9b",
+    "replies": [
+      "reply_credentials.txt"
+    ],
+    "collected": true
+  },
+  "LLM-MCP_Sonnet_S2_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Sonnet",
+    "scenario": 2,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/dcede5cb31",
+    "session_id": "98b31f9c-83d0-4cb5-995c-dee87d97dbb3",
+    "replies": [
+      "reply_credentials.txt"
+    ],
+    "collected": true
+  },
+  "LLM-MCP_Opus_S3_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Opus",
+    "scenario": 3,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be",
+    "session_id": "2bdae422-35fb-4143-a025-eddce4b19e3f",
+    "replies": [
+      "reply_credentials_no_signatures.txt"
+    ],
+    "collected": true
+  },
+  "Baseline_Opus_S3_rep1": {
+    "arm": "Baseline",
+    "model": "Opus",
+    "scenario": 3,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/1d45e617f7",
+    "session_id": "049dd9c4-1f9c-40d0-aae6-6b23dcb20527",
+    "collected": true
+  },
+  "Baseline_Sonnet_S3_rep1": {
+    "arm": "Baseline",
+    "model": "Sonnet",
+    "scenario": 3,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/f8657832ef",
+    "session_id": "4f35ad22-5f0f-488a-9426-d9ea538d371f",
+    "collected": true
+  },
+  "LLM-MCP_Sonnet_S3_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Sonnet",
+    "scenario": 3,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/abedc3f674",
+    "session_id": "b78ea2ee-48d5-44bb-83fb-92589b0c9fcd",
+    "replies": [
+      "reply_credentials.txt"
+    ],
+    "collected": true
+  },
+  "Baseline_Opus_S4_rep1": {
+    "arm": "Baseline",
+    "model": "Opus",
+    "scenario": 4,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/054ceeda57",
+    "session_id": "c0144135-0ad7-49da-bda0-fef29de111a5",
+    "collected": true
+  },
+  "LLM-MCP_Opus_S4_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Opus",
+    "scenario": 4,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/c4ae71f764",
+    "session_id": "c443f4bb-20bb-4e31-aa11-b66e2d263e40",
+    "replies": [
+      "reply_credentials.txt",
+      "reply_credentials_no_signatures.txt"
+    ],
+    "collected": true
+  },
+  "LLM-MCP_Sonnet_S4_rep1": {
+    "arm": "LLM-MCP",
+    "model": "Sonnet",
+    "scenario": 4,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/4187784a8c",
+    "session_id": "5154537f-1b9e-48e9-946f-81ff5e426aa9",
+    "replies": [
+      "reply_credentials.txt"
+    ],
+    "collected": true
+  },
+  "Baseline_Sonnet_S4_rep1": {
+    "arm": "Baseline",
+    "model": "Sonnet",
+    "scenario": 4,
+    "repetition": 1,
+    "folder": "/home/marcelo.hurtado/Documents/tme_analysis/b0f19b8438",
+    "session_id": "092a85ef-bfcb-45e6-9370-813fa8e039f6",
+    "collected": true
+  }
+}

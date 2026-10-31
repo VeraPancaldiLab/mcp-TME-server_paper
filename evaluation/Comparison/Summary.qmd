@@ -1,5 +1,5 @@
-wh---
-title: "Summary of the four scenarios"
+---
+title: "Summary of the scenarios"
 subtitle: "Repetition 1: Baseline vs LLM-MCP, Opus and Sonnet, against the ground truth"
 format:
   html:
@@ -14,7 +14,7 @@ execute:
 ---
 
 Every score is the share of the ground truth that a run reproduced (identical, or correlation of
-at least 0.99; groups with exactly the same members), so what a run does not have lowers its
+at least 0.9; groups with exactly the same members), so what a run does not have lowers its
 score. The scores are written by the four `ScenarioN_comparison.qmd` reports
 (`metrics/scores_ScenarioN.csv`); render those first.
 

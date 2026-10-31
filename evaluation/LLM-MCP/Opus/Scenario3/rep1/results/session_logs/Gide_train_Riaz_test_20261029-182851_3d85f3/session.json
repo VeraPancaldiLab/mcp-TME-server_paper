@@ -1,0 +1,149 @@
+{
+  "session_id": "Gide_train_Riaz_test_20261029-182851_3d85f3",
+  "cohort_id": "Gide_train_Riaz_test",
+  "description": "ICB response classification from multideconv TME features, trained on Gide, tested on Riaz",
+  "created_at": "2026-10-29T18:28:51+0100",
+  "stages_completed": [
+    "model_training",
+    "prediction",
+    "shap_analysis"
+  ],
+  "steps": [
+    {
+      "timestamp": "2026-10-29T19:18:10+0100",
+      "tool": "train_ml_model",
+      "stage": "model_training",
+      "cohort_id": "Gide_train_Riaz_test",
+      "args": {
+        "features_train": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/deconvolution_Gide/result.csv",
+          "row_names": 1,
+          "as_matrix": false
+        },
+        "task_type": {
+          "__type__": "literal",
+          "value": "classification"
+        },
+        "target_var": {
+          "__type__": "csv_column",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/inputs/Gide_target_matched.csv",
+          "column": "Response",
+          "row_names": 1,
+          "align_to": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/deconvolution_Gide/result.csv",
+          "align_to_columns": false
+        },
+        "trait.positive": {
+          "__type__": "literal",
+          "value": "R"
+        },
+        "k_folds": {
+          "__type__": "literal",
+          "value": 10
+        },
+        "n_rep": {
+          "__type__": "literal",
+          "value": 5
+        },
+        "LODO": {
+          "__type__": "literal",
+          "value": false
+        },
+        "file_name": {
+          "__type__": "literal",
+          "value": "Gide_train"
+        },
+        "return": {
+          "__type__": "literal",
+          "value": true
+        },
+        "fold_construction_fun": {
+          "__type__": "r_named_function",
+          "value": "prepare_multideconv_folds",
+          "package": "multideconv"
+        },
+        "seed": {
+          "__type__": "literal",
+          "value": 123
+        },
+        "preprocess": {
+          "__type__": "literal",
+          "value": true
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/model_training_Gide",
+      "error": null
+    },
+    {
+      "timestamp": "2026-10-29T19:18:48+0100",
+      "tool": "predict_ml_model",
+      "stage": "prediction",
+      "cohort_id": "Gide_train_Riaz_test",
+      "args": {
+        "model": {
+          "__type__": "rds_element",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/model_training_Gide/result.rds",
+          "element": "Model"
+        },
+        "test_data": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/Riaz_projected_on_Gide_subgroups/result.csv",
+          "row_names": 1,
+          "as_matrix": false
+        },
+        "target_var": {
+          "__type__": "csv_column",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/inputs/Riaz_target.csv",
+          "column": "Response",
+          "row_names": 1,
+          "align_to": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/Riaz_projected_on_Gide_subgroups/result.csv",
+          "align_to_columns": false
+        },
+        "trait.positive": {
+          "__type__": "literal",
+          "value": "R"
+        },
+        "task_type": {
+          "__type__": "literal",
+          "value": "classification"
+        },
+        "file.name": {
+          "__type__": "literal",
+          "value": "Riaz_test"
+        },
+        "return": {
+          "__type__": "literal",
+          "value": true
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/prediction_Riaz",
+      "error": null
+    },
+    {
+      "timestamp": "2026-10-29T19:19:39+0100",
+      "tool": "compute_shap_values",
+      "stage": "shap_analysis",
+      "cohort_id": "Gide_train_Riaz_test",
+      "args": {
+        "model_trained": {
+          "__type__": "rds_element",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/model_training_Gide/result.rds",
+          "element": "Model"
+        },
+        "task_type": {
+          "__type__": "literal",
+          "value": "classification"
+        },
+        "seed": {
+          "__type__": "literal",
+          "value": 123
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/6fc51422be/work/results/shap_Gide_model",
+      "error": null
+    }
+  ]
+}

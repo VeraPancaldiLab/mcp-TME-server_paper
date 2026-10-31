@@ -1,6 +1,0 @@
-{
-  "deconvolution_methods": "Quantiseq (TIL10 signature)",
-  "cibersortx": false,
-  "deconvolution_source": "computed inside RaCInG",
-  "input_scale": "linear TPM"
-}

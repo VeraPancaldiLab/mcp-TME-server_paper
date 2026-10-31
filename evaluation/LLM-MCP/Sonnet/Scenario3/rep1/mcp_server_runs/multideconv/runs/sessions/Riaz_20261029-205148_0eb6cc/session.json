@@ -1,0 +1,88 @@
+{
+  "session_id": "Riaz_20261029-205148_0eb6cc",
+  "cohort_id": "Riaz",
+  "description": "Deconvolution of Riaz melanoma ICI cohort for TME-based response prediction model (test)",
+  "created_at": "2026-10-29T20:51:48+0100",
+  "stages_completed": [
+    "deconvolution",
+    "subgroup_replication"
+  ],
+  "steps": [
+    {
+      "timestamp": "2026-10-29T21:21:41+0100",
+      "tool": "run_deconvolution",
+      "stage": "deconvolution",
+      "cohort_id": "Riaz",
+      "args": {
+        "raw.counts": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/abedc3f674/work/prepared_data/Riaz_TPM.csv",
+          "row_names": 1,
+          "as_matrix": true
+        },
+        "methods": {
+          "__type__": "literal",
+          "value": [
+            "Quantiseq",
+            "Epidish",
+            "DeconRNASeq",
+            "DWLS",
+            "CBSX"
+          ]
+        },
+        "normalized": {
+          "__type__": "literal",
+          "value": false
+        },
+        "doParallel": {
+          "__type__": "literal",
+          "value": false
+        },
+        "return": {
+          "__type__": "literal",
+          "value": true
+        },
+        "credentials.mail": {
+          "__type__": "literal",
+          "value": "***REDACTED***"
+        },
+        "credentials.token": {
+          "__type__": "literal",
+          "value": "***REDACTED***"
+        },
+        "create_signature": {
+          "__type__": "literal",
+          "value": false
+        },
+        "sc_deconv": {
+          "__type__": "literal",
+          "value": false
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/abedc3f674/work/results/multideconv_Riaz",
+      "error": null
+    },
+    {
+      "timestamp": "2026-10-29T21:32:18+0100",
+      "tool": "replicate_subgroups",
+      "stage": "subgroup_replication",
+      "cohort_id": "Riaz",
+      "args": {
+        "deconv_res": {
+          "__type__": "rds",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/abedc3f674/work/results/pipeML_train/Custom_output.rds"
+        },
+        "deconvolution_test": {
+          "__type__": "csv",
+          "path": "/home/marcelo.hurtado/Documents/tme_analysis/abedc3f674/work/results/multideconv_Riaz/result.csv",
+          "row_names": 1,
+          "as_matrix": false
+        }
+      },
+      "status": "success",
+      "run_dir": "/home/marcelo.hurtado/Documents/tme_analysis/abedc3f674/work/results/multideconv_Riaz_projected",
+      "error": null
+    }
+  ]
+}

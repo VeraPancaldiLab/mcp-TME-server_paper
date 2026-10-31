@@ -2,6 +2,6 @@ One last step. Save copies of the results you already produced in a standard for
 
 - ligands.csv: the ligands assigned to each cell type (the cell type x ligand matrix of the prepared input, "Lmatrix"), one row per assignment, with columns cell_type and ligand (not one row per patient).
 - receptors.csv: the receptors assigned to each cell type ("Rmatrix"), one row per assignment, with columns cell_type and receptor (not one row per patient).
-- direct_interactions.csv: the direct-interaction features of the kernel method, not normalised and without direction: one column per unordered pair of cell types, named "<cell type A> - <cell type B>" with the cell-type names exactly as in composition.csv. This is what RaCInG returns when the direction is removed; if you only have the features with direction, a column "A - B" is A->B plus B->A, and a column "A - A" is twice A->A.
+- direct_interactions.csv: the direct-interaction features of the kernel method, not normalised and without direction: one column per unordered pair of cell types, named "<cell type A> - <cell type B>" with the cell-type names exactly as in ligands.csv. This is what RaCInG returns when the direction is removed; if you only have the features with direction, a column "A - B" is A->B plus B->A, and a column "A - A" is twice A->A.
 
 Finish with a one-line list of the files written.

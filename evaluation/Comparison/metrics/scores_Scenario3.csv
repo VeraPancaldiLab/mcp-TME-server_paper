@@ -1,0 +1,17 @@
+"run","comparison","score"
+"Baseline Opus","CV AUROC per algorithm",0.636363636363636
+"LLM-MCP Opus","CV AUROC per algorithm",0.818181818181818
+"Baseline Sonnet","CV AUROC per algorithm",0.454545454545455
+"LLM-MCP Sonnet","CV AUROC per algorithm",1
+"Baseline Opus","AUROC on test cohort",0
+"LLM-MCP Opus","AUROC on test cohort",1
+"Baseline Sonnet","AUROC on test cohort",1
+"LLM-MCP Sonnet","AUROC on test cohort",1
+"Baseline Opus","Top 10 features",0.3
+"LLM-MCP Opus","Top 10 features",0.6
+"Baseline Sonnet","Top 10 features",0.3
+"LLM-MCP Sonnet","Top 10 features",1
+"Baseline Opus","Top 20 features",0.3
+"LLM-MCP Opus","Top 20 features",0.6
+"Baseline Sonnet","Top 20 features",0.3
+"LLM-MCP Sonnet","Top 20 features",1

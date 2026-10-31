@@ -1,0 +1,23 @@
+CellType,Role,MedianOfSum,CellTypeLabel,MedianAbundance
+Cancer,Receiver (incoming),0.281887601269576,Cancer/non-immune,0.634253072588195
+Monocytes,Receiver (incoming),0.156854876556409,Monocytes,0.0590447186685624
+Neutrophils,Receiver (incoming),0.111824293706238,Neutrophils,0.0433832682095066
+NK.cells,Receiver (incoming),0.0911201629599729,NK,0.0252657024316845
+B.cells,Receiver (incoming),0.0739178082474891,B,0.0508412003586457
+Macrophages.M2,Receiver (incoming),0.0515730677412249,Mac M2,0.0112344233511417
+Macrophages.M1,Receiver (incoming),0.0491300491843411,Mac M1,0.0151962078682407
+CD8.cells,Receiver (incoming),0.0226136599705813,CD8 T,0.00890235834927887
+CD4.regulatory,Receiver (incoming),0.00304664428844243,Treg,0.0103608037896357
+CD4.non.regulatory,Receiver (incoming),0,CD4 Tconv,0
+Dendritic.cells,Receiver (incoming),0,DC,0
+Cancer,Sender (outgoing),0.253742491954015,Cancer/non-immune,0.634253072588195
+Monocytes,Sender (outgoing),0.177872513289601,Monocytes,0.0590447186685624
+Neutrophils,Sender (outgoing),0.115880605448189,Neutrophils,0.0433832682095066
+NK.cells,Sender (outgoing),0.0900366828719579,NK,0.0252657024316845
+Macrophages.M1,Sender (outgoing),0.0705051068107524,Mac M1,0.0151962078682407
+B.cells,Sender (outgoing),0.0644343473195188,B,0.0508412003586457
+Macrophages.M2,Sender (outgoing),0.0624708821388047,Mac M2,0.0112344233511417
+CD8.cells,Sender (outgoing),0.0151976790082132,CD8 T,0.00890235834927887
+CD4.regulatory,Sender (outgoing),0.0046808627968264,Treg,0.0103608037896357
+CD4.non.regulatory,Sender (outgoing),0,CD4 Tconv,0
+Dendritic.cells,Sender (outgoing),0,DC,0

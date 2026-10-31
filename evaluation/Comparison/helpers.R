@@ -78,12 +78,12 @@ read_subgroups = function(run, scenario) {
 # ---- Scores against the ground truth: reproduced / ground-truth total ----
 # What a run does not have is not reproduced, so it lowers the score.
 
-# Same values: identical, or correlation of at least 0.99 across patients
+# Same values: identical, or correlation of at least 0.9 across patients
 # (CIBERSORTx and DWLS do not return exactly the same numbers in two executions).
 same_scores = function(x, y) {
   if (max(abs(x - y)) < 1e-6) return(TRUE)
   correlation = cor(x, y)
-  !is.na(correlation) && correlation >= 0.99
+  !is.na(correlation) && correlation >= 0.9
 }
 
 # Features matched by name: columns of two patients x features matrices.

@@ -1,0 +1,170 @@
+Gide cohort: 18979 genes x 73 samples
+Calculating deconvolution estimates...
+Running deconvolution using the following methods...............................................................
+
+* Quantiseq
+
+Running Quantiseq...............................................................
+
+>>> Running quantiseq
+
+Running quanTIseq deconvolution module
+
+Gene expression normalization and re-annotation (arrays: FALSE)
+
+Removing 17 noisy genes
+
+Removing 15 genes with high expression in tumors
+
+Signature genes found in data set: 129/138 (93.48%)
+
+Mixture deconvolution (method: lsei)
+
+Deconvolution successful!
+
+No methods to be calculated using variable signatures.Preprocessing deconvolution features...............................................................
+
+Checking consistency in deconvolution cell fractions across patients...............................................................
+
+No extra cell types provided. Only the following cell types will be considered:
+ B.cells
+B.naive.cells
+B.memory.cells
+Macrophages.cells
+Macrophages.M0
+Macrophages.M1
+Macrophages.M2
+Monocytes
+Neutrophils
+NK.cells
+NK.activated
+NK.resting
+NKT.cells
+CD4.cells
+CD4.memory.activated
+CD4.memory.resting
+CD4.naive
+CD8.cells
+CD4.regulatory
+CD4.non.regulatory
+T.cells.helper
+T.cells.gamma.delta
+Dendritic.cells
+Dendritic.activated.cells
+Dendritic.resting.cells
+Cancer
+Endothelial
+Eosinophils
+Plasma
+Myocytes
+Fibroblasts
+Mast.cells
+Mast.activated.cells
+Mast.resting.cells
+CAF
+Dendritic.plasmacytoid.cells
+Myeloid.cells
+Basophils
+Epithelial
+Pericytes
+Mural.cells
+T.cells.proliferative
+uncharacterized_cell 
+
+If you want to consider other cell types (e.g. from a custom signature) which are not included in the package by default (see README), please provide them in the cells_extra argument.
+
+Total sum across samples of combination Quantiseq_TIL10 is 1Identifying cell type subgroups...
+
+Estimating cell type expression profiles...
+Processing cell-cell interaction network...
+Computing LR matrix...
+Computing L-matrix...
+Computing R-matrix...
+Exporting input files for RaCiNG...
+Input files generated and saved to: /home/marcelo.hurtado/Documents/tme_analysis/b0f19b8438/work/results 
+Processing input matrices...
+Warning message:
+already_normalized = TRUE: 'counts' is assumed to already be linear-scale TPM. expr_threshold (default 10) is compared against this scale -- if 'counts' is actually log-transformed (e.g. log2(TPM+1)), that comparison is wrong; convert back to linear TPM first or set expr_threshold accordingly. 
+Cell types: Quantiseq_TIL10_B.cells, Quantiseq_TIL10_CD4.non.regulatory, Quantiseq_TIL10_CD4.regulatory, Quantiseq_TIL10_CD8.cells, Quantiseq_TIL10_Dendritic.cells, Quantiseq_TIL10_Macrophages.M1, Quantiseq_TIL10_Macrophages.M2, Quantiseq_TIL10_Monocytes, Quantiseq_TIL10_Neutrophils, Quantiseq_TIL10_NK.cells 
+Using pre-computed input matrices; skipping input generation.
+Computing kernel for 73 patients
+Calculating kernel...
+Calculating features...
+Interaction features: 73 patients x 55 cell-type pairs
+
+Top 10 most common cell-cell interaction patterns (by presence in each patient's top-5):
+                                                                        Pair
+1         Dir_Quantiseq_TIL10_CD4.non.regulatory_Quantiseq_TIL10_Neutrophils
+2           Dir_Quantiseq_TIL10_CD4.non.regulatory_Quantiseq_TIL10_Monocytes
+3                Dir_Quantiseq_TIL10_Neutrophils_Quantiseq_TIL10_Neutrophils
+4                  Dir_Quantiseq_TIL10_Monocytes_Quantiseq_TIL10_Neutrophils
+5  Dir_Quantiseq_TIL10_CD4.non.regulatory_Quantiseq_TIL10_CD4.non.regulatory
+6                    Dir_Quantiseq_TIL10_Monocytes_Quantiseq_TIL10_Monocytes
+7                    Dir_Quantiseq_TIL10_B.cells_Quantiseq_TIL10_Neutrophils
+8             Dir_Quantiseq_TIL10_B.cells_Quantiseq_TIL10_CD4.non.regulatory
+9           Dir_Quantiseq_TIL10_CD4.non.regulatory_Quantiseq_TIL10_CD8.cells
+10                     Dir_Quantiseq_TIL10_B.cells_Quantiseq_TIL10_Monocytes
+   N_Patients_Top5 Pct_Patients_Top5 Mean_Raw_Score Median_Raw_Score
+1               50              68.5      1.3871547        1.4626110
+2               44              60.3      1.3729001        1.3780605
+3               44              60.3      1.4277937        1.4782858
+4               36              49.3      1.2940138        1.3430814
+5               34              46.6      1.2735470        1.2886289
+6               28              38.4      1.2023920        1.2782536
+7               22              30.1      1.2146280        1.2446645
+8               14              19.2      1.0467827        1.0955165
+9               13              17.8      0.9813887        0.9368257
+10              12              16.4      1.1322761        1.2036038
+null device 
+          1 
+
+Most common interaction pattern overall: Dir_Quantiseq_TIL10_CD4.non.regulatory_Quantiseq_TIL10_Neutrophils (Quantiseq_TIL10_CD4.non.regulatory)
+ 
+Most common interaction pattern overall: Dir_Quantiseq_TIL10_CD4.non.regulatory_Quantiseq_TIL10_Neutrophils (Quantiseq_TIL10_Neutrophils)
+Top ligand-receptor pairs driving it:
+          Patient
+1  X13_ipiPD1_PRE
+2  X13_ipiPD1_PRE
+3  X13_ipiPD1_PRE
+4  X13_ipiPD1_PRE
+5  X13_ipiPD1_PRE
+6  X13_ipiPD1_PRE
+7  X13_ipiPD1_PRE
+8  X13_ipiPD1_PRE
+9  X13_ipiPD1_PRE
+10 X13_ipiPD1_PRE
+                                                                 Edge
+1  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+2  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+3  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+4  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+5  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+6  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+7  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+8  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+9  Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+10 Quantiseq_TIL10_CD4.non.regulatory <-> Quantiseq_TIL10_Neutrophils
+                               Sender                           Receiver Ligand
+1  Quantiseq_TIL10_CD4.non.regulatory        Quantiseq_TIL10_Neutrophils   NRG3
+2  Quantiseq_TIL10_CD4.non.regulatory        Quantiseq_TIL10_Neutrophils   NRG3
+3         Quantiseq_TIL10_Neutrophils Quantiseq_TIL10_CD4.non.regulatory   CD44
+4  Quantiseq_TIL10_CD4.non.regulatory        Quantiseq_TIL10_Neutrophils  CSPG4
+5  Quantiseq_TIL10_CD4.non.regulatory        Quantiseq_TIL10_Neutrophils  CSPG4
+6  Quantiseq_TIL10_CD4.non.regulatory        Quantiseq_TIL10_Neutrophils   CDH1
+7         Quantiseq_TIL10_Neutrophils Quantiseq_TIL10_CD4.non.regulatory   CDH1
+8         Quantiseq_TIL10_Neutrophils Quantiseq_TIL10_CD4.non.regulatory COL3A1
+9  Quantiseq_TIL10_CD4.non.regulatory        Quantiseq_TIL10_Neutrophils   CDH1
+10 Quantiseq_TIL10_CD4.non.regulatory        Quantiseq_TIL10_Neutrophils  CSPG4
+   Receptor Contribution PctOfTotal
+1     ERBB3 0.0010035493  2.2540288
+2     ERBB2 0.0005667529  1.2729593
+3     CSPG4 0.0005237697  1.1764165
+4     ITGA3 0.0004900950  1.1007812
+5     ITGB1 0.0004768746  1.0710874
+6     IGF1R 0.0003701028  0.8312720
+7     IGF1R 0.0003701028  0.8312720
+8    ADGRG1 0.0003603812  0.8094365
+9     ERBB3 0.0003171259  0.7122828
+10    ITGA4 0.0003017603  0.6777708
+
+Done. All results saved under: /home/marcelo.hurtado/Documents/tme_analysis/b0f19b8438/work/results 

@@ -10,6 +10,7 @@ Paths are relative to the repository root.
 
 Load input
 ```{r}
+dir.create("evaluation/Groundtruth/Scenario3/Results", recursive = TRUE, showWarnings = FALSE)
 counts = read.delim("data/Gide_log2TPM.txt", row.names = 1)
 coldata = read.table("data/colData_all.txt", header = TRUE, sep = " ", quote = "\"")
 deconv = read.csv("evaluation/Groundtruth/Scenario1/Results/Deconvolution_Gide.csv", row.names = 1)

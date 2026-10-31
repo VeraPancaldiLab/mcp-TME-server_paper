@@ -1,25 +1,17 @@
-Everything is in place. Here's a summary of what was done and found.
+## Summary
 
-## Pipeline
+I ran RaCInG (R package at `~/Documents/RaCInG_package`) on the Gide cohort (73 melanoma ICB patients, 18,979 genes) via its kernel method, using Quantiseq deconvolution into 10 immune/stromal cell types. Two fixes were needed along the way: converting the `log2(TPM+1)` matrix back to linear TPM, and pre-sanitizing sample names (multideconv silently renames digit-starting IDs internally, which otherwise breaks the pipeline).
 
-Used your **RaCInG** R package (found installed at `~/Documents/RaCInG_package`) to reconstruct patient-specific cell-cell communication networks for the 73-sample Gide melanoma cohort:
+**Most common interaction patterns** (defined as: how often a cell-type pair ranks in a patient's top-5 strongest direct-communication scores, across all 73 patients):
 
-1. **Preprocessing** — converted log2(TPM+1) → linear TPM, ran `prepare_input_files(already_normalized=TRUE)`: quanTIseq deconvolution (10 immune cell types), NNLS expression profiles, OmniPath/LIANA ligand-receptor prior network.
-2. **Kernel method** (deterministic) — Direct, Wedge, Trust/Cycle-triangle, and GSCC features, raw + null-normalized enrichment.
-3. **Monte Carlo method** — two independent stochastic replicates (2,000-cell graphs × 30 realizations/patient) for robustness checking.
-4. **Pattern ranking + 4 robustness checks** (cross-method, seed-to-seed, within-run noise, patient bootstrap).
+| Rank | Pair | % of patients |
+|---|---|---|
+| 1 | CD4 (non-reg) ↔ Neutrophils | 68.5% |
+| 2 | CD4 (non-reg) ↔ Monocytes | 60.3% |
+| 3 | Neutrophils ↔ Neutrophils (self) | 60.3% |
+| 4 | Monocytes ↔ Neutrophils | 49.3% |
+| 5 | CD4 (non-reg) ↔ CD4 (non-reg) (self) | 46.6% |
 
-I hit and fixed two real snags along the way: sample names starting with digits (e.g. `10_PD1_PRE`) got silently mangled by `multideconv`'s internal `data.frame()` call, and `prepare_input_files()`'s output path needs a trailing slash — both are now handled/documented in `scripts/01_preprocess.R`.
+The top pattern (CD4⁺ T ↔ Neutrophil) is driven mainly by NRG3–ERBB2/ERBB3 and CD44/CSPG4–integrin signaling (see the LR dot plot).
 
-## Most common interaction patterns
-
-The dominant pattern is **myeloid/NK-centered**: Monocytes and Neutrophils (the most abundant resolved immune populations, ~25%/22% by quanTIseq) dominate raw Direct/Wedge/Triangle scores, mostly via self-interactions and cross-talk with NK cells and Macrophages.M2. Separating *abundance* from *specific signaling* (enrichment over a null model) shows Neutrophil-centered communication is the most specifically enriched pattern in the cohort, while the largest raw-score patterns (NK-NK, Macrophages.M2 triangles) are explained by abundance alone, not preferential signaling.
-
-## Robustness
-
-- **Kernel vs. Monte Carlo**: Spearman 0.92–0.99 across all motif types — rankings agree even where raw magnitudes don't scale linearly (triangles).
-- **Seed-to-seed**: perfect reproducibility (r=1.00, 100% top-15 overlap) with 30 realizations/patient.
-- **Within-run noise**: low for Direct/Wedge (9–15% CV), higher for triangles (31%+).
-- **Patient bootstrap** (1,000 resamples): top Direct/Wedge patterns are stable in ≥93–100% of resamples; stability drops further down the ranking.
-
-Full details, tables, and plots are in `results/REPORT.md` and its subfolders (`kernel/`, `montecarlo/`, `robustness/`, `plots/`, `logs/`).
+All results — input matrices, kernel scores, the ranked pattern tables/plots, and the LR decomposition — are saved in `results/`. I also saved a few memory notes about the RaCInG package location and the multideconv quirks so future runs on this cohort (or Riaz) won't need to rediscover them.

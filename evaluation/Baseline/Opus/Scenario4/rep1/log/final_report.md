@@ -1,39 +1,42 @@
-I built patient-specific communication networks for all 73 Gide samples with RaCInG and stress-tested them. The headline: which cell types talk to which is very robust, but the specific ligand–receptor (LR) pairs behind each link are not. Everything is in `results/`; start with `results/REPORT.md`.
+I ran RaCInG on all 73 pre-treatment Gide samples. The main pattern: tumor (non-immune) cells talking to themselves and with monocytes, neutrophils, NK cells and B cells. Most of that pattern comes from how many of each cell type are present. Everything is in `results/`, with a `results/README.md` describing the files.
 
-**Two analysis choices you should know about:**
-- **Tumor fraction kept.** The package's default deconvolution step silently drops quanTIseq's "uncharacterized" fraction (about 60% of cells here), leaving an immune-only network. I passed the full composition through `deconv=` and labeled that fraction "Tumor", as the original RaCInG did. In this setup it also contains stromal cells.
-- **Two priors.** The package's default way of deciding which cell types can send or receive each ligand/receptor gave implausible assignments (e.g. NK cells "sending" collagen and PDGF ligands; neutrophils "receiving" through CD3D). So I ran everything twice: once with that default, and once with the curated matrices from the original RaCInG paper (bundled as `skcm_example`, rebuilt for Gide with quanTIseq plus EPIC).
+## How I ran it
+- **Input:** I converted the log2(TPM+1) data back to linear TPM, as RaCInG requires.
+- **Cell fractions:** I used quanTIseq only. RaCInG's default combines several methods and gives 100+ cell-type features that are hard to interpret; quanTIseq gives 11.
+- **Method:** the kernel method, which computes direct communication exactly with no random simulation. Scores are the share of each patient's communication going from a sender to a receiver cell type, weighted by how abundant each is.
+- **Ligand–receptor breakdown:** I split every cell-type pair's score into its ligand–receptor pairs. The parts sum back to the totals exactly; the script checks this.
 
-**Most common patterns**
-- **Dominant communication is centred on the tumour.** Tumor→Tumor carries 13.6% of all communication and is among the 10 strongest links in 95% of patients. Next come tumour exchanges with monocytes and neutrophils (default) or macrophages, fibroblasts (CAF) and endothelium (curated). This mostly reflects abundance: tumour cells are about 63% of the sample.
-- **Tumour cells use their LR channels more than expected by chance.** Tumor→Tumor and Tumor→B are enriched in 99–100% of patients under both priors. Communication among immune cells, especially anything involving Tregs, NK cells or CD8 T cells, is consistently below chance.
-- **Patients differ along one continuous axis**, from lymphoid-engaged communication (enriched CD8/CD4/Treg/B links) to tumour- or stroma-dominated communication. As an unplanned, uncorrected observation, the lymphoid-engaged end has more responders (Fisher p = 0.011 default, 0.0006 curated).
+**A problem I had to work around:** with RaCInG's default settings, the tumor/non-immune compartment (about 63% of cells) was silently dropped. A naming mismatch in multideconv, the deconvolution package RaCInG uses, caused this. The immune fractions were then rescaled to fill 100%, which inflated them (e.g. 76% neutrophils in one sample). I computed the fractions myself and passed them in so that compartment is kept (labelled "Cancer/non-immune"). I also had to prefix sample IDs, because names starting with a digit broke sample matching; the outputs use the original IDs.
 
-**How robust the results are**
-- **Simulated networks:** the package's simulation (actual random cell graphs) reproduces the exact calculation almost perfectly (correlation above 0.98 for every patient). Graph randomness doesn't affect the results.
-- **Input noise and settings:** I ran 167 perturbed runs (noise on cell fractions and expression, 80% subsets of the LR database and of patients, alternative thresholds and scoring, dropping one low-quality sample). Agreement with the original results:
+## Most common interactions (directed, median % of each patient's total)
+| # | Interaction | Median % | % of patients where it's in their top 5 |
+|---|---|---|---|
+| 1 | Cancer → Cancer | 9.1 | 89 |
+| 2 | Monocytes → Cancer | 5.5 | 59 |
+| 3 | Cancer → Monocytes | 4.7 | 52 |
+| 4 | Cancer → Neutrophils | 2.8 | 44 |
+| 5 | Monocytes → Monocytes | 2.7 | 47 |
+| 6 | Neutrophils → Cancer | 2.7 | 47 |
+| 7–9 | NK → Cancer, B → Cancer, Cancer → NK | 1.7–2.4 | — |
 
-| Result | Agreement (default prior) |
-|---|---|
-| Ranking of dominant links | 0.99 |
-| Ranking of enrichment | 0.96 |
-| Patient axis | 0.94 |
-| Discrete patient groups (ARI) | 0.47 |
+- **Each patient's single strongest interaction** is Cancer → Cancer in 53% of patients, Monocytes → Monocytes in 23% and Neutrophils → Neutrophils in 21%.
+- **Beyond what abundance predicts:** Cancer → Cancer is 2.2× higher than a baseline where all ligand–receptor pairs are equally strong. Tumor exchanges with neutrophils, monocytes and B cells are 1.3–1.6× higher.
+- **Patient groups:** clustering patients splits them into tumor-centred groups dominated by monocytes/NK/B cells, by neutrophils, or by macrophages (M1/M2).
+- **T cells and dendritic cells** contribute almost nothing. CD8 T cells and Tregs are under 0.5% each; CD4 helper T cells and dendritic cells have a median abundance of zero.
 
-  The curated prior is more stable throughout (0.79 for the groups).
-- **Default vs curated prior:** they agree on dominant links (correlation 0.92, 8 of the top 10 shared) and the patient axis (0.71). They agree less on enrichment (0.42–0.63). The patient groupings barely match (ARI 0.23), and the LR pairs attributed to the same link are largely different.
+## Most common ligand–receptor pairs
+Communication is spread across about 1,700 pairs, so no single pair accounts for more than about 0.3% of the total. The pairs that most often rank in a patient's top 20 are:
+- APP–RPSA, CD99–CD81 and COL3A1–ITGB1 (86–95% of patients), mostly within the tumor/non-immune compartment.
+- TYROBP–CD44, APP–TYROBP, APP–CD74, SPP1–CD44, SPP1–ITGB1 and APOE–TYROBP: two-way tumor–myeloid signalling.
+- VEGFA–ITGB1, VEGFA–NRP2, and collagen/VCAN/LGALS1 binding the ITGB1 integrin: matrix and blood-vessel signalling.
 
-So you can rely on the dominant tumour-centred links, the core enriched channels and the patient axis. Treat the discrete patient subtypes and the LR-level explanations as hypotheses. Tumour↔monocyte/neutrophil and Tumor→CD4 enrichment pass every perturbation test, but they can't be checked against the curated prior, which doesn't include those cell types.
+## Limitations
+- **Cell-type rankings mostly follow quanTIseq's abundance estimates.** quanTIseq's "other" fraction mixes tumor cells with stroma, which is why COL3A1 and POSTN show up as "Cancer" ligands.
+- **Ligand–receptor pairs assigned to rare immune cells are unreliable.** They depend on estimated cell-type expression profiles, and some are biologically implausible: ANGPTL3 (a liver gene) from B cells, PDGFD and LAMA2 from NK cells. Ligand–receptor results for the tumor, monocyte and neutrophil interactions are more trustworthy.
+- **Not done:** I didn't run RaCInG's Monte Carlo simulation, which gives the same direct-communication results with sampling noise. I also didn't compare responders with non-responders, although the patient heatmap is labelled by response and therapy. Either can be added if you want.
 
-**Issues in RaCInG 0.3.0 itself** (details in section 6 of the report):
-- `prepare_input_files()` fails when sample IDs start with a digit (`10_PD1_PRE`), because multideconv renames them. I worked around it with a "Pt" prefix.
-- The tumour fraction is dropped by default, as above.
-- `.clean_celltype_names()` is never called, so labels keep the `Quantiseq_TIL10_` prefix.
-- The `compute_racing_*` wrappers don't pass `already_normalized` through.
-- Monte Carlo runs with `ncores > 1` aren't seed-reproducible.
-
-**Data caveats:**
-- CCL3/4/5/14/18/23 are missing from the expression file, so links like CCL5–CCR5 can't be assessed.
-- Sample `8_PD1_PRE` is low quality. Removing it doesn't change the cohort-level conclusions.
-
-To reproduce, run the scripts in `scripts/` in the order listed in the report.
+Scripts are in `scripts/`; the most useful results are:
+- `summary/celltype_pairs_directed_ranking.csv`
+- `lr_contributions/lr_pairs_global_ranking.csv`
+- `figures/heatmap_directed_communication_median.png`
+- `figures/heatmap_patients_top30_interactions.png`

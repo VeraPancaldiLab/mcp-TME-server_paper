@@ -1,0 +1,15 @@
+"feature","test","statistic_name","statistic","p_value","p_adjusted","significant"
+"Androgen","Wilcoxon rank-sum test","W",573,0.587295280015281,0.76761828055965,FALSE
+"EGFR","Wilcoxon rank-sum test","W",592,0.744684784747338,0.797104133597526,FALSE
+"Estrogen","Wilcoxon rank-sum test","W",739,0.179396333289552,0.502309733210745,FALSE
+"Hypoxia","Wilcoxon rank-sum test","W",564,0.518539504949419,0.76761828055965,FALSE
+"JAK.STAT","Wilcoxon rank-sum test","W",274,7.51732235818896e-05,0.00105242513014645,TRUE
+"MAPK","Wilcoxon rank-sum test","W",644,0.797104133597526,0.797104133597526,FALSE
+"NFkB","Wilcoxon rank-sum test","W",320,0.000595470622983612,0.00416829436088528,TRUE
+"PI3K","Wilcoxon rank-sum test","W",682,0.489374248495573,0.76761828055965,FALSE
+"TGFb","Wilcoxon rank-sum test","W",585,0.68500607392397,0.797104133597526,FALSE
+"TNFa","Wilcoxon rank-sum test","W",342,0.00146117612830369,0.00681882193208387,TRUE
+"Trail","Wilcoxon rank-sum test","W",419,0.0213101640885806,0.0745855743100321,FALSE
+"VEGF","Wilcoxon rank-sum test","W",539,0.351718395032096,0.751714457274145,FALSE
+"WNT","Wilcoxon rank-sum test","W",543,0.375857228637072,0.751714457274145,FALSE
+"p53","Wilcoxon rank-sum test","W",667,0.603128649011154,0.76761828055965,FALSE

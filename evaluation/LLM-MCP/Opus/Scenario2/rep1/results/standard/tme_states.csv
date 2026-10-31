@@ -1,0 +1,3 @@
+"state","annotation"
+"Factor1","Myeloid/stromal state (monocytes, mast, plasma, endothelial, resting DC, cancer cells; black/yellow/magenta/blue TF modules)"
+"Factor2","Immune-active/interferon state (CD8, CD4, B cells, Tregs, M1/myeloid; green (STAT/IRF/TBX21/EOMES) and greenyellow TF modules)"

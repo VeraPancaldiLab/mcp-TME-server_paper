@@ -14,8 +14,25 @@ set.seed(123)
 
 Load input
 ```{r}
+dir.create("evaluation/Groundtruth/Scenario2/Results", recursive = TRUE, showWarnings = FALSE)
 counts = read.delim("data/Gide_log2TPM.txt", row.names = 1)
 load("evaluation/Groundtruth/Scenario1/Results/deconvolution_results.RData")
+```
+
+Deconvolution given to CellTFusion
+
+The deconvolution subgroups of Scenario 1 are reused. The Immune and Stroma features of Scenario 1 are sums of cell types that the prompt of this scenario does not ask for, so they are removed.
+```{r}
+is_group = function(x) grepl("^(Immune|Stroma)_|_(Immune|Stroma)$", x)
+
+dt_cells = dt
+dt_cells[["Deconvolution matrix"]] = dt[["Deconvolution matrix"]][, !is_group(colnames(dt[["Deconvolution matrix"]]))]
+dt_cells[["Deconvolution subgroups composition"]] = lapply(dt[["Deconvolution subgroups composition"]], function(x) x[!is_group(names(x))])
+dt_cells[["Deconvolution subgroups composition"]] = dt_cells[["Deconvolution subgroups composition"]][c(
+  sapply(dt_cells[["Deconvolution subgroups composition"]], length) > 0)]
+dt_cells[["Deconvolution subgroups per cell types"]] = dt[["Deconvolution subgroups per cell types"]][setdiff(names(dt[["Deconvolution subgroups per cell types"]]), c("Immune", "Stroma"))]
+
+dim(dt_cells[["Deconvolution matrix"]])
 ```
 
 Transform to TPM
@@ -28,7 +45,7 @@ CellTFusion
 library(CellTFusion)
 res <- CellTFusion(
   raw_counts       = counts_TPM,
-  dt               = dt,
+  dt               = dt_cells,
   normalized       = FALSE,
   file_name        = "Gide",
   return           = TRUE

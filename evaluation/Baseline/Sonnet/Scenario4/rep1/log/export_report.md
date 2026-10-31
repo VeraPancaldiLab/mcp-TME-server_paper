@@ -1,3 +1,3 @@
-All checks pass: composition rows sum to 1, ligand/receptor counts match the original matrices (1489/1527), column count matches (55), and values are byte-identical to the original kernel output — only labels/shape were converted, no values were recomputed.
+This was already done in the previous step — all three files exist in `results/standard/`, converted from the existing results (no recomputation): `Lmatrix`/`Rmatrix` from `Gide_racing_input.rds` → `ligands.csv`/`receptors.csv`, and the raw, direction-removed kernel features from `Gide_kernel_result.rds` → `direct_interactions.csv` (patient IDs mapped back to the original sample names via the saved ID mapping). No changes needed.
 
-Files written to `results/standard/`: composition.csv, ligands.csv, receptors.csv, direct_interactions.csv, info.json.
+Files written: `results/standard/ligands.csv`, `results/standard/receptors.csv`, `results/standard/direct_interactions.csv`.

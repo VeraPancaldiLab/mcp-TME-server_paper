@@ -1,0 +1,10 @@
+Gide cohort TME characterization with multideconv
+Date: 2026-10-26
+Samples: 73
+Input: data/Gide_log2TPM.txt, converted log2(TPM+1) -> linear TPM via 2^x - 1
+compute.deconvolution(methods = c('Quantiseq','Epidish','DeconRNASeq','DWLS'), normalized = FALSE, doParallel = TRUE, workers = 4)
+  (CBSX skipped: no CIBERSORTx credentials/Docker; MOMF skipped: no scRNA-seq reference available)
+compute.deconvolution.analysis(corr = 0.7, corr_type = 'spearman')
+Wilcoxon Immune Score R vs NR: p = 0.3783
+Wilcoxon Stromal Score R vs NR: p = 0.08139
+Immune/Stromal/Other Score = mean of per-cell-type z-scores (cell types first averaged across their correlated subgroups, then averaged uniformly within category)

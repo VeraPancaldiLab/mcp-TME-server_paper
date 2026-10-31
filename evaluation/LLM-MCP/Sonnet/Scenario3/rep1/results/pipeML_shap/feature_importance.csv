@@ -1,0 +1,181 @@
+"Feature","Mean_abs_SHAP","Corr_feature_vs_SHAP","Direction_for_Response"
+"DeconRNASeq_TIL10_Monocytes",0.0674605740212786,-0.519643823428934,"Higher abundance -> more Non-Response-like"
+"Macrophages.M1_Subgroup.2",0.0395110459843606,0.696035132867961,"Higher abundance -> more Response-like"
+"CBSX_TIL10_CD8.cells",0.028312390792835,0.765541500757263,"Higher abundance -> more Response-like"
+"Macrophages.M1_Subgroup.4",0.0188473462000656,0.692212760705911,"Higher abundance -> more Response-like"
+"CD8.cells_Subgroup.4",0.0183639869260458,0.779150535861502,"Higher abundance -> more Response-like"
+"B.memory.cells_Subgroup.1",0.0131581303605453,-0.452749674225457,"Higher abundance -> more Non-Response-like"
+"Endothelial_Subgroup.3",0.00620978951365803,0.612878344063892,"Higher abundance -> more Response-like"
+"DeconRNASeq_LM22_Dendritic.activated.cells",0.00596817689245183,0.698869160813545,"Higher abundance -> more Response-like"
+"CD4.memory.activated_Subgroup.2",0.0046500258712281,0.790439472065679,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_CD4.regulatory",0.00456045244075387,0.787285456523737,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer",0.00436103943180441,-0.632656366922797,"Higher abundance -> more Non-Response-like"
+"Mast.activated.cells_Subgroup.1",0.00352156417234603,-0.263052360881254,"Higher abundance -> more Non-Response-like"
+"Macrophages.M2_Subgroup.2",0.00346067028642652,-0.509687769961742,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_LM22_Monocytes",0.00312972945915184,-0.704210202177607,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_TIL10_B.cells",0.00307304981544296,0.183142046155745,"Higher abundance -> more Response-like"
+"CBSX_LM22_B.naive.cells",0.00279631821543941,-0.424768480419575,"Higher abundance -> more Non-Response-like"
+"CBSX_TIL10_Dendritic.cells",0.00261826007876726,-0.378664931338848,"Higher abundance -> more Non-Response-like"
+"NK.cells_Subgroup.1",0.00259283656192498,-0.314691993194238,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0",0.00252821229996941,-0.905109859946092,"Higher abundance -> more Non-Response-like"
+"CBSX_TIL10_CD4.cells",0.00231659154645436,0.704145406394049,"Higher abundance -> more Response-like"
+"DeconRNASeq_TIL10_Macrophages.M2",0.002190484432108,-0.523820591067768,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_Neutrophils",0.00216729054059132,0.406300920439112,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting",0.0020587989286993,0.020702847808441,"Higher abundance -> more Response-like"
+"DeconRNASeq_LM22_B.naive.cells",0.00198259152691881,-0.814658264388237,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_LM22_Mast.resting.cells",0.00190791856396966,-0.643715579137863,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.NSCLC.PBMCs.scRNAseq_NKT.cells",0.00183317909423896,0.371599140263026,"Higher abundance -> more Response-like"
+"Dendritic.resting.cells_Subgroup.1",0.00182882765211401,0.701082120563739,"Higher abundance -> more Response-like"
+"Macrophages.M1_Subgroup.3",0.00180382403004356,-0.0881227318525999,"Higher abundance -> more Non-Response-like"
+"CD8.cells_Subgroup.3",0.00172174156212209,0.808479347766505,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_Plasma",0.00170273850469386,0.563591907272621,"Higher abundance -> more Response-like"
+"DWLS_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells",0.00153738572907324,0.135983443015504,"Higher abundance -> more Response-like"
+"DWLS_CBSX.NSCLC.PBMCs.scRNAseq_B.cells",0.00141847856265998,-0.627144267555226,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_TIL10_Neutrophils",0.00137142662562549,0.737751450080217,"Higher abundance -> more Response-like"
+"CBSX_TIL10_Macrophages.M2",0.00136932056819404,-0.757652828184053,"Higher abundance -> more Non-Response-like"
+"Quantiseq_TIL10_Dendritic.cells",0.00130360351127356,-0.485478500528208,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.HNSCC.scRNAseq_CAF",0.00122921641503083,0.349531037887202,"Higher abundance -> more Response-like"
+"Quantiseq_TIL10_CD4.regulatory",0.00116040233550581,-0.3149992785335,"Higher abundance -> more Non-Response-like"
+"CBSX_LM22_NK.resting",0.00110979072784928,-0.685521300143873,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.NSCLC.PBMCs.scRNAseq_NK.cells",0.00103013602390354,-0.724114525484388,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_LM22_Macrophages.M2",0.00102251862295595,0.203258304497096,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.HNSCC.scRNAseq_CD8.cells",0.000979619402868642,0.736455633715907,"Higher abundance -> more Response-like"
+"DeconRNASeq_LM22_Dendritic.resting.cells",0.000976891735114943,0.159860513647843,"Higher abundance -> more Response-like"
+"NK.resting_Subgroup.1",0.000973373536520554,0.384394668641244,"Higher abundance -> more Response-like"
+"DeconRNASeq_LM22_Plasma",0.000971338462894402,0.811823146849029,"Higher abundance -> more Response-like"
+"Macrophages.M1_Subgroup.1",0.000958221886575958,-0.274157719363199,"Higher abundance -> more Non-Response-like"
+"CD4.memory.resting_Subgroup.2",0.000895656366631718,-0.108821079315009,"Higher abundance -> more Non-Response-like"
+"CBSX_LM22_Plasma",0.000884115839473863,0.555122131423394,"Higher abundance -> more Response-like"
+"Quantiseq_TIL10_B.cells",0.000857161393010151,0.622670615821301,"Higher abundance -> more Response-like"
+"Neutrophils_Subgroup.1",0.000853395847067225,-0.638111785925822,"Higher abundance -> more Non-Response-like"
+"CBSX_CBSX.Zilionis.scRNAseq_NK.activated",0.00083282357985223,-0.62097940345331,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_B.cells",0.00082923893920153,0.51028945178208,"Higher abundance -> more Response-like"
+"Macrophages.M0_Subgroup.2",0.000810325006606437,0.081679884947866,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.HNSCC.scRNAseq_Mast.cells",0.000792403409195778,0.211557447858818,"Higher abundance -> more Response-like"
+"T.cells.helper_Subgroup.3",0.000777468894274453,0.674015385962033,"Higher abundance -> more Response-like"
+"DWLS_CBSX.NSCLC.PBMCs.scRNAseq_NK.cells",0.000762350609675455,0.502087437843031,"Higher abundance -> more Response-like"
+"CBSX_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells",0.000759131364147231,-0.508170480565176,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_TIL10_CD4.regulatory",0.000740780762941584,-0.530455776084643,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_Mast.activated.cells",0.000728480066674525,-0.59467785009554,"Higher abundance -> more Non-Response-like"
+"CBSX_LM22_Mast.activated.cells",0.000728164997902653,-0.616171181371093,"Higher abundance -> more Non-Response-like"
+"Epidish_CBSX.NSCLC.PBMCs.scRNAseq_B.cells",0.000727134388748198,0.575805257312107,"Higher abundance -> more Response-like"
+"Macrophages.M2_Subgroup.3",0.000699062788334027,0.606921864688782,"Higher abundance -> more Response-like"
+"CBSX_LM22_CD4.memory.resting",0.000692698952102057,-0.466267632824219,"Higher abundance -> more Non-Response-like"
+"Monocytes_Subgroup.4",0.000669129092809185,0.106349500185117,"Higher abundance -> more Response-like"
+"B.naive.cells_Subgroup.2",0.000622160203799158,-0.643994847566728,"Higher abundance -> more Non-Response-like"
+"CBSX_CBSX.Zilionis.scRNAseq_NK.resting",0.000604972776905956,0.343297668878797,"Higher abundance -> more Response-like"
+"Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells",0.000588221964403839,0.743248247560863,"Higher abundance -> more Response-like"
+"Cancer_Subgroup.2",0.000566010714215138,0.430600013896663,"Higher abundance -> more Response-like"
+"Eosinophils_Subgroup.1",0.000563304999832022,-0.716032374147437,"Higher abundance -> more Non-Response-like"
+"Plasma_Subgroup.2",0.000552946963921357,-0.459826526399081,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_T.cells.helper",0.000537601802843454,0.407307597042707,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.HNSCC.scRNAseq_Endothelial",0.000521346657843799,-0.521658644946316,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Melanoma.scRNAseq_NK.cells",0.000520959575878736,-0.387499394260046,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.HNSCC.scRNAseq_Myocytes",0.000513766440659773,-0.545199308897939,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_TIL10_NK.cells",0.000493257215468962,0.359157102307787,"Higher abundance -> more Response-like"
+"B.cells_Subgroup.1",0.000492377138106998,0.589726010727758,"Higher abundance -> more Response-like"
+"DeconRNASeq_LM22_CD4.memory.activated",0.00048787360622453,0.638332665139844,"Higher abundance -> more Response-like"
+"Macrophages.cells_Subgroup.2",0.000485236244288025,0.651610514624213,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Melanoma.scRNAseq_B.cells",0.000463741998399554,0.48679936143518,"Higher abundance -> more Response-like"
+"DWLS_LM22_Eosinophils",0.000460792710606386,-0.585362179380344,"Higher abundance -> more Non-Response-like"
+"CBSX_LM22_NK.activated",0.000458549646857142,0.679019458283656,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Plasma",0.000456339780264744,-0.210076514871035,"Higher abundance -> more Non-Response-like"
+"CBSX_CBSX.NSCLC.PBMCs.scRNAseq_B.cells",0.000455588151812954,-0.406084166358139,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_NK.cells",0.000430175780968664,0.520547945205479,"Higher abundance -> more Response-like"
+"Quantiseq_TIL10_Monocytes",0.000407744817495177,-0.644449091869839,"Higher abundance -> more Non-Response-like"
+"Myeloid.cells_Subgroup.1",0.00040298209601521,0.792545970628162,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_Monocytes",0.000395446579454709,0.740893897517971,"Higher abundance -> more Response-like"
+"Monocytes_Subgroup.3",0.000385119321753408,-0.527776061420176,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Endothelial",0.000375595744845834,-0.490116728653364,"Higher abundance -> more Non-Response-like"
+"CBSX_CBSX.Vanderbilt.scRNAseq_CD4.regulatory",0.000360370501568725,0.495756785664596,"Higher abundance -> more Response-like"
+"Macrophages.M2_Subgroup.1",0.000354833273022853,-0.145162285573244,"Higher abundance -> more Non-Response-like"
+"Plasma_Subgroup.1",0.000305313208105504,-0.188516244574626,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Melanoma.scRNAseq_CD4.cells",0.000303079778406016,0.687264710133096,"Higher abundance -> more Response-like"
+"Mural.cells_Subgroup.1",0.000297132877739263,-0.765580649142293,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_LM22_Macrophages.M1",0.000268502880188927,0.359311366160681,"Higher abundance -> more Response-like"
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_T.cells.helper",0.000258903511295239,0.380198691842527,"Higher abundance -> more Response-like"
+"CD8.cells_Subgroup.1",0.000245786284775393,-0.114941800566824,"Higher abundance -> more Non-Response-like"
+"CAF_Subgroup.1",0.000235325563914039,-0.428853511045292,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_CD4.naive",0.00023258530505396,0.411208898019899,"Higher abundance -> more Response-like"
+"DeconRNASeq_TIL10_CD8.cells",0.000221183585565189,-0.652628656053314,"Higher abundance -> more Non-Response-like"
+"CD4.cells_Subgroup.5",0.000202896526634188,0.605356706944237,"Higher abundance -> more Response-like"
+"T.cells.helper_Subgroup.1",0.000174336966671766,-0.186876260308839,"Higher abundance -> more Non-Response-like"
+"DeconRNASeq_CBSX.HNSCC.scRNAseq_B.cells",0,NA,NA
+"B.cells_Subgroup.2",0,NA,NA
+"B.cells_Subgroup.3",0,NA,NA
+"B.cells_Subgroup.4",0,NA,NA
+"B.naive.cells_Subgroup.1",0,NA,NA
+"DeconRNASeq_LM22_B.memory.cells",0,NA,NA
+"B.memory.cells_Subgroup.2",0,NA,NA
+"Macrophages.cells_Subgroup.1",0,NA,NA
+"DeconRNASeq_LM22_Macrophages.M0",0,NA,NA
+"Macrophages.M0_Subgroup.1",0,NA,NA
+"Quantiseq_TIL10_Macrophages.M2",0,NA,NA
+"DeconRNASeq_CBSX.NSCLC.PBMCs.scRNAseq_Monocytes",0,NA,NA
+"CBSX_TIL10_Monocytes",0,NA,NA
+"Monocytes_Subgroup.1",0,NA,NA
+"Monocytes_Subgroup.2",0,NA,NA
+"Quantiseq_TIL10_Neutrophils",0,NA,NA
+"DeconRNASeq_LM22_Neutrophils",0,NA,NA
+"Epidish_TIL10_Neutrophils",0,NA,NA
+"Quantiseq_TIL10_NK.cells",0,NA,NA
+"CBSX_CBSX.Melanoma.scRNAseq_NK.cells",0,NA,NA
+"CBSX_CBSX.NSCLC.PBMCs.scRNAseq_NK.cells",0,NA,NA
+"CBSX_CBSX.Vanderbilt.scRNAseq_NK.cells",0,NA,NA
+"CBSX_TIL10_NK.cells",0,NA,NA
+"DeconRNASeq_LM22_NK.activated",0,NA,NA
+"DeconRNASeq_LM22_NK.resting",0,NA,NA
+"NK.resting_Subgroup.2",0,NA,NA
+"Epidish_CBSX.NSCLC.PBMCs.scRNAseq_NKT.cells",0,NA,NA
+"CBSX_CBSX.NSCLC.PBMCs.scRNAseq_NKT.cells",0,NA,NA
+"DWLS_CBSX.NSCLC.PBMCs.scRNAseq_NKT.cells",0,NA,NA
+"DeconRNASeq_CBSX.NSCLC.PBMCs.scRNAseq_CD4.cells",0,NA,NA
+"DeconRNASeq_TIL10_CD4.cells",0,NA,NA
+"CD4.cells_Subgroup.3",0,NA,NA
+"CD4.cells_Subgroup.4",0,NA,NA
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_CD4.memory.activated",0,NA,NA
+"CD4.memory.activated_Subgroup.1",0,NA,NA
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_CD4.memory.resting",0,NA,NA
+"DeconRNASeq_LM22_CD4.memory.resting",0,NA,NA
+"CD4.memory.resting_Subgroup.1",0,NA,NA
+"DeconRNASeq_LM22_CD4.naive",0,NA,NA
+"CD4.naive_Subgroup.1",0,NA,NA
+"CD4.naive_Subgroup.2",0,NA,NA
+"CBSX_CBSX.HNSCC.scRNAseq_CD8.cells",0,NA,NA
+"CD8.cells_Subgroup.2",0,NA,NA
+"CBSX_CBSX.Zilionis.scRNAseq_CD4.regulatory",0,NA,NA
+"DeconRNASeq_LM22_CD4.regulatory",0,NA,NA
+"CBSX_TIL10_CD4.regulatory",0,NA,NA
+"DWLS_TIL10_CD4.regulatory",0,NA,NA
+"CD4.regulatory_Subgroup.2",0,NA,NA
+"DeconRNASeq_LM22_T.cells.helper",0,NA,NA
+"T.cells.helper_Subgroup.2",0,NA,NA
+"CBSX_LM22_T.cells.gamma.delta",0,NA,NA
+"DWLS_LM22_T.cells.gamma.delta",0,NA,NA
+"DeconRNASeq_CBSX.HNSCC.scRNAseq_Dendritic.cells",0,NA,NA
+"DeconRNASeq_TIL10_Dendritic.cells",0,NA,NA
+"Dendritic.cells_Subgroup.1",0,NA,NA
+"CBSX_LM22_Dendritic.activated.cells",0,NA,NA
+"Dendritic.activated.cells_Subgroup.1",0,NA,NA
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_Dendritic.resting.cells",0,NA,NA
+"Dendritic.resting.cells_Subgroup.2",0,NA,NA
+"Cancer_Subgroup.3",0,NA,NA
+"DeconRNASeq_CBSX.Melanoma.scRNAseq_Endothelial",0,NA,NA
+"Endothelial_Subgroup.1",0,NA,NA
+"Endothelial_Subgroup.2",0,NA,NA
+"DeconRNASeq_LM22_Eosinophils",0,NA,NA
+"CBSX_LM22_Eosinophils",0,NA,NA
+"CBSX_CBSX.HNSCC.scRNAseq_Myocytes",0,NA,NA
+"Fibroblasts_Subgroup.1",0,NA,NA
+"Epidish_CBSX.HNSCC.scRNAseq_Mast.cells",0,NA,NA
+"CBSX_CBSX.HNSCC.scRNAseq_Mast.cells",0,NA,NA
+"DWLS_CBSX.HNSCC.scRNAseq_Mast.cells",0,NA,NA
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Mast.cells",0,NA,NA
+"CBSX_CBSX.Vanderbilt.scRNAseq_Mast.cells",0,NA,NA
+"Mast.activated.cells_Subgroup.2",0,NA,NA
+"DeconRNASeq_CBSX.Zilionis.scRNAseq_Mast.resting.cells",0,NA,NA
+"Mast.resting.cells_Subgroup.1",0,NA,NA
+"CAF_Subgroup.2",0,NA,NA
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Mural.cells",0,NA,NA
+"DeconRNASeq_CBSX.Vanderbilt.scRNAseq_T.cells.proliferative",0,NA,NA
+"T.cells.proliferative_Subgroup.1",0,NA,NA

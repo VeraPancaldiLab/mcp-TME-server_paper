@@ -1,0 +1,248 @@
+Gide response counts:
+
+NR  R 
+27 46 
+Riaz response counts:
+
+NR  R 
+41 10 
+
+=== Training on Gide (5x10 repeated CV, leakage-safe folds) ===
+
+Running ML models with fold 1 
+
+Running ML models with fold 2 
+
+Running ML models with fold 3 
+
+Running ML models with fold 4 
+
+Running ML models with fold 5 
+
+Running ML models with fold 6 
+
+Running ML models with fold 7 
+
+Running ML models with fold 8 
+
+Running ML models with fold 9 
+
+Running ML models with fold 10 
+
+Running ML models with fold 11 
+
+Running ML models with fold 12 
+
+Running ML models with fold 13 
+
+Running ML models with fold 14 
+
+Running ML models with fold 15 
+
+Running ML models with fold 16 
+
+Running ML models with fold 17 
+
+Running ML models with fold 18 
+
+Running ML models with fold 19 
+
+Running ML models with fold 20 
+
+Running ML models with fold 21 
+
+Running ML models with fold 22 
+
+Running ML models with fold 23 
+
+Running ML models with fold 24 
+
+Running ML models with fold 25 
+
+Running ML models with fold 26 
+
+Running ML models with fold 27 
+
+Running ML models with fold 28 
+
+Running ML models with fold 29 
+
+Running ML models with fold 30 
+
+Running ML models with fold 31 
+
+Running ML models with fold 32 
+
+Running ML models with fold 33 
+
+Running ML models with fold 34 
+
+Running ML models with fold 35 
+
+Running ML models with fold 36 
+
+Running ML models with fold 37 
+
+Running ML models with fold 38 
+
+Running ML models with fold 39 
+
+Running ML models with fold 40 
+
+Running ML models with fold 41 
+
+Running ML models with fold 42 
+
+Running ML models with fold 43 
+
+Running ML models with fold 44 
+
+Running ML models with fold 45 
+
+Running ML models with fold 46 
+
+Running ML models with fold 47 
+
+Running ML models with fold 48 
+
+Running ML models with fold 49 
+
+Running ML models with fold 50 
+
+Running BAG....................
+
+Running RF....................
+
+Running C50....................
+
+Running GLMNET....................
+
+Running KNN....................
+
+Running CART....................
+
+Running Lasso....................
+
+Running Ridge....................
+
+Running SVM radial....................
+
+Running SVM linear....................
+
+Running XGboost....................
+Best ML model found:  RF 
+Returning model trained
+Training elapsed: 8.030159 min
+
+Selected model:
+[1] "rf"
+
+Cross-validation AUROC (median, MAD) per algorithm:
+# A tibble: 11 × 3
+   model      Median_AUROC MAD_AUROC
+   <chr>             <dbl>     <dbl>
+ 1 RF                0.778    0.0988
+ 2 XGboost           0.778    0.0961
+ 3 GLMNET            0.760    0.138 
+ 4 LASSO             0.760    0.138 
+ 5 BAG               0.755    0.124 
+ 6 C50               0.747    0.162 
+ 7 KNN               0.728    0.108 
+ 8 SVM_radial        0.707    0.106 
+ 9 CART              0.673    0.104 
+10 RIDGE             0.667    0.117 
+11 SVM_linear        0.611    0.163 
+
+Cross-validation AUPRC (median, MAD) per algorithm:
+# A tibble: 11 × 3
+   model      Median_AUPRC MAD_AUPRC
+   <chr>             <dbl>     <dbl>
+ 1 RF                0.873    0.0609
+ 2 BAG               0.866    0.0767
+ 3 GLMNET            0.865    0.0894
+ 4 LASSO             0.865    0.0894
+ 5 XGboost           0.852    0.0664
+ 6 KNN               0.851    0.0720
+ 7 C50               0.846    0.132 
+ 8 SVM_radial        0.822    0.0739
+ 9 RIDGE             0.799    0.107 
+10 SVM_linear        0.754    0.140 
+11 CART              0.747    0.0850
+
+=== Projecting Riaz onto Gide-derived deconvolution subgroups ===
+Projected Riaz feature matrix dim: 51 158 
+NAs introduced by projection: 0 
+
+=== Predicting on Riaz (independent test cohort) ===
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+
+Test-set (Riaz) performance:
+$AUROC
+$AUROC$estimate
+[1] 0.6317073
+
+$AUROC$lower
+   2.5% 
+0.44625 
+
+$AUROC$upper
+   97.5% 
+0.798811 
+
+
+$AUPRC
+$AUPRC$estimate
+[1] 0.2559717
+
+$AUPRC$lower
+     2.5% 
+0.1668675 
+
+$AUPRC$upper
+    97.5% 
+0.5422197 
+
+
+null device 
+          1 
+
+=== Computing SHAP values on the final model (training samples) ===
+Computing SHAP values of the final model on 73 training samples and 150 features...
+SHAP analysis finished! 
+
+
+Top 15 features driving the prediction (mean |SHAP|):
+                      DeconRNASeq_TIL10_Monocytes 
+                                      0.050977792 
+                        Macrophages.M1_Subgroup.3 
+                                      0.025826675 
+                             CD8.cells_Subgroup.1 
+                                      0.025435100 
+                        Macrophages.M1_Subgroup.2 
+                                      0.019009168 
+              DeconRNASeq_LM22_Mast.resting.cells 
+                                      0.015487771 
+                             CD8.cells_Subgroup.4 
+                                      0.011430307 
+      DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer 
+                                      0.010409730 
+                        B.memory.cells_Subgroup.1 
+                                      0.009968358 
+    DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting 
+                                      0.009537172 
+                        Macrophages.M2_Subgroup.2 
+                                      0.009054637 
+DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0 
+                                      0.008808721 
+                        DeconRNASeq_TIL10_B.cells 
+                                      0.007351734 
+      Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells 
+                                      0.007316884 
+                    DeconRNASeq_TIL10_Neutrophils 
+                                      0.006397852 
+                             Monocytes_Subgroup.4 
+                                      0.005756406 
+
+DONE_TRAIN_PREDICT

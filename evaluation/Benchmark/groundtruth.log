@@ -1,7 +1,7 @@
-=== GT Scenario1/Deconvolution started 10-26 03:31
+=== GT Scenario4/RaCInG started 10-30 00:54
 [31m
 
-processing file: Deconvolution.qmd
+processing file: RaCInG.qmd
 [39m1/19                  
 2/19 [unnamed-chunk-1]
 3/19                  
@@ -10,3 +10,39 @@ processing file: Deconvolution.qmd
 6/19 [unnamed-chunk-3]
 7/19                  
 8/19 [unnamed-chunk-4]
+9/19                  
+10/19 [unnamed-chunk-5]
+11/19                  
+12/19 [unnamed-chunk-6]
+13/19                  
+14/19 [unnamed-chunk-7]
+15/19                  
+16/19 [unnamed-chunk-8]
+17/19                  
+18/19 [unnamed-chunk-9]
+19/19                  
+[31moutput file: RaCInG.knit.md
+
+[39m[1mpandoc [22m
+  to: html
+  output-file: RaCInG.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  variables: {}
+  
+[1mmetadata[22m
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: RaCInG
+  knitr:
+    opts_knit:
+      root.dir: ../../..
+  
+Output created: ../../../../../../../tmp/claude-309274225/-home-marcelo-hurtado-Documents-mcp-TME-server-paper/2b3a409b-7335-4d64-a9fc-c7b87e0f7f86/scratchpad/html_gt/RaCInG.html
+
+=== GT Scenario4/RaCInG finished 10-30 00:58

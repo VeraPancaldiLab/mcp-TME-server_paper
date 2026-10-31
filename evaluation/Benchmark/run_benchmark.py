@@ -70,12 +70,12 @@ HOURS_PER_TURN = 4
 MEMORY_GB = 6  # the machine has 15 GB (about 10 used by the desktop); it crashed twice during uncapped jobs
 # Claude plan allowance: a 5-hour window holds about four runs
 WAIT_ABOVE = 0.75      # after a run, wait for the next 5-hour window if this fraction is used
-STOP_WEEKLY = 0.60     # stop the campaign when the weekly allowance reaches this fraction (asked by the user)
+STOP_WEEKLY = 0.90     # stop the campaign when the weekly allowance reaches this fraction (asked by the user)
 MAX_WAIT_HOURS = 6     # never wait longer than this for a reset (the weekly one is days away)
 STALL_MINUTES = 15  # no answer from the model for this long = stalled session
 MAX_USD_PER_TURN = 60
 SMALL_MODEL = "claude-haiku-5-5"  # reads the last message of a run to see whether it asks something
-SCENARIOS = [1, 2, 3]  # Scenario 4 is not run in this campaign
+SCENARIOS = [1, 2, 3, 4]
 
 
 def load_index():
@@ -113,6 +113,11 @@ def prepare(arm):
         registered = json.loads((HOME / ".claude.json").read_text())["mcpServers"]
         for name in TME_SERVERS:
             servers[name] = dict(registered[name])
+            # the servers are mounted read-only: `uv run` must not try to re-sync their environment
+            args = list(servers[name].get("args", []))
+            if "run" in args and "--no-sync" not in args:
+                args.insert(args.index("run") + 1, "--no-sync")
+                servers[name]["args"] = args
             # each run keeps the server outputs in its own folder
             servers[name]["env"] = {"MCP_TME_SERVERS_HOME": str(folder / "mcp-tme-servers")}
     (folder / "mcp.json").write_text(json.dumps({"mcpServers": servers}, indent=2))
@@ -573,9 +578,10 @@ def run_one(arm, model, scenario, repetition):
 
     debrief(run)
     export(run)
-    if not (Path(info["folder"]) / "work" / "results" / "standard" / "info.json").exists():
+    marker = {4: "direct_interactions.csv"}.get(int(scenario), "info.json")  # a file that every export of the scenario has
+    if not (Path(info["folder"]) / "work" / "results" / "standard" / marker).exists():
         export(run)  # once more, e.g. after a technical problem
-    if not (Path(info["folder"]) / "work" / "results" / "standard" / "info.json").exists():
+    if not (Path(info["folder"]) / "work" / "results" / "standard" / marker).exists():
         print(f"=== {run} has no standard files, it will be tried again from scratch {time.strftime('%m-%d %H:%M')}", flush=True)
         return False
     collect(run)

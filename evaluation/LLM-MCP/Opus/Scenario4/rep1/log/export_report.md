@@ -1,12 +1,13 @@
-The names match exactly. The earlier failure came from how my quick check read the header, not from the export.
+All three files from my previous export are still in `results/standard/` and match the requested format, so I didn't write them again.
 
-I exported the main analysis: quanTIseq composition including the tumor fraction, with the 0.001 abundance floor, `fun_LR=min`, threshold 10 TPM, and the raw kernel. Patient names are the original IDs, without the `Gide_` prefix I added for RaCInG. Nothing was recomputed. The export script is `results/scripts/04_export_standard.R`.
+- **`ligands.csv`**: 24,697 rows with columns `cell_type` and `ligand`, taken from RaCInG's prepared ligand matrix (194 cell types).
+- **`receptors.csv`**: 27,507 rows with columns `cell_type` and `receptor`, taken from the prepared receptor matrix.
+- **`direct_interactions.csv`**: 73 patients × 18,767 cell-type pairs, plus the `patient` column.
+  - This is the main kernel result, not normalised, and RaCInG had already removed the direction, so nothing was summed. I only renamed the columns from `Dir_<A>_<B>` to `<A> - <B>`.
+  - The patient names and their order match `data/Gide_log2TPM.txt` exactly, and every cell-type name in the columns appears in `ligands.csv`.
 
-- **`composition.csv`:** the Cmatrix as RaCInG used it, 73 patients × 11 cell types.
-- **`ligands.csv` / `receptors.csv`:** every cell-type/gene pair with a nonzero entry in the Lmatrix or Rmatrix (1,577 and 1,621 rows).
-- **`direct_interactions.csv`:** RaCInG's own direction-removed D features from the raw kernel, renamed to `A - B`. RaCInG dropped no pairs, so all 66 unordered pairs are present.
-- **`info.json`, "deconvolution_source":** I chose "computed by me before RaCInG", but the history is mixed. quanTIseq first ran inside my first `prepare_racing_inputs` call. I then took that output, relabelled its "uncharacterized" fraction as `Cancer`, applied the floor, and passed it to the main run through `deconv_csv`.
+**Missing from `direct_interactions.csv`:** 148 of the 18,915 possible cell-type pairs, because RaCInG's output doesn't contain them. They are probably pairs that were zero in every patient and dropped by RaCInG's default filter, but I didn't verify that. I didn't add them.
 
-Nothing was skipped; all five requested items existed.
+The conversion script is `results/scripts/export_standard.R`.
 
-Files written to `results/standard/`: composition.csv, ligands.csv, receptors.csv, direct_interactions.csv, info.json
+Files written: `results/standard/ligands.csv`, `results/standard/receptors.csv`, `results/standard/direct_interactions.csv`

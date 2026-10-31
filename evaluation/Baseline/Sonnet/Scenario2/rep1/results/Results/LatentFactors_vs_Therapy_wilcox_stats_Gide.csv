@@ -1,0 +1,3 @@
+"feature","test","statistic_name","statistic","p_value","p_adjusted","significant"
+"Factor1","Wilcoxon rank-sum test","W",685,0.750509864538223,0.750509864538223,FALSE
+"Factor2","Wilcoxon rank-sum test","W",595,0.501129495134235,0.750509864538223,FALSE

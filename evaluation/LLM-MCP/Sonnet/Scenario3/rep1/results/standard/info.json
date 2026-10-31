@@ -1,0 +1,10 @@
+{
+  "selected_algorithm": "XGboost",
+  "training_cohort": "Gide",
+  "test_cohort": "Riaz",
+  "features_built_inside_cv_folds": true,
+  "cv_folds": 10,
+  "cv_repeats": 5,
+  "metric": "AUROC",
+  "cibersortx": true
+}

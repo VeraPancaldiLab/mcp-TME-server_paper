@@ -1,0 +1,8 @@
+
+No hub TFs in 1 of 12 modules (blue): they are not in the output
+1 significant feature(s) after Wilcoxon rank-sum test (adjusted p-value (BH) <= 0.05): TME_state1
+22 significant feature(s) after Wilcoxon rank-sum test (adjusted p-value (BH) <= 0.05): Dendrogram_green_group_1, Dendrogram_green_group_2, Dendrogram_green_group_4, Dendrogram_green_group_5, Dendrogram_green_group_6, Dendrogram_green_group_7, Dendrogram_green_group_12, Dendrogram_green_group_13, Dendrogram_green_group_15, Dendrogram_green_group_16, ...
+1 significant feature(s) after Wilcoxon rank-sum test (adjusted p-value (BH) <= 0.05): green
+3 significant feature(s) after Wilcoxon rank-sum test (adjusted p-value (BH) <= 0.05): JAK.STAT, NFkB, TNFa
+No numeric trait to correlate: the correlation heatmap is not drawn
+Done

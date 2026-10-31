@@ -1,17 +1,17 @@
 "run","comparison","score"
-"Baseline Opus","Ligand assignments",0.896574882471457
-"LLM-MCP Opus","Ligand assignments",0.998656816655473
-"Baseline Sonnet","Ligand assignments",1
+"Baseline Opus","Ligand assignments",0.0476248925985025
+"LLM-MCP Opus","Ligand assignments",0.984943332924185
+"Baseline Sonnet","Ligand assignments",0.0476248925985025
 "LLM-MCP Sonnet","Ligand assignments",1
-"Baseline Opus","Receptor assignments",0.891290111329404
-"LLM-MCP Opus","Receptor assignments",1
-"Baseline Sonnet","Receptor assignments",1
+"Baseline Opus","Receptor assignments",0.0448611265209512
+"LLM-MCP Opus","Receptor assignments",0.983024520137579
+"Baseline Sonnet","Receptor assignments",0.0448611265209512
 "LLM-MCP Sonnet","Receptor assignments",1
-"Baseline Opus","Direct interactions",0.0181818181818182
-"LLM-MCP Opus","Direct interactions",0.181818181818182
-"Baseline Sonnet","Direct interactions",1
-"LLM-MCP Sonnet","Direct interactions",0.236363636363636
-"Baseline Opus","Most common interactions",0.4
-"LLM-MCP Opus","Most common interactions",0.4
-"Baseline Sonnet","Most common interactions",1
-"LLM-MCP Sonnet","Most common interactions",0.4
+"Baseline Opus","Direct interactions",0.000870038064165307
+"LLM-MCP Opus","Direct interactions",0.976780859162588
+"Baseline Sonnet","Direct interactions",0
+"LLM-MCP Sonnet","Direct interactions",1
+"Baseline Opus","Most common interactions",0
+"LLM-MCP Opus","Most common interactions",1
+"Baseline Sonnet","Most common interactions",0
+"LLM-MCP Sonnet","Most common interactions",1

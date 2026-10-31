@@ -1,0 +1,286 @@
+Gide: 73 samples | NR 27 R 46 
+Riaz: 51 samples | NR 41 R 10 
+
+Running ML models with fold 1 
+
+Running ML models with fold 2 
+
+Running ML models with fold 3 
+
+Running ML models with fold 4 
+
+Running ML models with fold 5 
+
+Running ML models with fold 6 
+
+Running ML models with fold 7 
+
+Running ML models with fold 8 
+
+Running ML models with fold 9 
+
+Running ML models with fold 10 
+
+Running ML models with fold 11 
+
+Running ML models with fold 12 
+
+Running ML models with fold 13 
+
+Running ML models with fold 14 
+
+Running ML models with fold 15 
+
+Running ML models with fold 16 
+
+Running ML models with fold 17 
+
+Running ML models with fold 18 
+
+Running ML models with fold 19 
+
+Running ML models with fold 20 
+
+Running ML models with fold 21 
+
+Running ML models with fold 22 
+
+Running ML models with fold 23 
+
+Running ML models with fold 24 
+
+Running ML models with fold 25 
+
+Running ML models with fold 26 
+
+Running ML models with fold 27 
+
+Running ML models with fold 28 
+
+Running ML models with fold 29 
+
+Running ML models with fold 30 
+
+Running ML models with fold 31 
+
+Running ML models with fold 32 
+
+Running ML models with fold 33 
+
+Running ML models with fold 34 
+
+Running ML models with fold 35 
+
+Running ML models with fold 36 
+
+Running ML models with fold 37 
+
+Running ML models with fold 38 
+
+Running ML models with fold 39 
+
+Running ML models with fold 40 
+
+Running ML models with fold 41 
+
+Running ML models with fold 42 
+
+Running ML models with fold 43 
+
+Running ML models with fold 44 
+
+Running ML models with fold 45 
+
+Running ML models with fold 46 
+
+Running ML models with fold 47 
+
+Running ML models with fold 48 
+
+Running ML models with fold 49 
+
+Running ML models with fold 50 
+
+Running BAG....................
+
+Running RF....................
+
+Running C50....................
+
+Running GLMNET....................
+
+Running KNN....................
+
+Running CART....................
+
+Running Lasso....................
+
+Running Ridge....................
+
+Running SVM radial....................
+
+Running SVM linear....................
+
+Running XGboost....................
+Best ML model found:  RF 
+Returning model trained
+
+Selected model: rf 
+  mtry
+1   79
+# A tibble: 11 × 3
+   model      Median_AUROC MAD_AUROC
+   <chr>             <dbl>     <dbl>
+ 1 RF                0.8      0.0988
+ 2 XGboost           0.778    0.0988
+ 3 BAG               0.767    0.115 
+ 4 C50               0.763    0.137 
+ 5 GLMNET            0.760    0.137 
+ 6 LASSO             0.760    0.137 
+ 7 KNN               0.737    0.140 
+ 8 SVM_radial        0.704    0.115 
+ 9 CART              0.681    0.106 
+10 RIDGE             0.667    0.130 
+11 SVM_linear        0.614    0.136 
+
+Model features: 151 | missing in Riaz: 0 | NA values in Riaz: 0 
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+null device 
+          1 
+  metric  estimate lower_95CI upper_95CI chance_level
+1  AUROC 0.5939024  0.4035976  0.7756707    0.5000000
+2  AUPRC 0.2271088  0.1556372  0.4517292    0.1960784
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+Predicting target variable using provided ML model.................................................
+
+Prediction finished!.................................................
+            model Riaz_AUROC     lower     upper
+2.5%          BAG  0.5707317 0.3804878 0.7488110
+2.5%1          RF  0.5939024 0.4035976 0.7756707
+2.5%2         C50  0.5804878 0.4121341 0.7560976
+2.5%3      GLMNET  0.6170732 0.3999390 0.8170732
+2.5%4         KNN  0.6451220 0.4902134 0.7878049
+2.5%5        CART  0.6317073 0.4692683 0.7671037
+2.5%6       LASSO  0.6170732 0.3999390 0.8170732
+2.5%7       RIDGE  0.6365854 0.4315854 0.8244512
+2.5%8  SVM_radial  0.5219512 0.3145122 0.7414634
+2.5%9  SVM_linear  0.3341463 0.1390244 0.5512195
+2.5%10    XGboost  0.6073171 0.4048171 0.7951220
+Computing SHAP values of the final model on 73 training samples and 151 features...
+SHAP analysis finished! 
+
+                                              feature mean_abs_shap
+38                        DeconRNASeq_TIL10_Monocytes   0.083028081
+86                               CD8.cells_Subgroup.1   0.039746395
+26                          Macrophages.M1_Subgroup.3   0.028558897
+25                          Macrophages.M1_Subgroup.2   0.020775438
+89                               CD8.cells_Subgroup.4   0.017346229
+32                          Macrophages.M2_Subgroup.2   0.014181133
+114       DeconRNASeq_CBSX.Vanderbilt.scRNAseq_Cancer   0.012170647
+15                          B.memory.cells_Subgroup.1   0.011450007
+57      DeconRNASeq_CBSX.Zilionis.scRNAseq_NK.resting   0.011435943
+142               DeconRNASeq_LM22_Mast.resting.cells   0.010144449
+19  DeconRNASeq_CBSX.Zilionis.scRNAseq_Macrophages.M0   0.008908716
+83        Epidish_CBSX.NSCLC.PBMCs.scRNAseq_CD8.cells   0.008449903
+6                           DeconRNASeq_TIL10_B.cells   0.006746199
+139                   Mast.activated.cells_Subgroup.1   0.006494759
+73                    CD4.memory.activated_Subgroup.2   0.005420156
+13                           B.naive.cells_Subgroup.2   0.005162438
+18                       Macrophages.cells_Subgroup.2   0.004916465
+42                               Monocytes_Subgroup.4   0.004621016
+30                    DeconRNASeq_LM22_Macrophages.M2   0.004589686
+8                                  B.cells_Subgroup.1   0.004576329
+    shap_direction_rho Gide_median_diff_R_minus_NR Gide_wilcox_p
+38          -0.5874692                -0.096038635  2.477456e-04
+86           0.7929460                 0.028567666  4.207556e-05
+26           0.8288024                 0.051022717  9.070940e-05
+25           0.7652413                 0.052255170  1.101737e-03
+89           0.8764306                 0.059582244  1.595886e-04
+32          -0.7873936                -0.097043170  1.055002e-03
+114         -0.6703125                -0.020907441  6.884240e-03
+15          -0.5358373                -0.017044853  1.458854e-02
+57           0.2386535                -0.002235910  4.611021e-01
+142         -0.7356948                -0.027613417  9.012715e-04
+19          -0.8225410                -0.077134995  4.190425e-02
+83           0.8242544                 0.015300021  1.632036e-03
+6            0.4112674                 0.001588356  2.926188e-01
+139         -0.3431660                -0.000284541  9.020041e-01
+73           0.8567196                 0.025369278  3.366035e-03
+13          -0.5863923                -0.006000895  2.324465e-01
+18           0.4543688                 0.027402219  7.360325e-02
+42          -0.2508022                -0.119855954  2.970819e-02
+30           0.5164689                 0.071063784  1.667521e-01
+8            0.8846427                 0.047751537  7.079235e-04
+    Riaz_median_diff_R_minus_NR Riaz_wilcox_p              direction
+38                -0.0622698881    0.33571145 higher -> non-response
+86                 0.0194843057    0.26380729     higher -> response
+26                 0.0245313067    0.36665967     higher -> response
+25                -0.0198046858    1.00000000     higher -> response
+89                 0.0064781294    0.56878666     higher -> response
+32                 0.0337906899    0.64854799 higher -> non-response
+114               -0.0333610369    0.04242133 higher -> non-response
+15                -0.0009390402    0.46810258 higher -> non-response
+57                 0.0053663514    0.77605197     higher -> response
+142               -0.0572382398    0.02634715 higher -> non-response
+19                -0.0110954572    0.44063820 higher -> non-response
+83                 0.0240856300    0.31320521     higher -> response
+6                  0.0138514723    0.09479386     higher -> response
+139               -0.0019014240    0.77582924 higher -> non-response
+73                 0.0052691704    0.20389037     higher -> response
+13                 0.0182491054    0.08117506 higher -> non-response
+18                 0.0100664495    0.64854799     higher -> response
+42                -0.0979887915    0.04375887 higher -> non-response
+30                 0.0495342947    0.46921251     higher -> response
+8                  0.0223419347    0.17649971     higher -> response
+    same_sign_in_Riaz
+38               TRUE
+86               TRUE
+26               TRUE
+25              FALSE
+89               TRUE
+32              FALSE
+114              TRUE
+15               TRUE
+57              FALSE
+142              TRUE
+19               TRUE
+83               TRUE
+6                TRUE
+139              TRUE
+73               TRUE
+13              FALSE
+18               TRUE
+42               TRUE
+30               TRUE
+8                TRUE

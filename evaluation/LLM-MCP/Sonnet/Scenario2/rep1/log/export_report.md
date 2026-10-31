@@ -1,0 +1,3 @@
+All 11 requested items were available and exported; none were skipped. Patient IDs match the input expression data's sample names exactly (e.g. `10_PD1_PRE`), and no existing file was modified or recomputed — these are straight re-exports from `results/CellTFusion/result.rds` and the already-produced Wilcoxon stats table.
+
+Files written to `results/standard/`: `factor_scores.csv`, `tme_states.csv`, `response_tests.csv`, `tf_activity.csv`, `tf_modules.csv`, `tf_module_scores.csv`, `pathway_scores.csv`, `subgroups_composition.csv`, `cell_groups.csv`, `cell_group_scores.csv`, `info.json`.
